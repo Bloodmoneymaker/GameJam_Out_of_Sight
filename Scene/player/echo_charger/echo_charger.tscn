@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://qk63jreoynvu"]
+
+[ext_resource type="Script" uid="uid://bd5tmh7unx7vr" path="res://Scene/player/echo_charger/echo_charger.gd" id="1_script"]
+
+[node name="EchoCharger" type="Node" unique_id=1780544447]
+script = ExtResource("1_script")
+
+[node name="RefreshTimer" type="Timer" parent="." unique_id=1634889222]
+one_shot = true
+
+[connection signal="timeout" from="RefreshTimer" to="." method="_on_refresh_timer_timeout"]
