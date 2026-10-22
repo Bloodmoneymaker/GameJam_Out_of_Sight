@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://m4wh6nhq55vb"]
 
 [ext_resource type="Script" uid="uid://bccuam5f44icj" path="res://Scene/player/player.gd" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://ck14pxdg5xtf6" path="res://weapon/weapon.tscn" id="2_ubwr7"]
 
 [sub_resource type="CapsuleShape3D" id="PlayerShape"]
 radius = 0.4
@@ -34,3 +35,7 @@ offset_right = 2.0
 offset_bottom = 2.0
 mouse_filter = 2
 color = Color(0.6, 0.9, 1, 0.6)
+
+[node name="Weapon" parent="Head/Camera3D" unique_id=596071866 node_paths=PackedStringArray("player") instance=ExtResource("2_ubwr7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39051569, -0.3627904, -0.5803833)
+player = NodePath("../../..")

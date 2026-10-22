@@ -16,6 +16,7 @@ const MIN_WALL_DISTANCE := 0.25
 var _origins := PackedVector4Array()
 var _params := PackedVector4Array()
 var _planes := PackedVector4Array()
+var _colors := PackedVector4Array()
 var _next := 0
 var _time := 0.0
 var _ray_dirs: Array[Vector3] = []
@@ -25,6 +26,7 @@ func _ready() -> void:
 	_origins.resize(MAX_WAVES)
 	_params.resize(MAX_WAVES)
 	_planes.resize(MAX_WAVES)
+	_colors.resize(MAX_WAVES)
 	# 6 axis directions + 8 diagonals to find the surrounding walls
 	for x in [-1, 0, 1]:
 		for y in [-1, 0, 1]:
@@ -42,16 +44,20 @@ func _process(delta: float) -> void:
 
 ## Spawns a wave plus its first-order wall reflections.
 ## Overwrites the oldest waves when all slots are taken.
-func emit_wave(origin: Vector3, speed := 10.0, lifetime := 3.0, intensity := 1.0, reflect := true) -> void:
+## Without a color (transparent) the material's wave_color is used.
+func emit_wave(origin: Vector3, speed := 10.0, lifetime := 3.0, intensity := 1.0, reflect := true, color := Color.TRANSPARENT) -> void:
+	if color.a == 0.0:
+		color = MATERIAL.get_shader_parameter("wave_color")
+	var rgb := Vector4(color.r, color.g, color.b, 1.0)
 	var params := Vector4(speed, lifetime, intensity, 0.0)
-	_add(origin, params, Vector4.ZERO)
+	_add(origin, params, Vector4.ZERO, rgb)
 
 	if reflect:
 		var reflected := Vector4(speed, lifetime, intensity * REFLECTION_STRENGTH, 0.0)
 		for plane in _find_walls(origin, speed * lifetime):
 			var n := Vector3(plane.x, plane.y, plane.z)
 			var mirrored := origin - 2.0 * (n.dot(origin) - plane.w) * n
-			_add(mirrored, reflected, plane)
+			_add(mirrored, reflected, plane, rgb)
 
 	_push()
 
@@ -80,10 +86,11 @@ func _find_walls(origin: Vector3, reach: float) -> Array[Vector4]:
 	return planes
 
 
-func _add(origin: Vector3, params: Vector4, plane: Vector4) -> void:
+func _add(origin: Vector3, params: Vector4, plane: Vector4, color: Vector4) -> void:
 	_origins[_next] = Vector4(origin.x, origin.y, origin.z, _time)
 	_params[_next] = params
 	_planes[_next] = plane
+	_colors[_next] = color
 	_next = (_next + 1) % MAX_WAVES
 
 
@@ -91,3 +98,4 @@ func _push() -> void:
 	MATERIAL.set_shader_parameter("wave_origin", _origins)
 	MATERIAL.set_shader_parameter("wave_params", _params)
 	MATERIAL.set_shader_parameter("wave_plane", _planes)
+	MATERIAL.set_shader_parameter("wave_tint", _colors)

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ck14pxdg5xtf6"]
+
+[ext_resource type="Script" uid="uid://cwpxck1aitev1" path="res://weapon/weapon.gd" id="1_4ht74"]
+[ext_resource type="PackedScene" uid="uid://e04ntqy17tmy" path="res://weapon/bullet/bullet.tscn" id="2_bullet"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bu2mm"]
+
+[node name="Weapon" type="Node3D" unique_id=596071866]
+script = ExtResource("1_4ht74")
+bullet_scene = ExtResource("2_bullet")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2137568368]
+transform = Transform3D(0.20341206, 0, 0, 0, 0.023805976, 0.16445741, 0, -0.97545826, 0.0040135696, 0, -0.049526453, 0)
+mesh = SubResource("CylinderMesh_bu2mm")
+
+[node name="BulletSpawn" type="Marker3D" parent="." unique_id=75710741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.062877655, -0.99337506)
