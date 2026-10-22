@@ -7,6 +7,8 @@ extends Node3D
 @export_flags_3d_physics var aim_collision_mask: int = 1
 
 @onready var bulletSpawn: Marker3D = $BulletSpawn
+@onready var anim_player:AnimationPlayer = $AnimationPlayer
+@onready var scene_player:CharacterBody3D = $"../../.."
 
 var cooldown: float = 0.0
 
@@ -16,6 +18,8 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("shoot") and cooldown <= 0.0:
 		shoot()
+	if scene_player.velocity.z <= 0.1:
+		anim_player.play("Stand")
 
 
 func shoot() -> void:
