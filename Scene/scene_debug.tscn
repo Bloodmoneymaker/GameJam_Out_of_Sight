@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://2fapgcxyvask"]
 
 [ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_kveii"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="2_6bkcm"]
 [ext_resource type="PackedScene" uid="uid://c2a2abmombtts" path="res://Scene/echo_mesh/echo_mesh.tscn" id="3_echo_mesh"]
+[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="4_6scyb"]
 
 [sub_resource type="Environment" id="Environment_6bkcm"]
 background_mode = 2
@@ -10,12 +12,15 @@ glow_enabled = true
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+material = ExtResource("2_6bkcm")
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+material = ExtResource("2_6bkcm")
 size = Vector3(51, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_57qmd"]
+material = ExtResource("2_6bkcm")
 size = Vector3(5, 3, 1)
 
 [node name="Scene_Debug" type="Node3D" unique_id=2066049630]
@@ -123,3 +128,5 @@ mesh = SubResource("BoxMesh_57qmd")
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.95890045, 1.5, -2.8000002)
 mesh = SubResource("BoxMesh_57qmd")
 
+[node name="Beacon" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=2011488940 instance=ExtResource("4_6scyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.576872, 0, -22.774776)
