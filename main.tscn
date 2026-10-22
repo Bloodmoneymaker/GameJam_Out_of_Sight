@@ -14,6 +14,7 @@ script = ExtResource("1_ig7tw")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1078344536]
 
 [node name="UI_Main" type="Control" parent="CanvasLayer" unique_id=1451511516]
+mouse_filter = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/UI_Main" unique_id=1431189739]
+mouse_filter = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
