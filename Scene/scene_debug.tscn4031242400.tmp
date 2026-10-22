@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://2fapgcxyvask"]
+
+[ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_kveii"]
+[ext_resource type="PackedScene" uid="uid://c8n55rbgmub3r" path="res://Scene/Tiles/Tile_Cross.tscn" id="3_0q7va"]
+[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="4_6scyb"]
+[ext_resource type="PackedScene" uid="uid://calwk4rv4vrjc" path="res://Scene/Tiles/Tile_corridor.tscn" id="4_p2v7j"]
+[ext_resource type="PackedScene" uid="uid://bgl4h0215a5fd" path="res://Scene/Tiles/tile_road_t.tscn" id="5_n2mbg"]
+[ext_resource type="PackedScene" uid="uid://dny1eb6s8ciw4" path="res://Scene/Tiles/tile_road_edge.tscn" id="6_n2mbg"]
+[ext_resource type="PackedScene" uid="uid://cxhmgcms5x8oy" path="res://Scene/Enemy/entity_roach.tscn" id="7_eu8i2"]
+
+[sub_resource type="Environment" id="Environment_6bkcm"]
+background_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
+vertices = PackedVector3Array(0.5, 0.30699742, -23, -0.25, 0.30699742, -23, -0.25, 0.30699742, -16.75, 0.75, 0.30699742, -16.25, -0.75, 0.30699742, 11.75, -7.5, 0.30699742, 11.5, -8.75, 0.30699742, 11.75, -0.75, 0.30699742, -16.25, 0.5, 0.30699742, -7.25, -0.5, 0.30699742, -7.5, -0.25, 0.30699742, -0.75, 0.75, 0.30699742, -0.25, -0.25, 0.30699742, 11.25, 0.5, 0.30699742, 12.25, 0.75, 0.30699742, 8.5, 0.75, 0.30699742, 7.75, 0.5, 0.30699742, 0.75, -0.25, 0.30699742, 0.75, -0.75, 0.30699742, -0.25, -7.5, 0.30699742, -23.25, -1, 0.30699742, -23.5, -1, 0.30699742, -24.25, -8.25, 0.30699742, -24.25, 11.75, 0.30699742, -0.75, 11.25, 0.30699742, -0.25, 12.5, 0.30699742, 0.5, -15.25, 0.30699742, 3.75, -15.5, 0.30699742, 4.75, -8.5, 0.30699742, 4.5, -8.75, 0.30699742, 3.75, 7.75, 0.30699742, 7.25, 7.25, 0.30699742, 7.75, 8.5, 0.30699742, 8.5, -8.25, 0.30699742, 3.25, -7.25, 0.30699742, -8.25, -7.5, 0.30699742, -7.25, 11.25, 0.30699742, -8.25, -8.75, 0.30699742, -4.25, -16.25, 0.30699742, -4.25, -15.5, 0.30699742, -3.25, -8.5, 0.30699742, -3.5, 8.5, 0.30699742, 0.75, 7.5, 0.30699742, 0.5, -8.25, 0.30699742, -4.75, -7.5, 0.30699742, -16.5, -7.5, 0.30699742, -15.25, -7.25, 0.30699742, -0.25, -7.5, 0.30699742, 0.75, 11.5, 0.30699742, -7.5, 11.75, 0.30699742, -8.75, 12.5, 0.30699742, -16.25, 11.5, 0.30699742, -15.5, -8.25, 0.30699742, 11.25, -16.25, 0.30699742, 12.25, -15.25, 0.30699742, 11.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(3, 7, 2), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 16), PackedInt32Array(16, 12, 17), PackedInt32Array(16, 17, 11), PackedInt32Array(11, 17, 18), PackedInt32Array(11, 18, 10), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(25, 24, 23), PackedInt32Array(29, 28, 26), PackedInt32Array(26, 28, 27), PackedInt32Array(32, 31, 30), PackedInt32Array(33, 28, 29), PackedInt32Array(35, 34, 9), PackedInt32Array(9, 34, 36), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38), PackedInt32Array(42, 41, 30), PackedInt32Array(30, 41, 32), PackedInt32Array(43, 40, 37), PackedInt32Array(45, 44, 7), PackedInt32Array(46, 18, 47), PackedInt32Array(47, 18, 17), PackedInt32Array(13, 4, 12), PackedInt32Array(36, 49, 48), PackedInt32Array(48, 8, 36), PackedInt32Array(36, 8, 9), PackedInt32Array(16, 11, 42), PackedInt32Array(42, 11, 24), PackedInt32Array(15, 31, 14), PackedInt32Array(14, 31, 32), PackedInt32Array(42, 24, 41), PackedInt32Array(41, 24, 25), PackedInt32Array(51, 50, 49), PackedInt32Array(49, 50, 25), PackedInt32Array(22, 19, 44), PackedInt32Array(47, 33, 46), PackedInt32Array(46, 33, 40), PackedInt32Array(46, 40, 43), PackedInt32Array(46, 43, 35), PackedInt32Array(35, 43, 34), PackedInt32Array(34, 43, 45), PackedInt32Array(45, 43, 22), PackedInt32Array(6, 52, 5), PackedInt32Array(33, 47, 28), PackedInt32Array(28, 47, 52), PackedInt32Array(52, 47, 5), PackedInt32Array(27, 39, 26), PackedInt32Array(45, 7, 3), PackedInt32Array(22, 44, 45), PackedInt32Array(39, 27, 38), PackedInt32Array(38, 27, 53), PackedInt32Array(48, 49, 23), PackedInt32Array(23, 49, 25), PackedInt32Array(54, 53, 27), PackedInt32Array(54, 6, 53), PackedInt32Array(4, 13, 6), PackedInt32Array(6, 13, 53), PackedInt32Array(50, 51, 3), PackedInt32Array(3, 51, 45)]
+
+[node name="Scene_Debug" type="Node3D" unique_id=2066049630]
+script = ExtResource("1_kveii")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=919155277]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=629152837]
+environment = SubResource("Environment_6bkcm")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1666234627]
+navigation_mesh = SubResource("NavigationMesh_g4v7s")
+
+[node name="Beacon" parent="NavigationRegion3D" unique_id=2011488940 instance=ExtResource("4_6scyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D" unique_id=2019792397]
+
+[node name="Tile_Cross" parent="NavigationRegion3D/Node3D" unique_id=1089816243 instance=ExtResource("3_0q7va")]
+
+[node name="TileCorridor" parent="NavigationRegion3D/Node3D" unique_id=383876786 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="TileCorridor2" parent="NavigationRegion3D/Node3D" unique_id=311569101 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="TileCorridor14" parent="NavigationRegion3D/Node3D" unique_id=427823261 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 8)
+
+[node name="TileCorridor16" parent="NavigationRegion3D/Node3D" unique_id=814720910 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -4)
+
+[node name="TileCorridor17" parent="NavigationRegion3D/Node3D" unique_id=1946193471 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, 4)
+
+[node name="TileCorridor18" parent="NavigationRegion3D/Node3D" unique_id=1519160673 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16, 0, 0)
+
+[node name="TileCorridor6" parent="NavigationRegion3D/Node3D" unique_id=1665756038 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 8)
+
+[node name="TileCorridor12" parent="NavigationRegion3D/Node3D" unique_id=1193161410 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 12)
+
+[node name="TileCorridor13" parent="NavigationRegion3D/Node3D" unique_id=1118681803 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, 12)
+
+[node name="TileCorridor15" parent="NavigationRegion3D/Node3D" unique_id=1192895298 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, 8)
+
+[node name="TileCorridor5" parent="NavigationRegion3D/Node3D" unique_id=1327564058 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="TileCorridor3" parent="NavigationRegion3D/Node3D" unique_id=1907411075 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
+
+[node name="TileCorridor4" parent="NavigationRegion3D/Node3D" unique_id=305197606 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 0)
+
+[node name="TileCorridor7" parent="NavigationRegion3D/Node3D" unique_id=1040303779 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, -8)
+
+[node name="TileCorridor8" parent="NavigationRegion3D/Node3D" unique_id=766316086 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, -8)
+
+[node name="TileCorridor9" parent="NavigationRegion3D/Node3D" unique_id=2083674701 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -12)
+
+[node name="TileCorridor26" parent="NavigationRegion3D/Node3D" unique_id=151583574 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -4)
+
+[node name="TileCorridor25" parent="NavigationRegion3D/Node3D" unique_id=1937849429 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -12)
+
+[node name="TileCorridor19" parent="NavigationRegion3D/Node3D" unique_id=1069525455 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12)
+
+[node name="TileCorridor20" parent="NavigationRegion3D/Node3D" unique_id=724083918 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -8)
+
+[node name="TileCorridor21" parent="NavigationRegion3D/Node3D" unique_id=198997654 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -16)
+
+[node name="TileCorridor22" parent="NavigationRegion3D/Node3D" unique_id=1381255470 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, -20)
+
+[node name="TileCorridor23" parent="NavigationRegion3D/Node3D" unique_id=2115564637 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -20)
+
+[node name="TileCorridor24" parent="NavigationRegion3D/Node3D" unique_id=2024414631 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -24)
+
+[node name="TileCorridor10" parent="NavigationRegion3D/Node3D" unique_id=723355841 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, -16)
+
+[node name="TileCorridor11" parent="NavigationRegion3D/Node3D" unique_id=1273412299 instance=ExtResource("4_p2v7j")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, -16)
+
+[node name="Tile_Road_T" parent="NavigationRegion3D/Node3D" unique_id=1757051573 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Tile_Road_T7" parent="NavigationRegion3D/Node3D" unique_id=1906076122 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 12)
+
+[node name="Tile_Road_T9" parent="NavigationRegion3D/Node3D" unique_id=1527802454 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(-1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1, -8, 0, 4)
+
+[node name="Tile_Road_T10" parent="NavigationRegion3D/Node3D" unique_id=1490001335 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(1, 0, 1.172251e-07, 0, 1, 0, -1.172251e-07, 0, 1, -8, 0, 0)
+
+[node name="Tile_Road_T11" parent="NavigationRegion3D/Node3D" unique_id=1957101907 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(-1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1, -8, 0, -4)
+
+[node name="Tile_Road_T8" parent="NavigationRegion3D/Node3D" unique_id=494862704 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 4)
+
+[node name="Tile_Road_T2" parent="NavigationRegion3D/Node3D" unique_id=104570215 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
+
+[node name="Tile_Road_T4" parent="NavigationRegion3D/Node3D" unique_id=992034193 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(-1, 0, -3.1786506e-08, 0, 1, 0, 3.1786506e-08, 0, -1, 12, 0, -8)
+
+[node name="Tile_Road_T5" parent="NavigationRegion3D/Node3D" unique_id=1040720851 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(7.5497894e-08, 0, -1, 0, 1, 0, 1, 0, 7.5497894e-08, 0, 0, -8)
+
+[node name="Tile_Road_T12" parent="NavigationRegion3D/Node3D" unique_id=1759155020 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(1, 0, 1.1920928e-07, 0, 1, 0, -1.1920928e-07, 0, 1, -8, 0, -8)
+
+[node name="Tile_Road_T13" parent="NavigationRegion3D/Node3D" unique_id=1795607126 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(1, 0, 1.1920928e-07, 0, 1, 0, -1.1920928e-07, 0, 1, -8, 0, -16)
+
+[node name="Tile_Road_T6" parent="NavigationRegion3D/Node3D" unique_id=1357012457 instance=ExtResource("5_n2mbg")]
+transform = Transform3D(1.1924882e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924882e-08, 0, 0, -16)
+
+[node name="Tile_Road_Edge" parent="NavigationRegion3D/Node3D" unique_id=1742534347 instance=ExtResource("6_n2mbg")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, 8, 0, 8)
+
+[node name="Tile_Road_Edge5" parent="NavigationRegion3D/Node3D" unique_id=996305517 instance=ExtResource("6_n2mbg")]
+transform = Transform3D(1, 0, -5.563627e-08, 0, 1, 0, 5.563627e-08, 0, 1, -16, 0, 12)
+
+[node name="Tile_Road_Edge6" parent="NavigationRegion3D/Node3D" unique_id=1614369497 instance=ExtResource("6_n2mbg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16, 0, -4)
+
+[node name="Tile_Road_Edge7" parent="NavigationRegion3D/Node3D" unique_id=415147955 instance=ExtResource("6_n2mbg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, -24)
+
+[node name="Tile_Road_Edge8" parent="NavigationRegion3D/Node3D" unique_id=1003583918 instance=ExtResource("6_n2mbg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -24)
+
+[node name="Tile_Road_Edge2" parent="NavigationRegion3D/Node3D" unique_id=1135661487 instance=ExtResource("6_n2mbg")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, 0, 0, 12)
+
+[node name="Tile_Road_Edge3" parent="NavigationRegion3D/Node3D" unique_id=721368272 instance=ExtResource("6_n2mbg")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, 12, 0, 0)
+
+[node name="Tile_Road_Edge4" parent="NavigationRegion3D/Node3D" unique_id=514090806 instance=ExtResource("6_n2mbg")]
+transform = Transform3D(-1, 0, -3.1786506e-08, 0, 1, 0, 3.1786506e-08, 0, -1, 12, 0, -16)
+
+[node name="Entity_Roach" parent="." unique_id=1248933683 instance=ExtResource("7_eu8i2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
