@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c1eukbgdiwxyw"]
+
+[ext_resource type="Script" uid="uid://do8qoowia74yn" path="res://Main.gd" id="1_ig7tw"]
+
+[node name="Main" type="Node3D" unique_id=253493729]
+script = ExtResource("1_ig7tw")
+
+[node name="Container" type="Node" parent="." unique_id=1095692054]
+
+[node name="Container_Scene" type="Node" parent="Container" unique_id=498499971]
