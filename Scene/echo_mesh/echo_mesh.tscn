@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c2a2abmombtts"]
+
+[ext_resource type="Script" uid="uid://c4a1gdwa1fp72" path="res://Scene/echo_mesh/echo_mesh.gd" id="1_script"]
+
+[node name="EchoMesh" type="MeshInstance3D" unique_id=2043540521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.011710465)
+script = ExtResource("1_script")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=228346673]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1894423794]
