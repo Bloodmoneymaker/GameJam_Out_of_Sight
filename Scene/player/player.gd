@@ -37,6 +37,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			Echo.emit_wave(head.global_position, 15.0, 4.0, 1.0)
+			AudioManager.play_sound_3d(Audio.SOUND.Scan,head.global_position)
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			_emit_wave_at_aim()
 
