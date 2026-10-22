@@ -1,9 +1,12 @@
 
 extends CharacterBody3D
 
+@onready var audio_player:AudioStreamPlayer3D = $AudioStreamPlayer3D
+
 @export var sound_movment:Array[AudioStream] = []
 @export var sound_attack:Array[AudioStream] = []
-@export var sound_body:Array[AudioStream] = []
+@export var sound_body:AudioStream
+
 
 @export var echo_speed:float = 2.0
 @export var echo_lifetime:float = 1.0
@@ -15,6 +18,9 @@ extends CharacterBody3D
 
 @export var bones:Array[BoneAttachment3D] = []
 
+func _ready() -> void:
+	audio_player.stream = sound_body
+	audio_player.play()
 
 func sound_trigger_movement() -> void:
 	var rng = -1
