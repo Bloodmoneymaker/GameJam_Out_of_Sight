@@ -20,6 +20,7 @@ config/icon="res://Asset/Textures/icon.svg"
 GameManager="*uid://dcmopg5bbq12n"
 Audio="*uid://ciibqo08lgvy8"
 AudioManager="*uid://cmo2myamvpwp4"
+Echo="*uid://jeg5gqpktg2e"
 
 [display]
 

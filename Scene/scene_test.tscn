@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://dk0qf3qh3t2lm"]
 
+[ext_resource type="Script" uid="uid://dh8rcojyxusv" path="res://Scene/scene_test.gd" id="1_rdiye"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="3_y3f04"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ej00m"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -12,25 +15,28 @@ background_mode = 2
 sky = SubResource("Sky_jeqfl")
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
-albedo_color = Color(0.085983776, 0.08598376, 0.08598376, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
-material = SubResource("StandardMaterial3D_yf5fn")
+material = ExtResource("3_y3f04")
 size = Vector3(10, 1, 10)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d1pia"]
+material = ExtResource("3_y3f04")
+
 [node name="Scene_Test" type="Node3D" unique_id=538531758]
+script = ExtResource("1_rdiye")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1121125147]
 environment = SubResource("Environment_rdiye")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=48867230]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1612425290]
+transform = Transform3D(0.7384803, -0.502247, 0.44988307, 0, 0.6672101, 0.7448696, -0.67427504, -0.55007154, 0.49272153, 3.3298066, 5.513147, 3.6468747)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1057895427]
+[node name="LevelMeshes" type="Node3D" parent="." unique_id=221971816]
+
+[node name="Floor" type="MeshInstance3D" parent="LevelMeshes" unique_id=1057895427]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_g4v7s")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1612425290]
-transform = Transform3D(0.7384803, -0.502247, 0.44988307, 0, 0.6672101, 0.7448696, -0.67427504, -0.55007154, 0.49272153, 3.3298066, 5.513147, 3.6468747)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelMeshes" unique_id=2045355824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5791005, 0)
+mesh = SubResource("CapsuleMesh_d1pia")
