@@ -8,3 +8,29 @@ script = ExtResource("1_ig7tw")
 [node name="Container" type="Node" parent="." unique_id=1095692054]
 
 [node name="Container_Scene" type="Node" parent="Container" unique_id=498499971]
+
+[node name="Container_Entity" type="Node" parent="Container" unique_id=1414735070]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1078344536]
+
+[node name="UI_Main" type="Control" parent="CanvasLayer" unique_id=1451511516]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI_Main" unique_id=1431189739]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.0
+offset_right = 122.0
+offset_bottom = 107.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "MAIN_MENU"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -11,13 +11,24 @@ config_version=5
 [application]
 
 config/name="OutOfSight"
+run/main_scene="uid://c1eukbgdiwxyw"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://Asset/Textures/icon.svg"
+
+[autoload]
+
+GameManager="*uid://dcmopg5bbq12n"
+Audio="*uid://ciibqo08lgvy8"
+AudioManager="*uid://cmo2myamvpwp4"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/audiomanager_[simple]/plugin.cfg")
 
 [physics]
 
