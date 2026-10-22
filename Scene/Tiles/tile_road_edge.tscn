@@ -1,0 +1,49 @@
+[gd_scene format=4 uid="uid://dny1eb6s8ciw4"]
+
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="1_18jgs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8co86"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_087pe"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -2, 3, 2.5, 3),
+"format": 34359742465,
+"index_count": 72,
+"index_data": PackedByteArray("AAACAAwAAgAIAAwAAAAMAA0ACAANAAwAAgAJAAgACAAGAA0ACwANAAYAAgALAAkACwAHAA0AAgAHAAsAAAANAAQABwAEAA0AAAAOAAIADgAAAAQAAwAHAAIADgADAAIAAwAKAAcADgABAAMABQAHAAoADgAFAAEABwAPAAQADgAEAA8ABQAPAAcADgAPAAUA"),
+"lods": [0.0011175524, PackedByteArray("AAABAAIAAQADAAIAAQAAAAQAAQAEAAUAAAAGAAQABQAEAAcABwAEAAYACAAGAAAAAgAIAAAAAwAHAAIAAgAJAAgAAwAKAAcABQAHAAoAAgALAAkACwAHAAYAAgAHAAsA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAvwAAAAAAAADAAACAPwAAAAAAAIC/AACAPwAAAAAAAADAAACAvwAAIEAAAIA/AACAvwAAIEAAAADAAAAAQAAAIEAAAIA/AACAPwAAIEAAAIC/AAAAQAAAAAAAAIA/AAAAQAAAAAAAAIC/AACAPwAAIEAAAADAAAAAQAAAIEAAAIC/AACAPwAAAAAAAIA/AACAPwAAIEAAAIA/AACAvwAAAAAAAIC/AACAvwAAIEAAAIC/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wyxdk"]
+resource_name = "Road_Edge_Plane_003"
+_surfaces = [{
+"aabb": AABB(-1, 0, -2, 3, 2.5, 3),
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AACAPwAAgD8AAAAAAACAPwAAgD8AAIA/AACAPwAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAAAAAACAPwAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AACAPwAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AACAPwAAAAAAAAAA"),
+"format": 34359742487,
+"index_count": 72,
+"index_data": PackedByteArray("AAACABwAAgAEABwAAgAFAAQAAAAdAAIAHQADAAIAHQABAAMABgAeAB8ABgAHAB4ACAAfAB4ACAAeAAkAIAAMAAoAIAAhAAwAIAALACEAIAANAAsADgAPABAADgARAA8AEgATABQAEgAVABMAFgAiABgAFgAXACIAFwAZACIAFwAjABkAGgAjABcAGgAXABsA"),
+"lods": [0.0011175524, PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgAFAAQABgAHAAgACAAHAAkACgALAAwACgANAAsADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFwAZABgAGgAZABcAGgAXABsA")],
+"material": SubResource("StandardMaterial3D_8co86"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AACAvwAAAAAAAIA/AACAvwAAAAAAAADAAACAPwAAAAAAAIC/AACAPwAAAAAAAADAAAAAQAAAAAAAAIA/AAAAQAAAAAAAAIC/AAAAQAAAAAAAAIA/AAAAQAAAIEAAAIA/AACAvwAAAAAAAIA/AACAvwAAIEAAAIA/AACAvwAAAAAAAADAAACAvwAAIEAAAIA/AACAvwAAIEAAAADAAACAvwAAAAAAAIA/AACAPwAAAAAAAIC/AAAAQAAAIEAAAIC/AAAAQAAAAAAAAIC/AACAPwAAIEAAAIC/AACAPwAAAAAAAADAAACAPwAAIEAAAIC/AACAPwAAAAAAAIC/AACAPwAAIEAAAADAAAAAQAAAIEAAAIC/AACAPwAAIEAAAIC/AAAAQAAAIEAAAIA/AACAvwAAIEAAAIA/AACAvwAAIEAAAADAAACAPwAAIEAAAADAAACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAIEAAAIA/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAvwAAIEAAAIC/AACAPwAAIEAAAIA/AACAvwAAIEAAAIC//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//////////7//////////v/////////+//////////7////9/////v////3////+/////f////7////9/////v/9//3////8//3//f////z//f/9/////P/9//3////8/AAD/f////78AAP9/////vwAA/3////+/AAD/f////7//fwAA////v/9/AAD///8//38AAP///7//fwAA////P/9/AAD///+//38AAP///7//f///////v/9///////+//////////7//////////v////3////+/////f////7//fwAA////P/9/AAD///8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_087pe")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x4m13"]
+data = PackedVector3Array(-1, 0, 1, 1, 0, -1, 1, 0, 1, 1, 0, -1, 2, 0, 1, 1, 0, 1, 1, 0, -1, 2, 0, -1, 2, 0, 1, -1, 0, 1, -1, 0, -1, 1, 0, -1, -1, 0, -1, 1, 0, -2, 1, 0, -1, -1, 0, -1, -1, 0, -2, 1, 0, -2, 2, 0, 1, 1, 2.5, 1, 1, 0, 1, 2, 0, 1, 2, 2.5, 1, 1, 2.5, 1, -1, 0, 1, 1, 0, 1, 1, 2.5, 1, -1, 0, 1, 1, 2.5, 1, -1, 2.5, 1, -1, 0, -1, -1, 2.5, -2, -1, 0, -2, -1, 0, -1, -1, 2.5, -1, -1, 2.5, -2, -1, 0, -1, -1, 2.5, 1, -1, 2.5, -1, -1, 0, -1, -1, 0, 1, -1, 2.5, 1, 1, 0, -1, 2, 2.5, -1, 2, 0, -1, 1, 0, -1, 1, 2.5, -1, 2, 2.5, -1, 1, 0, -2, 1, 2.5, -1, 1, 0, -1, 1, 0, -2, 1, 2.5, -2, 1, 2.5, -1, 2, 2.5, -1, 1, 2.5, 1, 2, 2.5, 1, 2, 2.5, -1, 1, 2.5, -1, 1, 2.5, 1, 1, 2.5, -1, -1, 2.5, 1, 1, 2.5, 1, 1, 2.5, -1, -1, 2.5, -1, -1, 2.5, 1, -1, 2.5, -2, -1, 2.5, -1, 1, 2.5, -1, -1, 2.5, -2, 1, 2.5, -1, 1, 2.5, -2)
+
+[node name="Tile_Road_Edge" type="StaticBody3D" unique_id=1742534347]
+
+[node name="Cross_Edge" type="MeshInstance3D" parent="." unique_id=364290782]
+mesh = SubResource("ArrayMesh_wyxdk")
+surface_material_override/0 = ExtResource("1_18jgs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1951985944]
+shape = SubResource("ConcavePolygonShape3D_x4m13")

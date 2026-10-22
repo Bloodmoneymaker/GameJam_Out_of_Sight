@@ -1,0 +1,49 @@
+[gd_scene format=4 uid="uid://calwk4rv4vrjc"]
+
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="1_2l5ew"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utbf8"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_31m1y"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -2, 2, 2.5, 4),
+"format": 34359742465,
+"index_count": 72,
+"index_data": PackedByteArray("CgALAAwACgANAAsADAAAAAoADAACAAAADAAGAAIAAAAOAAoADQAKAA4AAAAFAA4ABgAOAAUADAAPAAYABgAPAA4ADAAIAA8ACAAOAA8ADAALAAgADQAOAAkACAAJAA4ADQABAAsAAQAIAAsADQADAAEAAQAEAAgADQAHAAMADQAJAAcABwAJAAgABwAIAAQA"),
+"lods": [0.0004245636, PackedByteArray("AAABAAIAAAADAAEAAwAAAAUAAgABAAgAAwAFAAkACAAJAAUAAwAJAAcABwAJAAgAAQAEAAgABwAIAAQAAgAIAAYACAAFAAYA"), 0.00063684536, PackedByteArray("AAABAAIAAAADAAEAAgABAAQAAwAAAAUAAgAEAAYABAAFAAYAAwAFAAcABwAFAAQA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AACAvwAAAAAAAABAAACAPwAAAAAAAADAAACAPwAAAAAAAABAAACAvwAAAAAAAADAAACAPwAAIEAAAADAAACAvwAAIEAAAABAAACAPwAAIEAAAABAAACAvwAAIEAAAADAAACAPwAAIEAAAIC/AACAvwAAIEAAAIC/AACAvwAAAAAAAIA/AACAPwAAAAAAAIC/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAvwAAIEAAAIA/AACAPwAAIEAAAIA/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pos1c"]
+resource_name = "Corridor_Plane_001"
+_surfaces = [{
+"aabb": AABB(-1, 0, -2, 2, 2.5, 4),
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AAAAAAAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAIA/AAAAAAAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AACAPwAAAAAAAIA/AACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAgD8AAIA/AACAPw=="),
+"format": 34359742487,
+"index_count": 72,
+"index_data": PackedByteArray("FAAVABYAFgAAABQAFgACAAAAFAAXABUAFwABABUAFwADAAEABwAYABkABwAFABgAGgAZABgAGgAYABAAGgAQAAYAGgAGAAQAGwAOAAwAGwAcAA4AGwARABwAGwAdABEADwARAB0ADwANABEACAASAAoACAATABIAEgATAB4AEgAeAB8ACwAfAB4ACwAeAAkA"),
+"lods": [0.0004245636, PackedByteArray("AAABAAIAAAADAAEABAAQAAYABAAFABAABAAHAAUADwANABEADAAPABEADAARAA4ACAASAAoACAATABIAEgATAAkAEgAJAAsA"), 0.00063684536, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACgAJAAsADAANAA4ADAAPAA0A")],
+"material": SubResource("StandardMaterial3D_utbf8"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("AACAvwAAAAAAAABAAACAPwAAAAAAAADAAACAPwAAAAAAAABAAACAvwAAAAAAAADAAACAvwAAAAAAAADAAACAvwAAIEAAAABAAACAvwAAIEAAAADAAACAvwAAAAAAAABAAACAvwAAIEAAAADAAACAvwAAIEAAAABAAACAPwAAIEAAAADAAACAPwAAIEAAAABAAACAPwAAAAAAAABAAACAPwAAIEAAAADAAACAPwAAIEAAAABAAACAPwAAAAAAAADAAACAvwAAIEAAAIC/AACAPwAAIEAAAIC/AACAPwAAIEAAAIC/AACAvwAAIEAAAIC/AACAvwAAAAAAAIA/AACAPwAAAAAAAIC/AACAPwAAAAAAAIA/AACAvwAAAAAAAIC/AACAvwAAIEAAAIA/AACAvwAAAAAAAIA/AACAvwAAAAAAAIC/AACAPwAAAAAAAIA/AACAPwAAIEAAAIA/AACAPwAAAAAAAIC/AACAvwAAIEAAAIA/AACAPwAAIEAAAIA//3///////7//f///////v/9///////+//3///////7////9/////v////3////+/////f////7////9/////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////7////9/////vwAA/3////+//38AAP///z//fwAA////P/9///////+//3///////7//f///////v/9///////+/////f////7////9/////v////3////+/AAD/f////78AAP9/////vwAA/3////+//38AAP///z//fwAA////Pw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_31m1y")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2l5ew"]
+data = PackedVector3Array(-1, 0, 1, 1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0, 2, -1, 0, 1, 1, 0, 1, 1, 0, 2, -1, 0, 2, -1, 0, 1, -1, 0, -1, 1, 0, -1, -1, 0, -1, 1, 0, -2, 1, 0, -1, -1, 0, -1, -1, 0, -2, 1, 0, -2, -1, 0, 2, -1, 2.5, 1, -1, 0, 1, -1, 0, 2, -1, 2.5, 2, -1, 2.5, 1, -1, 0, -1, -1, 0, 1, -1, 2.5, 1, -1, 0, -1, -1, 2.5, 1, -1, 2.5, -1, -1, 0, -1, -1, 2.5, -1, -1, 2.5, -2, -1, 0, -1, -1, 2.5, -2, -1, 0, -2, 1, 0, 1, 1, 2.5, 2, 1, 0, 2, 1, 0, 1, 1, 2.5, 1, 1, 2.5, 2, 1, 0, 1, 1, 2.5, -1, 1, 2.5, 1, 1, 0, 1, 1, 0, -1, 1, 2.5, -1, 1, 0, -2, 1, 2.5, -1, 1, 0, -1, 1, 0, -2, 1, 2.5, -2, 1, 2.5, -1, -1, 2.5, -2, 1, 2.5, -1, 1, 2.5, -2, -1, 2.5, -2, -1, 2.5, -1, 1, 2.5, -1, 1, 2.5, -1, -1, 2.5, -1, -1, 2.5, 1, 1, 2.5, -1, -1, 2.5, 1, 1, 2.5, 1, 1, 2.5, 2, 1, 2.5, 1, -1, 2.5, 1, 1, 2.5, 2, -1, 2.5, 1, -1, 2.5, 2)
+
+[node name="TileCorridor" type="StaticBody3D" unique_id=383876786]
+
+[node name="Corridor" type="MeshInstance3D" parent="." unique_id=1350082993]
+mesh = SubResource("ArrayMesh_pos1c")
+surface_material_override/0 = ExtResource("1_2l5ew")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1756770149]
+shape = SubResource("ConcavePolygonShape3D_2l5ew")
