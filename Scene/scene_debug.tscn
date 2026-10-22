@@ -42,94 +42,117 @@ navigation_mesh = SubResource("NavigationMesh_g4v7s")
 
 [node name="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=168226610 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="MeshInstance3D2" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1620124355 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -25)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_yf5fn")
 
 [node name="MeshInstance3D3" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=427074580 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 25)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_yf5fn")
 
 [node name="MeshInstance3D4" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1085037664 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25, 5, 1.0927847e-06)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_yf5fn")
 
 [node name="MeshInstance3D5" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1398335100 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 25, 5, -1.0927847e-06)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_yf5fn")
 
 [node name="MeshInstance3D6" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=900229436 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 1.5, 0)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D7" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1305617475 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13, 1.5, 17)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D8" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1653796193 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 1.5, -8)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D9" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=427522979 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.5, -8)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D10" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=46336441 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 12)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D11" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=2075325152 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.9589002, 1.5, 9.199999)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D12" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=941842362 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15.958902, 1.5, -7.8)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D16" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1425423747 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.879452, 1.5, 8.079451)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D17" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1983370538 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.07945, 1.5, 0.120548725)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D18" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=9543620 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, -9.277362, 1.5, 7.9846067)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D19" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=100675142 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -14.763735, 1.5, 2.2153928)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D20" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1135806172 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, -0.27736187, 1.5, -9.015393)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D21" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=485926011 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -5.763735, 1.5, -14.784607)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D22" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=292993099 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, 0.99999994, 1.0000014, 1.5, -15.999998)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D23" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1981811857 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 8.958902, 1.5, -15.8)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D13" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1081188146 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.9589, 1.5, 17.2)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D14" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=204827987 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5.0411, 1.5, 17.2)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="MeshInstance3D15" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=1709935736 instance=ExtResource("3_echo_mesh")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.95890045, 1.5, -2.8000002)
+material_override = ExtResource("2_6bkcm")
 mesh = SubResource("BoxMesh_57qmd")
 
 [node name="Beacon" parent="NavigationRegion3D/StaticBody3D/Node3D" unique_id=2011488940 instance=ExtResource("4_6scyb")]

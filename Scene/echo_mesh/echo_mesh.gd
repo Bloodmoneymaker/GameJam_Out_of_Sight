@@ -1,3 +1,4 @@
+@tool
 extends MeshInstance3D
 class_name EchoMesh
 ## Static level geometry: choose a Mesh in the Inspector.
