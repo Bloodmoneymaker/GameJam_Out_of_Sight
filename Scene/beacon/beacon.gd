@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _emit_echo() -> void:
-	Echo.emit_wave(global_position, 15.0, 4.0, 1.0)
+	Echo.emit_wave(global_position, 15.0, 4.0, 1.0, true, Color(0.033, 0.277, 0.184, 1.0))
 
 
 
