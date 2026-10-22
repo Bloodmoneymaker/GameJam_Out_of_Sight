@@ -33,7 +33,7 @@ func shoot() -> void:
 
 	var target := _get_aim_target(ignore_bodies)
 	bullet.setup((target - bulletSpawn.global_position).normalized(), ignore_bodies)
-	Echo.emit_wave(global_position, 15.0, 4.0, 1.0, true, Color(0.442, 0.035, 0.118, 1.0))
+	#Echo.emit_wave(global_position, 15.0, 4.0, 1.0, true, Color(0.442, 0.035, 0.118, 1.0))
 
 	cooldown = 1.0 / maxf(rate_of_fire, 0.1)
 
