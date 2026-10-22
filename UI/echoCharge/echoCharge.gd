@@ -1,5 +1,7 @@
 extends Control
 
+const CHARGE_SLOT: PackedScene = preload("res://UI/echoCharge/chargeSlot.tscn")
+
 @export var charger: Node
 @export_range(0.05, 0.5, 0.01) var blink_interval: float = 0.1
 
@@ -25,17 +27,10 @@ func _set_initial_charges(current: int, maximum: int) -> void:
 		bars.remove_child(child)
 		child.queue_free()
 	for index in range(maximum):
-		var slot := Control.new()
+		var slot := CHARGE_SLOT.instantiate()
 		slot.name = "Charge%d" % (index + 1)
-		slot.custom_minimum_size = Vector2(10, 28)
-		slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		bars.add_child(slot)
-		var fill := ColorRect.new()
-		fill.name = "Fill"
-		fill.color = Color(0.2, 1, 0.4, 1)
-		fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		slot.add_child(fill)
-		fill.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		var fill: Control = slot.get_node("Fill")
 		fill.modulate.a = 1.0 if index < current else 0.0
 	_current = current
 	_maximum = maximum
@@ -55,7 +50,7 @@ func _on_charges_changed(current: int, maximum: int) -> void:
 func _blink_charge(index: int, available: bool) -> void:
 	if _animations.has(index):
 		_animations[index].kill()
-	var fill: ColorRect = bars.get_child(index).get_node("Fill")
+	var fill: Control = bars.get_child(index).get_node("Fill")
 	var animation := create_tween()
 	_animations[index] = animation
 	fill.modulate.a = 1.0
