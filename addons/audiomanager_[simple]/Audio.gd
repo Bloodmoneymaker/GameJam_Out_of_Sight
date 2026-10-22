@@ -13,6 +13,7 @@ var sound:Dictionary = {
 	SOUND.C : preload("res://addons/audiomanager_[simple]/beep.mp3"),
 }
 
+
 # place your music here
 var music:Dictionary = {
 	MUSIC.A : preload("res://addons/audiomanager_[simple]/backing-up.mp3"),

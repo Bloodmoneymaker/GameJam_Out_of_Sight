@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_kveii"]
 [ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="2_6bkcm"]
 
+[sub_resource type="Environment" id="Environment_6bkcm"]
+background_mode = 2
+glow_enabled = true
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
@@ -88,6 +92,9 @@ data = PackedVector3Array(-2.5, 1.5, 0.5, 2.5, 1.5, 0.5, -2.5, -1.5, 0.5, 2.5, 1
 
 [node name="Scene_Debug" type="Node3D" unique_id=2066049630]
 script = ExtResource("1_kveii")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=629152837]
+environment = SubResource("Environment_6bkcm")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1666234627]
 navigation_mesh = SubResource("NavigationMesh_g4v7s")
