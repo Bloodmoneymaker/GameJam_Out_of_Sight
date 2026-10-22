@@ -11,8 +11,11 @@ uniform vec4 wave_params[MAX_WAVES];
 // Reflected waves only: xyz = wall normal (towards the real source), w = plane distance.
 // Zero normal = no clipping.
 uniform vec4 wave_plane[MAX_WAVES];
+// rgb = color of each wave (set by echo.gd, falls back to wave_color)
+uniform vec4 wave_tint[MAX_WAVES];
 uniform float now;
 
+// Default color for waves emitted without one
 uniform vec3 wave_color : source_color = vec3(1, 0, 0);
 uniform float front_width = 0.6;
 uniform float afterglow = 0.25;
@@ -27,8 +30,8 @@ void vertex() {
 }
 
 void fragment() {
-	float front = 0.0;
-	float glow = 0.0;
+	vec3 front = vec3(0.0);
+	vec3 glow = vec3(0.0);
 
 	for (int i = 0; i < MAX_WAVES; i++) {
 		float intensity = wave_params[i].z;
@@ -51,11 +54,12 @@ void fragment() {
 		float fade = 1.0 - age / life;
 		fade *= fade;
 		float atten = 1.0 / (1.0 + d * 0.08);
+		vec3 tint = wave_tint[i].rgb;
 
 		// Bright ring at the wave front
-		front += (1.0 - smoothstep(0.0, front_width, abs(d - radius))) * fade * intensity;
+		front += mix(tint, vec3(1.0), 0.5) * (1.0 - smoothstep(0.0, front_width, abs(d - radius))) * fade * intensity;
 		// Surfaces the wave already passed stay faintly lit
-		glow += step(d, radius) * afterglow * fade * intensity * atten;
+		glow += tint * step(d, radius) * afterglow * fade * intensity * atten;
 	}
 
 	// World-space grid lines so surfaces read as geometry
@@ -66,7 +70,7 @@ void fragment() {
 
 	float shade = 0.55 + 0.45 * abs(dot(world_normal, normalize(vec3(0.3, 0.8, 0.5))));
 
-	vec3 col = wave_color * glow * (shade + line * 2.0);
-	col += mix(wave_color, vec3(1.0), 0.5) * front * (0.7 + line);
+	vec3 col = glow * (shade + line * 2.0);
+	col += front * (0.7 + line);
 	ALBEDO = col;
 }
