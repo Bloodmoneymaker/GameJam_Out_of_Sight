@@ -25,7 +25,7 @@ func _ready() -> void:
 	music_player.bus = "Music"							# Player in den Audio-Bus zuweisen
 	music_player.connect("finished",loop_music)
 
-
+## Audio.SOUND.XXX,Position
 func play_sound_3d(sound_idx:int,position:Vector3) -> void:
 	for sound_player in sound_players.values():
 		if not sound_player.playing:

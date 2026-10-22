@@ -1,18 +1,24 @@
 [gd_scene format=3 uid="uid://2fapgcxyvask"]
 
+[ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_kveii"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="2_6bkcm"]
+
+[sub_resource type="Environment" id="Environment_6bkcm"]
+background_mode = 2
+glow_enabled = true
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
-albedo_color = Color(0.09872889, 0.15798989, 0.060285658, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
-material = SubResource("StandardMaterial3D_yf5fn")
+material = ExtResource("2_6bkcm")
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+material = ExtResource("2_6bkcm")
 size = Vector3(51, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_57qmd"]
+material = ExtResource("2_6bkcm")
 size = Vector3(5, 3, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tcfmt"]
@@ -85,6 +91,10 @@ data = PackedVector3Array(-2.5, 1.5, 0.5, 2.5, 1.5, 0.5, -2.5, -1.5, 0.5, 2.5, 1
 data = PackedVector3Array(-2.5, 1.5, 0.5, 2.5, 1.5, 0.5, -2.5, -1.5, 0.5, 2.5, 1.5, 0.5, 2.5, -1.5, 0.5, -2.5, -1.5, 0.5, 2.5, 1.5, -0.5, -2.5, 1.5, -0.5, 2.5, -1.5, -0.5, -2.5, 1.5, -0.5, -2.5, -1.5, -0.5, 2.5, -1.5, -0.5, 2.5, 1.5, 0.5, 2.5, 1.5, -0.5, 2.5, -1.5, 0.5, 2.5, 1.5, -0.5, 2.5, -1.5, -0.5, 2.5, -1.5, 0.5, -2.5, 1.5, -0.5, -2.5, 1.5, 0.5, -2.5, -1.5, -0.5, -2.5, 1.5, 0.5, -2.5, -1.5, 0.5, -2.5, -1.5, -0.5, 2.5, 1.5, 0.5, -2.5, 1.5, 0.5, 2.5, 1.5, -0.5, -2.5, 1.5, 0.5, -2.5, 1.5, -0.5, 2.5, 1.5, -0.5, -2.5, -1.5, 0.5, 2.5, -1.5, 0.5, -2.5, -1.5, -0.5, 2.5, -1.5, 0.5, 2.5, -1.5, -0.5, -2.5, -1.5, -0.5)
 
 [node name="Scene_Debug" type="Node3D" unique_id=2066049630]
+script = ExtResource("1_kveii")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=629152837]
+environment = SubResource("Environment_6bkcm")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1666234627]
 navigation_mesh = SubResource("NavigationMesh_g4v7s")
