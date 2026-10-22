@@ -13,8 +13,9 @@ extends Node3D
 func _ready() -> void:
 	_set_containers()
 	_set_ui()
-	#GameManager.load_scene(GameManager.SCENE.DEBUG)
+	GameManager.load_scene(GameManager.SCENE.DEBUG)
 	AudioManager.play_sound_3d(Audio.SOUND.A,Vector3.ZERO)
+	AudioManager.play_music(Audio.MUSIC.A)
 
 func _set_containers() -> void:
 	GameManager.container_scene = container_scene

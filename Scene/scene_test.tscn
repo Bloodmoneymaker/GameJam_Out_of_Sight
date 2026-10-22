@@ -1,5 +1,17 @@
 [gd_scene format=3 uid="uid://dk0qf3qh3t2lm"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ej00m"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_jeqfl"]
+sky_material = SubResource("ProceduralSkyMaterial_ej00m")
+
+[sub_resource type="Environment" id="Environment_rdiye"]
+background_mode = 2
+sky = SubResource("Sky_jeqfl")
+glow_enabled = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
 albedo_color = Color(0.085983776, 0.08598376, 0.08598376, 1)
 
@@ -8,6 +20,13 @@ material = SubResource("StandardMaterial3D_yf5fn")
 size = Vector3(10, 1, 10)
 
 [node name="Scene_Test" type="Node3D" unique_id=538531758]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1121125147]
+environment = SubResource("Environment_rdiye")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=48867230]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1057895427]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
