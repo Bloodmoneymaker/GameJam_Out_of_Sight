@@ -2,9 +2,9 @@ extends Node3D
 
 @export_range(0.1, 60.0, 0.1) var beacon_rate: float = 5.0
 
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = $Twwimer
 
-signal player_entered(player: PlayerCharacter)
+signal player_entered_beacon(player: PlayerCharacter)
 
 func _ready() -> void:
 	timer.wait_time = beacon_rate
@@ -21,5 +21,5 @@ func _on_timer_timeout() -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is PlayerCharacter:
-		player_entered.emit(body)
+		player_entered_beacon.emit(body)
 		print("Spieler hat den Bereich betreten!")
