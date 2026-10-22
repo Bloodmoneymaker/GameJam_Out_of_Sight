@@ -48,7 +48,7 @@ func _emit_wave_at_aim() -> void:
 	var query := PhysicsRayQueryParameters3D.create(origin, target, 0xFFFFFFFF, [get_rid()])
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 	if not hit.is_empty():
-		Echo.emit_wave(hit.position + hit.normal * 0.1, 15.0, 2.5, 0.7, true, Color(0.0, 0.0, 0.718, 1.0))
+		Echo.emit_wave(hit.position + hit.normal * 0.1, 10.0, 1.0, 0.7, true, Color(0.0, 0.0, 0.718, 1.0))
 
 
 func _physics_process(delta: float) -> void:
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
-		Echo.emit_wave(_feet_position(), 15.0, 2.0, 0.6)
+		Echo.emit_wave(_feet_position(), 5.0, 1.0, 0.6)
 
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -79,13 +79,13 @@ func _update_footsteps() -> void:
 
 	if on_floor and not _was_on_floor:
 		# Landing
-		Echo.emit_wave(_feet_position(), 15.0, 0.5, 0.5)
+		Echo.emit_wave(_feet_position(), 5.0, 0.5, 0.5)
 		_step_progress = 0.0
 	elif on_floor:
 		_step_progress += Vector2(velocity.x, velocity.z).length() * get_physics_process_delta_time()
 		if _step_progress >= step_distance:
 			_step_progress = 0.0
-			Echo.emit_wave(_feet_position(), 15.0, 0.5, 0.25)
+			Echo.emit_wave(_feet_position(), 4.5, 0.75, 0.25)
 
 	_was_on_floor = on_floor
 

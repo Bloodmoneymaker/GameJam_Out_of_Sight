@@ -11,7 +11,7 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D:position:x")
+tracks/0/path = NodePath(".:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,29 +22,29 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D:position:y")
+tracks/1/path = NodePath(".:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-0.07080749, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D:position:z")
+tracks/2/path = NodePath(".:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0.089101434, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Node3D:rotation:x")
+tracks/3/path = NodePath(".:rotation:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -55,18 +55,18 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Node3D:rotation:y")
+tracks/4/path = NodePath(".:rotation:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0.73742825, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Node3D:rotation:z")
+tracks/5/path = NodePath(".:rotation:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -78,226 +78,160 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_g2q5f"]
 resource_name = "Scan"
 length = 0.73333335
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.018078446, -0.04, 0, 0.07666667, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.24, 0.7)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.010650039, -0.04, 0, 0.07666667, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.24, 0.7)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D:position:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.01895842, -0.04, 0, 0.07666667, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.24, 0.7)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Node3D:rotation:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.055218875, -0.04, 0, 0.07666667, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.24, 0.7)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Node3D:rotation:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.04, 0, 0.07666667, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.24, 0.7)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Node3D:rotation:z")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.04, 0, 0.07666667, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.24, 0.7)
-}
 
 [sub_resource type="Animation" id="Animation_q8tx2"]
 resource_name = "Stand"
 length = 2.0333333
 loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.01994896, -0.13983333, 0, 0.1988889, 0, -0.012599173, -0.075, -0.0012537753, 0.123888895, 0.0020710512, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0009999999, 0.84, 1.29, 2.0333333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.034596026, -0.13983333, 0, 0.1988889, 0, -0.021849826, -0.075, -0.0021743313, 0.123888895, 0.0035916732, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0009999999, 0.84, 1.29, 2.0333333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.13983333, 0, 0.1988889, 0, 0, -0.075, 0, 0.123888895, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0009999999, 0.84, 1.29, 2.0333333)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.07756324, -0.0965, 0, 0.24222223, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0009999999, 0.58, 2.0333333)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.017052207, -0.0965, 0, 0.24222223, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0009999999, 0.58, 2.0333333)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.0965, 0, 0.24222223, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.0009999999, 0.58, 2.0333333)
+}
+
+[sub_resource type="Animation" id="Animation_nxwqm"]
+resource_name = "walk"
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array()
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array()
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D:position:x")
+tracks/2/path = NodePath(".:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.019438922, -0.04444445, 0, 0.12222223, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.93333334, 2.0333333)
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.07833333, 0, 0.08833333, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.47, 1)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Node3D:position:y")
+tracks/3/path = NodePath(".:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.017372489, -0.04444445, 0, 0.12222223, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.9, 2.0333333)
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.07080749, -0.07833333, 0, 0.08833333, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.47, 1)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Node3D:position:z")
+tracks/4/path = NodePath(".:position:z")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.04444445, 0, 0.12222223, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.96666664, 2.0333333)
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.089101434, -0.07833333, 0, 0.08833333, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Node3D:rotation:x")
+tracks/5/path = NodePath(".:rotation:x")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.05502009, -0.093333334, 0, 0.24555556, 0, -0.09582977, -0.11833333, -0.0044190343, 0.12722223, 0.004750981, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.56, 1.27, 2.0333333)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Node3D:rotation:y")
+tracks/6/path = NodePath(".:rotation:y")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.018705083, -0.093333334, 0, 0.24555556, 0, 0.02541608, -0.11833333, -0.0015023313, 0.12722223, 0.0016151825, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.56, 1.27, 2.0333333)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Node3D:rotation:z")
+tracks/7/path = NodePath(".:rotation:z")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.093333334, 0, 0.24555556, 0, 0.0553043, -0.11833333, 0, 0.12722223, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.56, 1.27, 2.0333333)
-}
-
-[sub_resource type="Animation" id="Animation_nxwqm"]
-resource_name = "walk"
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.06397935, -0.086666666, 0.003664988, 0.0066666706, -0.00028192234, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.52, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.063420735, -0.086666666, 0.010244295, 0.0066666706, -0.0007880232, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.52, 1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D:position:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.046806756, -0.086666666, -0.007560654, 0.0066666706, 0.0005815891, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.52, 1)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Node3D:rotation:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.12706737, -0.06356858, 0, 0.103098094, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.38141146, 1)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Node3D:rotation:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.09315291, -0.06356858, 0, 0.103098094, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.38141146, 1)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Node3D:rotation:z")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.10502614, -0.06356858, 0, 0.103098094, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.38141146, 1)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1f825"]
@@ -308,14 +242,18 @@ _data = {
 &"walk": SubResource("Animation_nxwqm")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1f825"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nxwqm"]
 animation = &"Scan"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g2q5f"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1f825"]
 animation = &"Stand"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nxwqm"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g2q5f"]
 animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nxwqm"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yalmb"]
 switch_mode = 1
@@ -347,18 +285,21 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"stand"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w276u"]
-advance_mode = 2
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n78r0"]
+states/Scan/node = SubResource("AnimationNodeAnimation_nxwqm")
+states/Scan/position = Vector2(538.3334, -0.3333385)
+states/Stand/node = SubResource("AnimationNodeAnimation_1f825")
+states/Stand/position = Vector2(307.33334, -90.66667)
+states/walk/node = SubResource("AnimationNodeAnimation_g2q5f")
+states/walk/position = Vector2(524.6667, -185.00002)
+transitions = ["Start", "Stand", SubResource("AnimationNodeStateMachineTransition_nxwqm"), "Stand", "walk", SubResource("AnimationNodeStateMachineTransition_yalmb"), "walk", "Stand", SubResource("AnimationNodeStateMachineTransition_141wp"), "Stand", "Scan", SubResource("AnimationNodeStateMachineTransition_n78r0"), "walk", "Scan", SubResource("AnimationNodeStateMachineTransition_2cble"), "Scan", "walk", SubResource("AnimationNodeStateMachineTransition_0qaql"), "Scan", "Stand", SubResource("AnimationNodeStateMachineTransition_h62pp")]
+graph_offset = Vector2(-233, -231)
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_g4v7s"]
-states/Scan/node = SubResource("AnimationNodeAnimation_1f825")
-states/Scan/position = Vector2(485.6667, -30.000004)
-states/Stand/node = SubResource("AnimationNodeAnimation_g2q5f")
-states/Stand/position = Vector2(209.66666, -230)
-states/walk/node = SubResource("AnimationNodeAnimation_nxwqm")
-states/walk/position = Vector2(475.44446, -231.62962)
-transitions = ["Stand", "walk", SubResource("AnimationNodeStateMachineTransition_yalmb"), "walk", "Stand", SubResource("AnimationNodeStateMachineTransition_141wp"), "walk", "Scan", SubResource("AnimationNodeStateMachineTransition_n78r0"), "Stand", "Scan", SubResource("AnimationNodeStateMachineTransition_2cble"), "Scan", "walk", SubResource("AnimationNodeStateMachineTransition_0qaql"), "Scan", "Stand", SubResource("AnimationNodeStateMachineTransition_h62pp"), "Start", "Stand", SubResource("AnimationNodeStateMachineTransition_w276u")]
-graph_offset = Vector2(-379, -318)
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_nxwqm"]
+graph_offset = Vector2(19.333334, -216.66667)
+nodes/output/position = Vector2(1133.3334, 0)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_n78r0")
+nodes/StateMachine/position = Vector2(480, -106.666664)
 
 [node name="Weapon" type="Node3D" unique_id=596071866]
 script = ExtResource("1_4ht74")
@@ -373,14 +314,14 @@ mesh = SubResource("CylinderMesh_bu2mm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.062877655, -0.99337506)
 
 [node name="Node3D" parent="." unique_id=974326298 instance=ExtResource("3_1f825")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
+transform = Transform3D(0.7402003, 0, 0.6723867, 0, 1.0000002, 0, -0.6723866, 0, 0.7402004, 0, -0.07080749, 0.089101434)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1834853801]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D" unique_id=1834853801]
 libraries/ = SubResource("AnimationLibrary_1f825")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1200189108]
-tree_root = SubResource("AnimationNodeStateMachine_g4v7s")
+[node name="AnimationTree" type="AnimationTree" parent="Node3D" unique_id=1200189108]
+tree_root = SubResource("AnimationNodeBlendTree_nxwqm")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/scan = false
-parameters/conditions/stand = false
-parameters/conditions/walk = false
+parameters/StateMachine/conditions/scan = false
+parameters/StateMachine/conditions/stand = false
+parameters/StateMachine/conditions/walk = true

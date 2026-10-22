@@ -36,11 +36,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_tpykg")
 
-[node name="Node3D" type="Node3D" unique_id=974326298]
+[node name="Scanner" type="Node3D" unique_id=974326298]
 
-[node name="Echo_Scanner2" type="Node3D" parent="." unique_id=243374631]
-
-[node name="Echo_Scanner" type="MeshInstance3D" parent="Echo_Scanner2" unique_id=749697154]
+[node name="Echo_Scanner" type="MeshInstance3D" parent="." unique_id=749697154]
 transform = Transform3D(-0.2, 0, -3.019916e-08, 0, 0.2, 0, 3.019916e-08, 0, -0.2, 0, 0, 0)
 mesh = SubResource("ArrayMesh_hg5gu")
 surface_material_override/0 = ExtResource("1_2xjm6")

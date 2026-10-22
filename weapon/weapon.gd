@@ -1,4 +1,9 @@
+@tool
 extends Node3D
+@onready var bulletSpawn: Marker3D = $BulletSpawn
+@onready var anim_player:AnimationPlayer = $Node3D/AnimationPlayer
+@onready var anim_tree:AnimationTree = $Node3D/AnimationTree
+@onready var scene_player:CharacterBody3D = $"../../.."
 
 @export var bullet_scene: PackedScene
 @export var rate_of_fire: float = 5.0
@@ -6,12 +11,12 @@ extends Node3D
 @export var aim_range: float = 100.0
 @export_flags_3d_physics var aim_collision_mask: int = 1
 
-@onready var bulletSpawn: Marker3D = $BulletSpawn
-@onready var anim_player:AnimationPlayer = $AnimationPlayer
-@onready var scene_player:CharacterBody3D = $"../../.."
 
 var cooldown: float = 0.0
 
+func _ready() -> void:
+	anim_tree.active = true
+	anim_player.play("Stand")
 
 func _physics_process(delta: float) -> void:
 	cooldown = maxf(cooldown - delta, 0.0)
@@ -25,12 +30,12 @@ func _physics_process(delta: float) -> void:
 func shoot() -> void:
 	if bullet_scene == null or cooldown > 0.0:
 		return
-
+	
 	var bullet = bullet_scene.instantiate()
-
-	get_tree().current_scene.add_child(bullet)
+	GameManager.add_child(bullet)
+	#get_tree().current_scene.add_child(bullet)
 	bullet.global_position = bulletSpawn.global_position
-
+	
 	var ignore_bodies: Array[RID] = []
 	if is_instance_valid(player):
 		ignore_bodies.append(player.get_rid())

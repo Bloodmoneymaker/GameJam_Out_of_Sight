@@ -7,6 +7,7 @@ enum SCENE {DEBUG,XXX}
 var container_scene:Node
 var container_entity:Node
 var container_object:Node
+var container_projectiles:Node
 #UI
 var ui_main
 

@@ -29,17 +29,21 @@ func _ready() -> void:
 func play_sound_3d(sound_idx:int,position:Vector3) -> void:
 	for sound_player in sound_players.values():
 		if not sound_player.playing:
+			sound_player.max_distance = 0
+			sound_player.pitch_scale = 1.0
 			sound_player.stream = Audio.sound[sound_idx]
 			sound_player.global_position = position
 			sound_player.play()
 			return
 		print("No availabel sound player -> increased the pool!")
 
-## AudioStream, Position
-func play_sound_3d_special(sound:AudioStream,position:Vector3) -> void:
+## AudioStream, Position,Pitchscale,Max-Distance
+func play_sound_3d_special(sound:AudioStream,position:Vector3,pitch_scale:float,max_distance:float) -> void:
 	for sound_player in sound_players.values():
 		if not sound_player.playing:
 			sound_player.stream = sound
+			sound_player.max_distance = max_distance
+			sound_player.pitch_scale = pitch_scale
 			sound_player.global_position = position
 			sound_player.play()
 			return
