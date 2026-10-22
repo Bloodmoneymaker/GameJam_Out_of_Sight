@@ -5,6 +5,7 @@ extends Node3D
 # Container
 @onready var container_scene:Node = $Container/Container_Scene
 @onready var container_entity:Node = $Container/Container_Entity
+@onready var container_object:Node = $Container/Container_Object
 
 # UI's
 @onready var ui_main:Control = $CanvasLayer/UI_Main

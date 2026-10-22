@@ -6,11 +6,12 @@ enum SCENE {DEBUG,XXX}
 # Scene
 var container_scene:Node
 var container_entity:Node
+var container_object:Node
 #UI
 var ui_main
 
 var scene:Dictionary = {
-	SCENE.DEBUG : preload("res://Scene/scene_test.tscn"),
+	SCENE.DEBUG : preload("res://Scene/scene_debug.tscn"),
 	SCENE.XXX : preload("res://Scene/scene_test.tscn")
 }
 
