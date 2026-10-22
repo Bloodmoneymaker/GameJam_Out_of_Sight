@@ -15,6 +15,7 @@ var _was_on_floor := true
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
+@onready var echo_charger = $EchoCharger
 
 
 func _ready() -> void:
@@ -36,18 +37,17 @@ func _input(event: InputEvent) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			Echo.emit_wave(head.global_position, 15.0, 4.0, 1.0)
-			AudioManager.play_sound_3d(Audio.SOUND.Scan,head.global_position)
+			echo_charger.try_scan(head.global_position)
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			_emit_wave_at_aim()
 
 
 func _emit_wave_at_aim() -> void:
-	var from := camera.global_position
-	var to := from - camera.global_basis.z * aim_range
-	var query := PhysicsRayQueryParameters3D.create(from, to, 0xFFFFFFFF, [get_rid()])
+	var origin := camera.global_position
+	var target := origin - camera.global_basis.z * aim_range
+	var query := PhysicsRayQueryParameters3D.create(origin, target, 0xFFFFFFFF, [get_rid()])
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
-	if hit:
+	if not hit.is_empty():
 		Echo.emit_wave(hit.position + hit.normal * 0.1, 15.0, 2.5, 0.7, true, Color(0.0, 0.0, 0.718, 1.0))
 
 
@@ -85,7 +85,7 @@ func _update_footsteps() -> void:
 		_step_progress += Vector2(velocity.x, velocity.z).length() * get_physics_process_delta_time()
 		if _step_progress >= step_distance:
 			_step_progress = 0.0
-			Echo.emit_wave(_feet_position(), 15, 0.5, 0.25)
+			Echo.emit_wave(_feet_position(), 15.0, 0.5, 0.25)
 
 	_was_on_floor = on_floor
 
