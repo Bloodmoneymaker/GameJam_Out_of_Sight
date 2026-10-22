@@ -10,7 +10,7 @@ func _ready() -> void:
 	timer.wait_time = beacon_rate
 
 
-func _emit_echo() -> void:a
+func _emit_echo() -> void:
 	Echo.emit_wave(global_position, 15.0, 4.0, 1.0)
 
 

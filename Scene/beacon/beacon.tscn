@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://c602ey48v0cy6"]
+[gd_scene format=3 uid="uid://c602ey48v0cy6"]
 
 [ext_resource type="Script" uid="uid://d1qe3kt2443xb" path="res://Scene/beacon/beacon.gd" id="1_nq64o"]
 [ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="2_lq3dk"]
@@ -12,6 +12,7 @@ height = 3.2832031
 
 [node name="Beacon" type="Node3D" unique_id=2011488940]
 script = ExtResource("1_nq64o")
+beacon_rate = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1819722435]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8069974, 0)
