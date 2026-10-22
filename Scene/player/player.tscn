@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bccuam5f44icj" path="res://Scene/player/player.gd" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://ck14pxdg5xtf6" path="res://weapon/weapon.tscn" id="2_ubwr7"]
 [ext_resource type="PackedScene" path="res://Scene/player/echo_charger/echo_charger.tscn" id="3_echo_charger"]
+[ext_resource type="PackedScene" path="res://UI/echoCharge/echoCharge.tscn" id="4_charge_ui"]
 
 [sub_resource type="CapsuleShape3D" id="PlayerShape"]
 radius = 0.4
@@ -29,6 +30,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39051569, -0.3627904, -0.58
 player = NodePath("../../..")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=367044519]
+
+[node name="EchoCharge" parent="HUD" node_paths=PackedStringArray("charger") instance=ExtResource("4_charge_ui")]
+charger = NodePath("../../EchoCharger")
 
 [node name="Crosshair" type="ColorRect" parent="HUD" unique_id=413937663]
 anchors_preset = 8
