@@ -38,7 +38,7 @@ environment = SubResource("Environment_rdiye")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_g4v7s")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LevelMeshes/Floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelMeshes/Floor" unique_id=124625189]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/Floor/StaticBody3D" unique_id=1382494864]
 shape = SubResource("BoxShape3D_v2ds7")
@@ -48,4 +48,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5791005, 0)
 mesh = SubResource("CapsuleMesh_d1pia")
 
 [node name="Player" parent="." unique_id=425749429 instance=ExtResource("3_msfi0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 2.233079)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.233079)

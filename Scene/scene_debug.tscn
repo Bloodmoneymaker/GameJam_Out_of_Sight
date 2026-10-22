@@ -93,6 +93,10 @@ data = PackedVector3Array(-2.5, 1.5, 0.5, 2.5, 1.5, 0.5, -2.5, -1.5, 0.5, 2.5, 1
 [node name="Scene_Debug" type="Node3D" unique_id=2066049630]
 script = ExtResource("1_kveii")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=919155277]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=629152837]
 environment = SubResource("Environment_6bkcm")
 
