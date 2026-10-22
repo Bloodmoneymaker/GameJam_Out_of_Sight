@@ -2,7 +2,7 @@ extends Node3D
 
 @export_range(0.1, 60.0, 0.1) var beacon_rate: float = 5.0
 
-@onready var timer: Timer = $Twwimer
+@onready var timer: Timer = $Timer
 
 signal player_entered_beacon(player: PlayerCharacter)
 
@@ -10,7 +10,7 @@ func _ready() -> void:
 	timer.wait_time = beacon_rate
 
 
-func _emit_echo() -> void:
+func _emit_echo() -> void:a
 	Echo.emit_wave(global_position, 15.0, 4.0, 1.0)
 
 

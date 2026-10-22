@@ -1,8 +1,10 @@
-[gd_scene format=3 uid="uid://c602ey48v0cy6"]
+[gd_scene format=4 uid="uid://c602ey48v0cy6"]
 
 [ext_resource type="Script" uid="uid://d1qe3kt2443xb" path="res://Scene/beacon/beacon.gd" id="1_nq64o"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="2_lq3dk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v2ds7"]
+material = ExtResource("2_lq3dk")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v2ds7"]
 radius = 1.6416016
@@ -21,7 +23,6 @@ mesh = SubResource("CapsuleMesh_v2ds7")
 shape = SubResource("CapsuleShape3D_v2ds7")
 
 [node name="Timer" type="Timer" parent="." unique_id=266699483]
-wait_time = 20.0
 autostart = true
 
 [connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
