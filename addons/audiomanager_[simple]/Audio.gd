@@ -4,7 +4,7 @@
 extends Node
 
 # find some better names :D
-enum SOUND {Scan,B,C,RoachScream_1,UI_Hover,UI_Click,WaterDrop,PlayerHit,Beacon,PlayerStep_01,PlayerStep_02,PlayerStep_03,PlayerStep_04,PlayerStep_05,PlayerStep_06}
+enum SOUND {Scan,B,C,RoachScream_1,UI_Hover,UI_Click,WaterDrop,PlayerHit,Beacon,PlayerStep_01,PlayerStep_02,PlayerStep_03,PlayerStep_04,PlayerStep_05,PlayerStep_06,Angel_01,Angel_02,Angel_03}
 enum MUSIC {A,B,C}
 
 # place your sound here
@@ -23,7 +23,10 @@ var sound:Dictionary = {
 	SOUND.PlayerStep_03 : preload("res://Asset/AudioFX/player_step_03.wav"),
 	SOUND.PlayerStep_04 : preload("res://Asset/AudioFX/player_step_04.wav"),
 	SOUND.PlayerStep_05 : preload("res://Asset/AudioFX/player_step_05.wav"),
-	SOUND.PlayerStep_06 : preload("res://Asset/AudioFX/player_step_06.wav")
+	SOUND.PlayerStep_06 : preload("res://Asset/AudioFX/player_step_06.wav"),
+	SOUND.Angel_01 : preload("res://Asset/AudioFX/Angel_sfx_01.wav"),
+	SOUND.Angel_02 : preload("res://Asset/AudioFX/Angel_sfx_02.wav"),
+	SOUND.Angel_03 : preload("res://Asset/AudioFX/Angel_sfx_03.wav")
 }
 
 
