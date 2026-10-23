@@ -45,5 +45,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 [node name="Tile_Sewer_Road_1" type="MeshInstance3D" parent="Tile_Sewer_Road_12" unique_id=790995725]
 mesh = SubResource("ArrayMesh_nnvyq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Tile_Sewer_Road_12" unique_id=2111185710]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2111185710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 shape = SubResource("ConcavePolygonShape3D_1fgva")

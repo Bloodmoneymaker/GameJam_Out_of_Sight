@@ -1,6 +1,206 @@
 [gd_scene format=3 uid="uid://1kf53roj5uqo"]
 
 [ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_tqypf"]
+[ext_resource type="PackedScene" uid="uid://cdngubbkrfbvh" path="res://Scene/Tiles/Sewer/Tile_Sewer_Cross.tscn" id="2_7lagt"]
+[ext_resource type="PackedScene" uid="uid://c0ipw3fckp5eg" path="res://Scene/Tiles/Sewer/Tile_Sewer_Road_1.tscn" id="3_b0rjs"]
+[ext_resource type="PackedScene" uid="uid://bnrajiicfw4ly" path="res://Scene/Tiles/Sewer/Tile_Sewer_Road_2.tscn" id="4_dbf83"]
+[ext_resource type="PackedScene" uid="uid://ddk63olr0dfct" path="res://Scene/Tiles/Sewer/Tile_Sewer_Edge.tscn" id="5_a04rc"]
+[ext_resource type="PackedScene" uid="uid://jcxs54x0b3ka" path="res://Scene/Tiles/Sewer/Tile_Sewer_Entrance.tscn" id="6_baa0d"]
+[ext_resource type="PackedScene" uid="uid://dfgqqb2ymi86f" path="res://Scene/Tiles/Sewer/Tile_Sewer_Deadend.tscn" id="7_tiqbx"]
+[ext_resource type="PackedScene" uid="uid://j1w0n6po3l0y" path="res://Scene/Tiles/Sewer/Tile_Sewer_T.tscn" id="8_6fknj"]
+[ext_resource type="PackedScene" uid="uid://be0iijflamv81" path="res://Scene/Tiles/Sewer/Tile_Sewer_Road_Broken.tscn" id="9_a04rc"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
 [node name="Scene_Sewer" type="Node3D" unique_id=914583633]
 script = ExtResource("1_tqypf")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1946296537]
+navigation_mesh = SubResource("NavigationMesh_g4v7s")
+
+[node name="Map-Layout" type="Node3D" parent="NavigationRegion3D" unique_id=665174812]
+
+[node name="Tile_Sewer_Cross" parent="NavigationRegion3D/Map-Layout" unique_id=1595145833 instance=ExtResource("2_7lagt")]
+
+[node name="Tile_Sewer_Cross2" parent="NavigationRegion3D/Map-Layout" unique_id=946807002 instance=ExtResource("2_7lagt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+
+[node name="Cross" type="Node3D" parent="NavigationRegion3D/Map-Layout" unique_id=21870754]
+
+[node name="Road" type="Node3D" parent="NavigationRegion3D/Map-Layout" unique_id=960809821]
+
+[node name="Tile_Sewer_Road_17" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1015044344 instance=ExtResource("4_dbf83")]
+transform = Transform3D(4.8082524e-07, 0, 1, 0, 1, 0, -1, 0, 4.8082524e-07, 18.999996, 0, -18)
+
+[node name="Tile_Sewer_Road_18" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1486294249 instance=ExtResource("4_dbf83")]
+transform = Transform3D(4.8082524e-07, 0, 1, 0, 1, 0, -1, 0, 4.8082524e-07, 12.999996, 0, -30)
+
+[node name="Tile_Sewer_Road_21" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1895411523 instance=ExtResource("4_dbf83")]
+transform = Transform3D(4.8082524e-07, 0, 1, 0, 1, 0, -1, 0, 4.8082524e-07, 6.999996, 0, -42)
+
+[node name="Tile_Sewer_Road_22" parent="NavigationRegion3D/Map-Layout/Road" unique_id=710569625 instance=ExtResource("4_dbf83")]
+transform = Transform3D(4.8082524e-07, 0, 1, 0, 1, 0, -1, 0, 4.8082524e-07, 30.999996, 0, -36)
+
+[node name="Tile_Sewer_Road_9" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1088353367 instance=ExtResource("4_dbf83")]
+transform = Transform3D(-2.1855692e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855692e-07, 17, 0, -6.993821e-07)
+
+[node name="Tile_Sewer_Road_7" parent="NavigationRegion3D/Map-Layout/Road" unique_id=917390173 instance=ExtResource("4_dbf83")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 24, 0, -11)
+
+[node name="Tile_Sewer_Road_11" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1950310818 instance=ExtResource("4_dbf83")]
+transform = Transform3D(-2.1855692e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855692e-07, 17, 0, 11.999999)
+
+[node name="Tile_Sewer_Road_10" parent="NavigationRegion3D/Map-Layout/Road" unique_id=618480160 instance=ExtResource("4_dbf83")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 12.999998, 0, 12)
+
+[node name="Tile_Sewer_Road_15" parent="NavigationRegion3D/Map-Layout/Road" unique_id=918411034 instance=ExtResource("4_dbf83")]
+transform = Transform3D(1, 0, -1.7484554e-07, 0, 1, 0, 1.7484554e-07, 0, 1, -5.9999995, 0, -17)
+
+[node name="Tile_Sewer_Road_20" parent="NavigationRegion3D/Map-Layout/Road" unique_id=68161625 instance=ExtResource("4_dbf83")]
+transform = Transform3D(1, 0, -1.7484554e-07, 0, 1, 0, 1.7484554e-07, 0, 1, 4.7683716e-07, 0, -35)
+
+[node name="Tile_Sewer_Road_16" parent="NavigationRegion3D/Map-Layout/Road" unique_id=367476100 instance=ExtResource("4_dbf83")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6.000001, 0, -25)
+
+[node name="Tile_Sewer_Road_8" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1360067897 instance=ExtResource("4_dbf83")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.999999, 0, 12)
+
+[node name="Tile_Sewer_Road_6" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1090777786 instance=ExtResource("4_dbf83")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0, 0)
+
+[node name="Tile_Sewer_Road_1" parent="NavigationRegion3D/Map-Layout/Road" unique_id=2139202232 instance=ExtResource("3_b0rjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -23)
+
+[node name="Tile_Sewer_Road_4" parent="NavigationRegion3D/Map-Layout/Road" unique_id=514606325 instance=ExtResource("3_b0rjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="Tile_Sewer_Road_14" parent="NavigationRegion3D/Map-Layout/Road" unique_id=381864700 instance=ExtResource("4_dbf83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.000002, 0, -5)
+
+[node name="Tile_Sewer_Road_13" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1855529220 instance=ExtResource("4_dbf83")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.999998, 0, 0)
+
+[node name="Tile_Sewer_Road_5" parent="NavigationRegion3D/Map-Layout/Road" unique_id=637729993 instance=ExtResource("3_b0rjs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 0)
+
+[node name="Tile_Sewer_Road_2" parent="NavigationRegion3D/Map-Layout/Road" unique_id=781757792 instance=ExtResource("4_dbf83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="Tile_Sewer_Road_12" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1477791269 instance=ExtResource("4_dbf83")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -13, 0, 6)
+
+[node name="Tile_Sewer_Road_3" parent="NavigationRegion3D/Map-Layout/Road" unique_id=1060127915 instance=ExtResource("4_dbf83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 7)
+
+[node name="Edge" type="Node3D" parent="NavigationRegion3D/Map-Layout" unique_id=1919111902]
+
+[node name="Tile_Sewer_Edge7" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=1925442879 instance=ExtResource("5_a04rc")]
+transform = Transform3D(7.1130705e-07, 0, 1, 0, 1, 0, -1, 0, 7.1130705e-07, -17, 0, -4.7683716e-07)
+
+[node name="Tile_Sewer_Edge17" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=1059684526 instance=ExtResource("5_a04rc")]
+transform = Transform3D(7.1130705e-07, 0, 1, 0, 1, 0, -1, 0, 7.1130705e-07, 25, 0, -36)
+
+[node name="Tile_Sewer_Edge6" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=79517435 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-1, 0, 4.3711387e-07, 0, 1, 0, -4.3711387e-07, 0, -1, -18.000004, 0, 4.9999924)
+
+[node name="Tile_Sewer_Edge4" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=126250513 instance=ExtResource("5_a04rc")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -6, 0, 6.9999967)
+
+[node name="Tile_Sewer_Edge3" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=518172814 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6.000002, 0, 11)
+
+[node name="Tile_Sewer_Edge2" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=314352804 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 23, 0, 12)
+
+[node name="Tile_Sewer_Edge12" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=763443969 instance=ExtResource("5_a04rc")]
+transform = Transform3D(1.5298986e-06, 0, 1, 0, 1, 0, -1, 0, 1.5298986e-06, -5.0000157, 0, -30.000008)
+
+[node name="Tile_Sewer_Edge13" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=1288134043 instance=ExtResource("5_a04rc")]
+transform = Transform3D(1.5298986e-06, 0, 1, 0, 1, 0, -1, 0, 1.5298986e-06, 0.99998426, 0, -42.000008)
+
+[node name="Tile_Sewer_Edge14" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=2080425297 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-1, 0, 1.4861872e-06, 0, 1, 0, -1.4861872e-06, 0, -1, 11.999985, 0, -37.000008)
+
+[node name="Tile_Sewer_Edge15" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=729423762 instance=ExtResource("5_a04rc")]
+transform = Transform3D(1, 0, -1.57361e-06, 0, 1, 0, 1.57361e-06, 0, 1, 11.999985, 0, -41.000008)
+
+[node name="Tile_Sewer_Edge16" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=731704189 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-1.6173213e-06, 0, -1, 0, 1, 0, 1, 0, -1.6173213e-06, 22.999985, 0, -30.000008)
+
+[node name="Tile_Sewer_Edge18" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=1821840495 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-1.6173213e-06, 0, -1, 0, 1, 0, 1, 0, -1.6173213e-06, 34.999985, 0, -36.000008)
+
+[node name="Tile_Sewer_Edge11" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=591917458 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-1, 0, 9.616506e-07, 0, 1, 0, -9.616506e-07, 0, -1, -6.0000067, 0, -13.000003)
+
+[node name="Tile_Sewer_Edge10" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=1686806425 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-1, 0, 4.371139e-07, 0, 1, 0, -4.371139e-07, 0, -1, 6.000001, 0, -13)
+
+[node name="Tile_Sewer_Edge9" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=1935596045 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-2.1855693e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855693e-07, 17, 0, -6.000001)
+
+[node name="Tile_Sewer_Edge5" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=1930040993 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 12, 0, -7)
+
+[node name="Tile_Sewer_Edge8" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=2048770810 instance=ExtResource("5_a04rc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 13, 0, -18)
+
+[node name="Tile_Sewer_Edge" parent="NavigationRegion3D/Map-Layout/Edge" unique_id=473402031 instance=ExtResource("5_a04rc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -17)
+
+[node name="Ends" type="Node3D" parent="NavigationRegion3D/Map-Layout" unique_id=1148412581]
+
+[node name="Tile_Sewer_Entrance" parent="NavigationRegion3D/Map-Layout/Ends" unique_id=1070102634 instance=ExtResource("6_baa0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -41)
+
+[node name="Tile_Sewer_DeadEnd2" parent="NavigationRegion3D/Map-Layout/Ends" unique_id=1478542961 instance=ExtResource("7_tiqbx")]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -1, 0, 0, 21.999998)
+
+[node name="Tile_Sewer_DeadEnd3" parent="NavigationRegion3D/Map-Layout/Ends" unique_id=1872689155 instance=ExtResource("7_tiqbx")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 18, 0, -11.000002)
+
+[node name="Tile_Sewer_DeadEnd4" parent="NavigationRegion3D/Map-Layout/Ends" unique_id=887991425 instance=ExtResource("7_tiqbx")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 18, 0, -41)
+
+[node name="Tile_Sewer_DeadEnd" parent="NavigationRegion3D/Map-Layout/Ends" unique_id=1453890550 instance=ExtResource("7_tiqbx")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 12, 0, 5)
+
+[node name="Road_T" type="Node3D" parent="NavigationRegion3D/Map-Layout" unique_id=1152803274]
+
+[node name="Tile_Sewer_T3" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1763451226 instance=ExtResource("8_6fknj")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 12)
+
+[node name="Tile_Sewer_T4" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1916235158 instance=ExtResource("8_6fknj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, 0, -12)
+
+[node name="Tile_Sewer_T7" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1653157767 instance=ExtResource("8_6fknj")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 3.8146973e-06, 0, -18)
+
+[node name="Tile_Sewer_T6" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1218854859 instance=ExtResource("8_6fknj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.000002, 0, -18)
+
+[node name="Tile_Sewer_T8" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=241251663 instance=ExtResource("8_6fknj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18.000002, 0, -36)
+
+[node name="Tile_Sewer_T9" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1317865677 instance=ExtResource("8_6fknj")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 18.000002, 0, -30)
+
+[node name="Tile_Sewer_T5" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1241848379 instance=ExtResource("8_6fknj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -12)
+
+[node name="Tile_Sewer_T5" parent="NavigationRegion3D/Map-Layout/Road_T/Tile_Sewer_T5" unique_id=344052115 instance=ExtResource("8_6fknj")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -18, 0, -6.000001)
+
+[node name="Tile_Sewer_T" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1950280927 instance=ExtResource("8_6fknj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="Tile_Sewer_T2" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1860136751 instance=ExtResource("8_6fknj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 24, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D/Map-Layout" unique_id=90724988]
+
+[node name="Tile_Sewer_Road_Broken2" parent="NavigationRegion3D/Map-Layout/Node3D" unique_id=1692533013 instance=ExtResource("9_a04rc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
+
+[node name="Tile_Sewer_Road_Broken" parent="NavigationRegion3D/Map-Layout/Node3D" unique_id=1136334430 instance=ExtResource("9_a04rc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
