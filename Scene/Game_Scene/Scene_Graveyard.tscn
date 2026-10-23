@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://htdxh0talbde"]
 
 [ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_7q3xv"]
+[ext_resource type="PackedScene" uid="uid://eiwj28ft2qmv" path="res://Scene/Objects/graveyard_terrain.tscn" id="2_46tja"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_7q3xv"]
 
@@ -9,3 +10,7 @@ script = ExtResource("1_7q3xv")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1545520897]
 navigation_mesh = SubResource("NavigationMesh_7q3xv")
+
+[node name="Graveyard_Terrain" parent="NavigationRegion3D" unique_id=1923612613 instance=ExtResource("2_46tja")]
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D" unique_id=1090826459]
