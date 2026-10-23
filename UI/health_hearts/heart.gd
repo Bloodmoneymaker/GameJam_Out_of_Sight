@@ -15,14 +15,13 @@ func _draw() -> void:
 		Vector2(28, 18), Vector2(31, 13), Vector2(31, 9), Vector2(29, 5),
 		Vector2(25, 3), Vector2(20, 4),
 	])
-	draw_colored_polygon(shape, Color(0.18, 0.035, 0.055, 0.95))
-	if fill > 0.0:
-		var right := 1.0 + 30.0 * fill
-		var fill_rect := PackedVector2Array([
-			Vector2(0, 0), Vector2(right, 0), Vector2(right, 32), Vector2(0, 32)
-		])
-		for polygon in Geometry2D.intersect_polygons(shape, fill_rect):
-			draw_colored_polygon(polygon, Color(0.95, 0.12, 0.22, 1.0))
 	var outline := shape.duplicate()
 	outline.append(shape[0])
-	draw_polyline(outline, Color(0.08, 0.015, 0.025, 1.0), 2.0, true)
+	var dim_color := Color(0.12, 0.2, 0.24, 0.85)
+	var health_color := Color(1.0, 0.2, 0.32, 1.0)
+	var outline_color := dim_color.lerp(health_color, fill)
+	if fill > 0.0:
+		var glow_color := health_color
+		glow_color.a = 0.18 * fill
+		draw_polyline(outline, glow_color, 5.0, true)
+	draw_polyline(outline, outline_color, 2.0, true)
