@@ -50,7 +50,7 @@ func player_scan_echo(origin: Vector3) -> void:
 
 
 func player_aim_echo(origin: Vector3) -> void:
-	_emit_wave(origin, 10.0, 1.0, 0.7, true, Color(0.0, 0.0, 0.718, 1.0), true)
+	_emit_wave(origin, 10.0, 1.0, 0.7, true, Color(0.0, 0.0, 0.718, 1.0))
 
 
 func player_jump_echo(origin: Vector3) -> void:
