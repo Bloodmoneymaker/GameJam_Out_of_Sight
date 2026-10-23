@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://do8qoowia74yn" path="res://Main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" path="res://UI/win_screen/win_screen.tscn" id="2_win_screen"]
 [ext_resource type="PackedScene" path="res://UI/lose_screen/lose_screen.tscn" id="3_lose_screen"]
+[ext_resource type="PackedScene" path="res://UI/main_menu/main_menu.tscn" id="4_main_menu"]
 
 [node name="Main" type="Node3D" unique_id=253493729]
 script = ExtResource("1_ig7tw")
-scene = 0
 
 [node name="Container" type="Node" parent="." unique_id=1095692054]
 
@@ -20,28 +20,7 @@ scene = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1078344536]
 
-[node name="UI_Main" type="Control" parent="CanvasLayer" unique_id=1451511516]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/UI_Main" unique_id=1431189739]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -122.0
-offset_right = 122.0
-offset_bottom = 107.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "MAIN_MENU"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="UI_Main" parent="CanvasLayer" instance=ExtResource("4_main_menu")]
 
 [node name="WinScreen" parent="CanvasLayer" unique_id=729980367 instance=ExtResource("2_win_screen")]
 
