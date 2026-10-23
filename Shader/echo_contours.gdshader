@@ -21,7 +21,9 @@ uniform float front_width = 0.6;
 uniform float afterglow = 0.25;
 // Forward+: use the visible scene's depth/normal prepass to find real contours.
 uniform sampler2D scene_depth : hint_depth_texture, repeat_disable, filter_nearest;
+#if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
 uniform sampler2D scene_normals : hint_normal_roughness_texture, repeat_disable, filter_nearest;
+#endif
 uniform float outline_width : hint_range(0.5, 4.0, 0.1) = 1.0;
 uniform float outline_strength : hint_range(0.0, 4.0, 0.1) = 2.4;
 uniform float normal_threshold : hint_range(0.01, 1.0, 0.01) = 0.04;
@@ -33,11 +35,36 @@ void vertex() {
 }
 
 vec3 view_position(vec2 uv, float depth, mat4 inverse_projection) {
+#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+	vec4 position = inverse_projection * vec4(vec3(uv, depth) * 2.0 - 1.0, 1.0);
+#else
 	vec4 position = inverse_projection * vec4(uv * 2.0 - 1.0, depth, 1.0);
+#endif
 	return position.xyz / position.w;
 }
 
-float contour_sample(vec2 uv, vec3 center, vec3 normal, mat4 inverse_projection) {
+vec3 surface_normal(vec2 uv, vec3 center, mat4 inverse_projection, vec2 texel) {
+#if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
+	return normalize(textureLod(scene_normals, uv, 0.0).xyz * 2.0 - 1.0);
+#else
+	// WebGL has no normal prepass texture. Reconstruct the visible surface
+	// using the depth samples that remain closest to its plane at silhouettes.
+	vec2 left_uv = uv - vec2(texel.x, 0.0);
+	vec2 right_uv = uv + vec2(texel.x, 0.0);
+	vec2 down_uv = uv - vec2(0.0, texel.y);
+	vec2 up_uv = uv + vec2(0.0, texel.y);
+	vec3 left = center - view_position(left_uv, textureLod(scene_depth, left_uv, 0.0).r, inverse_projection);
+	vec3 right = view_position(right_uv, textureLod(scene_depth, right_uv, 0.0).r, inverse_projection) - center;
+	vec3 down = center - view_position(down_uv, textureLod(scene_depth, down_uv, 0.0).r, inverse_projection);
+	vec3 up = view_position(up_uv, textureLod(scene_depth, up_uv, 0.0).r, inverse_projection) - center;
+	vec3 dx = abs(left.z) < abs(right.z) ? left : right;
+	vec3 dy = abs(down.z) < abs(up.z) ? down : up;
+	vec3 normal = cross(dx, dy);
+	return normal / max(length(normal), 0.000001);
+#endif
+}
+
+float contour_sample(vec2 uv, vec3 center, vec3 normal, mat4 inverse_projection, vec2 texel) {
 	float depth = textureLod(scene_depth, uv, 0.0).r;
 	// Reverse-Z: a zero depth is the background, hence an outer silhouette.
 	if (depth <= 0.0) {
@@ -52,7 +79,7 @@ float contour_sample(vec2 uv, vec3 center, vec3 normal, mat4 inverse_projection)
 	// Distance from the surface plane avoids outlining flat, sloping floors.
 	float plane_distance = abs(dot(neighbor - center, normal));
 	float depth_edge = smoothstep(tolerance, tolerance * 2.0, plane_distance);
-	vec3 neighbor_normal = textureLod(scene_normals, uv, 0.0).xyz * 2.0 - 1.0;
+	vec3 neighbor_normal = surface_normal(uv, neighbor, inverse_projection, texel);
 	float normal_difference = 1.0 - clamp(dot(normal, normalize(neighbor_normal)), 0.0, 1.0);
 	float normal_edge = smoothstep(normal_threshold, normal_threshold * 2.0, normal_difference);
 	return max(depth_edge, normal_edge);
@@ -65,15 +92,15 @@ void fragment() {
 	if (visible_depth > 0.0) {
 		vec2 pixel = outline_width / VIEWPORT_SIZE;
 		vec3 center = view_position(SCREEN_UV, visible_depth, INV_PROJECTION_MATRIX);
-		vec3 normal = normalize(textureLod(scene_normals, SCREEN_UV, 0.0).xyz * 2.0 - 1.0);
-		float contour = contour_sample(SCREEN_UV + vec2(pixel.x, 0.0), center, normal, INV_PROJECTION_MATRIX);
-		contour = max(contour, contour_sample(SCREEN_UV - vec2(pixel.x, 0.0), center, normal, INV_PROJECTION_MATRIX));
-		contour = max(contour, contour_sample(SCREEN_UV + vec2(0.0, pixel.y), center, normal, INV_PROJECTION_MATRIX));
-		contour = max(contour, contour_sample(SCREEN_UV - vec2(0.0, pixel.y), center, normal, INV_PROJECTION_MATRIX));
-		contour = max(contour, contour_sample(SCREEN_UV + pixel * vec2(0.7071, 0.7071), center, normal, INV_PROJECTION_MATRIX));
-		contour = max(contour, contour_sample(SCREEN_UV + pixel * vec2(-0.7071, 0.7071), center, normal, INV_PROJECTION_MATRIX));
-		contour = max(contour, contour_sample(SCREEN_UV + pixel * vec2(0.7071, -0.7071), center, normal, INV_PROJECTION_MATRIX));
-		contour = max(contour, contour_sample(SCREEN_UV - pixel * vec2(0.7071, 0.7071), center, normal, INV_PROJECTION_MATRIX));
+		vec3 normal = surface_normal(SCREEN_UV, center, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE);
+		float contour = contour_sample(SCREEN_UV + vec2(pixel.x, 0.0), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE);
+		contour = max(contour, contour_sample(SCREEN_UV - vec2(pixel.x, 0.0), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
+		contour = max(contour, contour_sample(SCREEN_UV + vec2(0.0, pixel.y), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
+		contour = max(contour, contour_sample(SCREEN_UV - vec2(0.0, pixel.y), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
+		contour = max(contour, contour_sample(SCREEN_UV + pixel * vec2(0.7071, 0.7071), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
+		contour = max(contour, contour_sample(SCREEN_UV + pixel * vec2(-0.7071, 0.7071), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
+		contour = max(contour, contour_sample(SCREEN_UV + pixel * vec2(0.7071, -0.7071), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
+		contour = max(contour, contour_sample(SCREEN_UV - pixel * vec2(0.7071, 0.7071), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
 		vec3 world_pos = (INV_VIEW_MATRIX * vec4(center, 1.0)).xyz;
 		vec3 front = vec3(0.0);
 		vec3 glow = vec3(0.0);
