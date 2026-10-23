@@ -14,7 +14,7 @@ const REFLECTION_STRENGTH := 0.5
 const MIN_WALL_DISTANCE := 0.25
 
 ## Receivers decide whether and when this wave hits them.
-signal wave_emitted(origin: Vector3, speed: float, lifetime: float, can_stun: bool)
+signal wave_emitted(origin: Vector3, speed: float, lifetime: float, can_stun: bool, lure_source: Node3D)
 
 var _origins := PackedVector4Array()
 var _params := PackedVector4Array()
@@ -77,13 +77,18 @@ func beacon_echo(origin: Vector3) -> void:
 	_emit_wave(origin, 5.0, 2.0, 1.0, true, Color(0.033, 0.277, 0.184, 1.0))
 
 
+## A player-like scan that attracts enemies without stunning them.
+func strohman_echo(origin: Vector3, source: Node3D) -> void:
+	_emit_wave(origin, 10.0, 1.5, 1.0, true, Color.TRANSPARENT, false, source)
+
+
 func debug_echo(origin: Vector3) -> void:
 	_emit_wave(origin, 15.0, 4.0, 1.0, true, Color.TRANSPARENT)
 
 
 ## Spawns a wave plus first-order wall reflections, overwriting the oldest waves as needed.
 ## A transparent color uses the material's wave_color.
-func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float, reflect: bool, color: Color, can_stun: bool = false) -> void:
+func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float, reflect: bool, color: Color, can_stun: bool = false, lure_source: Node3D = null) -> void:
 	if color.a == 0.0:
 		color = MATERIAL.get_shader_parameter("wave_color")
 	var rgb := Vector4(color.r, color.g, color.b, 1.0)
@@ -98,7 +103,7 @@ func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float
 			_add(mirrored, reflected, plane, rgb)
 
 	_push()
-	wave_emitted.emit(origin, speed, lifetime, can_stun)
+	wave_emitted.emit(origin, speed, lifetime, can_stun, lure_source)
 
 
 ## Returns unique wall planes (normal facing the origin, distance) the wave can reach.
