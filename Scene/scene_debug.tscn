@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgl4h0215a5fd" path="res://Scene/Tiles/tile_road_t.tscn" id="5_n2mbg"]
 [ext_resource type="PackedScene" uid="uid://dny1eb6s8ciw4" path="res://Scene/Tiles/tile_road_edge.tscn" id="6_n2mbg"]
 [ext_resource type="PackedScene" uid="uid://cxhmgcms5x8oy" path="res://Scene/Enemy/roach/roach_enemy.tscn" id="7_eu8i2"]
-[ext_resource type="PackedScene" uid="uid://df2an83abrc4c" path="res://Scene/trap/strohman/strohman_trap.tscn" id="7_yf6jp"]
+[ext_resource type="PackedScene" uid="uid://df2an83abrc4c" path="res://Scene/trap/trap_strohman/strohman_trap.tscn" id="7_yf6jp"]
 
 [sub_resource type="Environment" id="Environment_6bkcm"]
 background_mode = 2
