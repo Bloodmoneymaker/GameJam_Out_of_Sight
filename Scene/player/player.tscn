@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://m4wh6nhq55vb"]
 
 [ext_resource type="Script" uid="uid://bccuam5f44icj" path="res://Scene/player/player.gd" id="1_player"]
-[ext_resource type="PackedScene" path="res://Scene/scanner/scanner.tscn" id="2_ubwr7"]
+[ext_resource type="PackedScene" uid="uid://k5m0ikpjagej" path="res://Scene/scanner/scanner.tscn" id="2_ubwr7"]
 [ext_resource type="PackedScene" uid="uid://qk63jreoynvu" path="res://Scene/player/echo_charger/echo_charger.tscn" id="3_echo_charger"]
 [ext_resource type="PackedScene" uid="uid://pot372665roe" path="res://UI/echoCharge/echoCharge.tscn" id="4_charge_ui"]
 
@@ -9,7 +9,7 @@
 radius = 0.4
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" unique_id=425749429]
+[node name="Player" type="CharacterBody3D" unique_id=425749429 groups=["player"]]
 script = ExtResource("1_player")
 
 [node name="EchoCharger" parent="." unique_id=1745474185 instance=ExtResource("3_echo_charger")]

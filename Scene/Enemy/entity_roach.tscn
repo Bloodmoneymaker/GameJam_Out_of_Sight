@@ -1253,8 +1253,8 @@ nodes/Animation/position = Vector2(400, 226.66667)
 node_connections = [&"output", 0, &"XXX", &"XXX", 0, &"Animation 2", &"XXX", 1, &"Animation"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_g4v7s"]
-height = 1.4191895
-radius = 1.296875
+height = 0.8
+radius = 0.45
 
 [node name="Entity_Roach" type="CharacterBody3D" unique_id=1248933683 node_paths=PackedStringArray("audio_player", "timer", "animation_player", "animation_tree", "skeleton", "bones")]
 script = ExtResource("1_us4qa")
@@ -1638,11 +1638,15 @@ parameters/XXX/transition_request = ""
 parameters/XXX/current_index = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1896519235]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7022705, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 shape = SubResource("CylinderShape3D_g4v7s")
 
 [node name="Timer" type="Timer" parent="." unique_id=313147008]
 wait_time = 0.4
 autostart = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 1.5
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
