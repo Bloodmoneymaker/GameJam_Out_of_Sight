@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" path="res://UI/main_menu/echo_backdrop.tscn" id="2_echo_backdrop"]
 [ext_resource type="PackedScene" path="res://UI/main_menu/level_tile.tscn" id="3_level_tile"]
 [ext_resource type="PackedScene" path="res://UI/buttons/general_button.tscn" id="4_general_button"]
-[ext_resource type="Texture2D" path="res://UI/main_menu/mouse_left_icon.svg" id="5_mouse_icon"]
-[ext_resource type="Texture2D" path="res://UI/main_menu/space_key_icon.svg" id="6_space_icon"]
-[ext_resource type="Texture2D" path="res://UI/main_menu/esc_key_icon.svg" id="7_esc_icon"]
+[ext_resource type="Texture2D" uid="uid://dgsbqjrrau6fr" path="res://UI/main_menu/mouse_left_icon.svg" id="5_mouse_icon"]
+[ext_resource type="Texture2D" uid="uid://bydeuf0uvfe4t" path="res://UI/main_menu/space_key_icon.svg" id="6_space_icon"]
+[ext_resource type="Texture2D" uid="uid://cprdaqdabe8a" path="res://UI/main_menu/esc_key_icon.svg" id="7_esc_icon"]
 
 [sub_resource type="StyleBoxFlat" id="PanelStyle"]
 bg_color = Color(0.008, 0.023, 0.035, 0.94)
@@ -109,14 +109,6 @@ custom_minimum_size = Vector2(160, 44)
 layout_mode = 2
 text = "QUIT GAME"
 
-[node name="ControlsHint" type="Label" parent="MenuPanel/Margins/MenuContent/Footer" unique_id=1197642994]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.33, 0.52, 0.58, 1)
-theme_override_font_sizes/font_size = 13
-text = "ESC   RETURN TO THIS TERMINAL"
-horizontal_alignment = 2
-
 [node name="SignalStatus" type="Label" parent="." unique_id=1949037334]
 layout_mode = 1
 anchors_preset = -1
@@ -130,7 +122,7 @@ theme_override_font_sizes/font_size = 14
 text = "●  ECHO FIELD / LIVE"
 horizontal_alignment = 2
 
-[node name="ControlHints" type="VBoxContainer" parent="."]
+[node name="ControlHints" type="VBoxContainer" parent="." unique_id=1663530139]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.69
@@ -139,131 +131,131 @@ anchor_right = 0.985
 anchor_bottom = 0.78
 theme_override_constants/separation = 16
 
-[node name="ControlsHeading" type="Label" parent="ControlHints"]
+[node name="ControlsHeading" type="Label" parent="ControlHints" unique_id=342881833]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.82, 0.84, 1)
 theme_override_font_sizes/font_size = 14
 text = "CONTROLS"
 horizontal_alignment = 2
 
-[node name="MouseHint" type="HBoxContainer" parent="ControlHints"]
+[node name="MouseHint" type="HBoxContainer" parent="ControlHints" unique_id=363469139]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="MouseText" type="VBoxContainer" parent="ControlHints/MouseHint"]
+[node name="MouseText" type="VBoxContainer" parent="ControlHints/MouseHint" unique_id=2067617477]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 theme_override_constants/separation = 2
+alignment = 1
 
-[node name="MouseAction" type="Label" parent="ControlHints/MouseHint/MouseText"]
+[node name="MouseAction" type="Label" parent="ControlHints/MouseHint/MouseText" unique_id=1694727334]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.96, 1, 1)
 theme_override_font_sizes/font_size = 16
 text = "LEFT CLICK"
 horizontal_alignment = 2
 
-[node name="MouseDescription" type="Label" parent="ControlHints/MouseHint/MouseText"]
+[node name="MouseDescription" type="Label" parent="ControlHints/MouseHint/MouseText" unique_id=176731038]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.65, 0.7, 1)
 theme_override_font_sizes/font_size = 13
 text = "Echo for visibility"
 horizontal_alignment = 2
 
-[node name="MouseIcon" type="TextureRect" parent="ControlHints/MouseHint"]
+[node name="MouseIcon" type="TextureRect" parent="ControlHints/MouseHint" unique_id=1592319018]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("5_mouse_icon")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SpaceHint" type="HBoxContainer" parent="ControlHints"]
+[node name="SpaceHint" type="HBoxContainer" parent="ControlHints" unique_id=546680424]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="SpaceText" type="VBoxContainer" parent="ControlHints/SpaceHint"]
+[node name="SpaceText" type="VBoxContainer" parent="ControlHints/SpaceHint" unique_id=1498848813]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 theme_override_constants/separation = 2
+alignment = 1
 
-[node name="SpaceAction" type="Label" parent="ControlHints/SpaceHint/SpaceText"]
+[node name="SpaceAction" type="Label" parent="ControlHints/SpaceHint/SpaceText" unique_id=1556811687]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.96, 1, 1)
 theme_override_font_sizes/font_size = 16
 text = "SPACE"
 horizontal_alignment = 2
 
-[node name="SpaceDescription" type="Label" parent="ControlHints/SpaceHint/SpaceText"]
+[node name="SpaceDescription" type="Label" parent="ControlHints/SpaceHint/SpaceText" unique_id=64496850]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.65, 0.7, 1)
 theme_override_font_sizes/font_size = 13
 text = "Jump"
 horizontal_alignment = 2
 
-[node name="SpaceIcon" type="TextureRect" parent="ControlHints/SpaceHint"]
+[node name="SpaceIcon" type="TextureRect" parent="ControlHints/SpaceHint" unique_id=276600677]
 custom_minimum_size = Vector2(56, 32)
 layout_mode = 2
 texture = ExtResource("6_space_icon")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EscHint" type="HBoxContainer" parent="ControlHints"]
+[node name="EscHint" type="HBoxContainer" parent="ControlHints" unique_id=1308702560]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="EscText" type="VBoxContainer" parent="ControlHints/EscHint"]
+[node name="EscText" type="VBoxContainer" parent="ControlHints/EscHint" unique_id=495539223]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 theme_override_constants/separation = 2
+alignment = 1
 
-[node name="EscAction" type="Label" parent="ControlHints/EscHint/EscText"]
+[node name="EscAction" type="Label" parent="ControlHints/EscHint/EscText" unique_id=2086816592]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.96, 1, 1)
 theme_override_font_sizes/font_size = 16
 text = "ESC"
 horizontal_alignment = 2
 
-[node name="EscDescription" type="Label" parent="ControlHints/EscHint/EscText"]
+[node name="EscDescription" type="Label" parent="ControlHints/EscHint/EscText" unique_id=70265876]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.65, 0.7, 1)
 theme_override_font_sizes/font_size = 13
 text = "Return to menu"
 horizontal_alignment = 2
 
-[node name="EscIcon" type="TextureRect" parent="ControlHints/EscHint"]
+[node name="EscIcon" type="TextureRect" parent="ControlHints/EscHint" unique_id=1471097290]
 custom_minimum_size = Vector2(56, 40)
 layout_mode = 2
 texture = ExtResource("7_esc_icon")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="InteractHint" type="HBoxContainer" parent="ControlHints"]
+[node name="InteractHint" type="HBoxContainer" parent="ControlHints" unique_id=473571283]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="InteractText" type="VBoxContainer" parent="ControlHints/InteractHint"]
+[node name="InteractText" type="VBoxContainer" parent="ControlHints/InteractHint" unique_id=378698806]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 theme_override_constants/separation = 2
+alignment = 1
 
-[node name="InteractAction" type="Label" parent="ControlHints/InteractHint/InteractText"]
+[node name="InteractAction" type="Label" parent="ControlHints/InteractHint/InteractText" unique_id=973771256]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.96, 1, 1)
 theme_override_font_sizes/font_size = 16
 text = "F"
 horizontal_alignment = 2
 
-[node name="InteractDescription" type="Label" parent="ControlHints/InteractHint/InteractText"]
+[node name="InteractDescription" type="Label" parent="ControlHints/InteractHint/InteractText" unique_id=870708737]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.65, 0.7, 1)
 theme_override_font_sizes/font_size = 13
 text = "Interact with traps"
 horizontal_alignment = 2
 
-[node name="InteractIcon" type="TextureRect" parent="ControlHints/InteractHint"]
+[node name="InteractIcon" type="TextureRect" parent="ControlHints/InteractHint" unique_id=1789035042]
 custom_minimum_size = Vector2(56, 40)
 layout_mode = 2
 texture = ExtResource("7_esc_icon")
