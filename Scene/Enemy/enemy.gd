@@ -98,7 +98,7 @@ func _physics_process(delta: float) -> void:
 	elif direction.length_squared() > 0.001:
 		velocity.x = direction.x * chase_speed
 		velocity.z = direction.z * chase_speed
-		look_at(global_position + direction, Vector3.UP)
+		look_at(global_position - direction, Vector3.UP)
 		_set_walking(true)
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, chase_speed * delta * 4.0)
