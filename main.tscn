@@ -20,7 +20,7 @@ script = ExtResource("1_ig7tw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1078344536]
 
-[node name="UI_Main" parent="CanvasLayer" instance=ExtResource("4_main_menu")]
+[node name="UI_Main" parent="CanvasLayer" unique_id=201389301 instance=ExtResource("4_main_menu")]
 
 [node name="WinScreen" parent="CanvasLayer" unique_id=729980367 instance=ExtResource("2_win_screen")]
 
