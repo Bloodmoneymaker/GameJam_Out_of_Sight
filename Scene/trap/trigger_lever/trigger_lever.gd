@@ -28,6 +28,7 @@ func activate() -> void:
 	await tween.finished
 	super.activate()
 	return_timer.start()
+	print("Triggered LEVER")
 
 
 func _on_return_timer_timeout() -> void:

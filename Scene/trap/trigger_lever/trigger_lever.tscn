@@ -1,20 +1,34 @@
 [gd_scene format=3 uid="uid://clo2yuiy8okcw"]
 
 [ext_resource type="Script" uid="uid://dfftsxagadwbt" path="res://Scene/trap/trigger_lever/trigger_lever.gd" id="1_6v3ub"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="2_echo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v2ds7"]
+radius = 0.15
+height = 1.2
 
-[node name="TriggerLever" type="Node3D" unique_id=1203229357]
+[sub_resource type="BoxShape3D" id="LeverInteractShape"]
+size = Vector3(1.3, 2.2, 1.8)
+
+[node name="TriggerLever" type="Node3D" unique_id=1203229357 groups=["trigger"]]
 script = ExtResource("1_6v3ub")
 
 [node name="LeverPivot" type="Node3D" parent="." unique_id=966202133]
 
 [node name="Lever" type="MeshInstance3D" parent="LeverPivot" unique_id=530247951]
 transform = Transform3D(0.18063152, 0, 0, 0, 0.48561513, 0.20305376, 0, -0.8411102, 0.11723315, 0, 0.95324224, -0.7624278)
+material_override = ExtResource("2_echo")
 mesh = SubResource("CapsuleMesh_v2ds7")
 
 [node name="ReturnTimer" type="Timer" parent="." unique_id=1834023160]
-wait_time = 1.0
 one_shot = true
+
+[node name="InteractArea" type="Area3D" parent="." unique_id=1354138042]
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea" unique_id=1354138043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.25)
+shape = SubResource("LeverInteractShape")
 
 [connection signal="timeout" from="ReturnTimer" to="." method="_on_return_timer_timeout"]

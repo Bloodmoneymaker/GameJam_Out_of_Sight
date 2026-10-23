@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dny1eb6s8ciw4" path="res://Scene/Tiles/tile_road_edge.tscn" id="6_n2mbg"]
 [ext_resource type="PackedScene" uid="uid://cxhmgcms5x8oy" path="res://Scene/Enemy/roach/roach_enemy.tscn" id="7_eu8i2"]
 [ext_resource type="PackedScene" uid="uid://df2an83abrc4c" path="res://Scene/trap/trap_strohman/strohman_trap.tscn" id="7_yf6jp"]
+[ext_resource type="PackedScene" uid="uid://clo2yuiy8okcw" path="res://Scene/trap/trigger_lever/trigger_lever.tscn" id="9_60ncs"]
 
 [sub_resource type="Environment" id="Environment_6bkcm"]
 background_mode = 2
@@ -180,3 +181,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20268965, 0, 1.1886411)
 
 [node name="Entity_Roach" parent="." unique_id=1248933683 instance=ExtResource("7_eu8i2")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
+
+[node name="TriggerLever" parent="." unique_id=1203229357 instance=ExtResource("9_60ncs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.355817, 0, 1.7558395)
