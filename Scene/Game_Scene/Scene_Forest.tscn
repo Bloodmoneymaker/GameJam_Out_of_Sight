@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://jwvyylejrfop"]
+
+[ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_7nip6"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
+
+[node name="Scene_Forest" type="Node3D" unique_id=1414390412]
+script = ExtResource("1_7nip6")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=883556494]
+navigation_mesh = SubResource("NavigationMesh_g4v7s")
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D" unique_id=1775486685]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Node3D" unique_id=1111058131]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Node3D/StaticBody3D" unique_id=2065502668]
