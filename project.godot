@@ -34,6 +34,10 @@ SignalManager="*uid://dayf384rr4xvu"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor]
+
+movie_writer/movie_file="/home/max/Dokumente/clips/clips.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/audiomanager_[simple]/plugin.cfg")

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://pot372665roe" path="res://UI/echoCharge/echoCharge.tscn" id="4_charge_ui"]
 [ext_resource type="PackedScene" path="res://Scene/player/health_component/health_component.tscn" id="health_component"]
 [ext_resource type="PackedScene" path="res://UI/health_hearts/health_hearts.tscn" id="health_hearts"]
+[ext_resource type="PackedScene" path="res://Shader/echo_contours.tscn" id="echo_contours"]
 
 [sub_resource type="CapsuleShape3D" id="PlayerShape"]
 radius = 0.4
@@ -26,6 +27,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1246062726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 current = true
+
+[node name="EchoContours" parent="Head/Camera3D" instance=ExtResource("echo_contours")]
 
 [node name="Scanner" parent="Head/Camera3D" unique_id=596071866 node_paths=PackedStringArray("player") instance=ExtResource("2_ubwr7")]
 transform = Transform3D(0.99999994, -5.6060543e-07, 0.00035106743, 0, 0.99999875, 0.0015968577, -0.00035106787, -0.0015968576, 0.9999987, 0.29352674, -0.389848, -0.3144157)

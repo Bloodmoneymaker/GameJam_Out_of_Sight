@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Material" path="res://Shader/echo_contours_material.tres" id="1_contours"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_screen"]
+size = Vector2(2, 2)
+
+[node name="EchoContours" type="MeshInstance3D"]
+position = Vector3(0, 0, -0.5)
+cast_shadow = 0
+extra_cull_margin = 16384.0
+ignore_occlusion_culling = true
+material_override = ExtResource("1_contours")
+mesh = SubResource("QuadMesh_screen")

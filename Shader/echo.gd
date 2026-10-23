@@ -6,7 +6,7 @@ extends Node
 ## that wall. The shader clips each mirrored wave to the source's side of its wall.
 
 const MAX_WAVES := 64 # must match MAX_WAVES in echo.gdshader
-const MATERIAL: ShaderMaterial = preload("res://Shader/echo_material.tres")
+const MATERIAL: ShaderMaterial = preload("res://Shader/echo_contours_material.tres")
 
 ## Intensity of a reflection relative to the original wave.
 const REFLECTION_STRENGTH := 0.5
