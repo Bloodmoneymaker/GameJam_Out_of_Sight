@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dfgqqb2ymi86f" path="res://Scene/Tiles/Sewer/Tile_Sewer_Deadend.tscn" id="7_tiqbx"]
 [ext_resource type="PackedScene" uid="uid://j1w0n6po3l0y" path="res://Scene/Tiles/Sewer/Tile_Sewer_T.tscn" id="8_6fknj"]
 [ext_resource type="PackedScene" uid="uid://be0iijflamv81" path="res://Scene/Tiles/Sewer/Tile_Sewer_Road_Broken.tscn" id="9_a04rc"]
+[ext_resource type="PackedScene" uid="uid://do84opv2c4k2l" path="res://Scene/Objects/Object_Ladder.tscn" id="10_6fknj"]
+[ext_resource type="PackedScene" uid="uid://b4q3ufmxwfxex" path="res://Scene/Objects/Object_Metal_Grid.tscn" id="11_eiupl"]
+[ext_resource type="PackedScene" uid="uid://ciqlc1lu1ft" path="res://Scene/Objects/Object_Sewer_Poop_Pipe.tscn" id="12_uimu7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
@@ -204,3 +207,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
 
 [node name="Tile_Sewer_Road_Broken" parent="NavigationRegion3D/Map-Layout/Node3D" unique_id=1136334430 instance=ExtResource("9_a04rc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+
+[node name="Object_Ladder" parent="." unique_id=2018036478 instance=ExtResource("10_6fknj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -41.384487)
+
+[node name="Object_Metal_Grid" parent="." unique_id=1953721503 instance=ExtResource("11_eiupl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -20)
+
+[node name="Object_Sewer_Poop_Pipe" parent="." unique_id=1082371930 instance=ExtResource("12_uimu7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -2)
+
+[node name="Object_Sewer_Poop_Pipe3" parent="." unique_id=555863311 instance=ExtResource("12_uimu7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 23.331923)
+
+[node name="Object_Sewer_Poop_Pipe2" parent="." unique_id=1409313654 instance=ExtResource("12_uimu7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, -12.283043)
