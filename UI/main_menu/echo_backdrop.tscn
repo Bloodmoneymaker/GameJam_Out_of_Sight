@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://UI/main_menu/echo_backdrop.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Shader/echo_contours.tscn" id="2_contours"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="3_echo_material"]
+
+[sub_resource type="BoxMesh" id="WallMesh"]
+size = Vector3(10, 5, 0.35)
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(10, 0.3, 13)
+
+[sub_resource type="BoxMesh" id="StructureMesh"]
+size = Vector3(0.7, 3.2, 0.8)
+
+[node name="EchoBackdrop" type="Node3D"]
+script = ExtResource("1_script")
+echo_interval = 2.4
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(0, 2.3, 8)
+rotation = Vector3(-0.075, 0, 0)
+current = true
+fov = 58.0
+
+[node name="EchoContours" parent="Camera3D" instance=ExtResource("2_contours")]
+
+[node name="BackWall" type="MeshInstance3D" parent="."]
+position = Vector3(0, 2.5, -3.2)
+mesh = SubResource("WallMesh")
+material_override = ExtResource("3_echo_material")
+
+[node name="LeftWall" type="MeshInstance3D" parent="."]
+position = Vector3(-4.8, 2.5, 2.0)
+rotation = Vector3(0, 1.5708, 0)
+mesh = SubResource("WallMesh")
+material_override = ExtResource("3_echo_material")
+
+[node name="RightWall" type="MeshInstance3D" parent="."]
+position = Vector3(4.8, 2.5, 2.0)
+rotation = Vector3(0, 1.5708, 0)
+mesh = SubResource("WallMesh")
+material_override = ExtResource("3_echo_material")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.15, 1.0)
+mesh = SubResource("FloorMesh")
+material_override = ExtResource("3_echo_material")
+
+[node name="PillarLeft" type="MeshInstance3D" parent="."]
+position = Vector3(-2.2, 1.6, -1.0)
+mesh = SubResource("StructureMesh")
+material_override = ExtResource("3_echo_material")
+
+[node name="PillarRight" type="MeshInstance3D" parent="."]
+position = Vector3(2.4, 1.6, -1.8)
+mesh = SubResource("StructureMesh")
+material_override = ExtResource("3_echo_material")
+
+[node name="CrossBeam" type="MeshInstance3D" parent="."]
+position = Vector3(0.1, 3.25, -1.65)
+rotation = Vector3(0, 0, 1.5708)
+mesh = SubResource("StructureMesh")
+material_override = ExtResource("3_echo_material")
+
+[node name="EchoOrigin" type="Marker3D" parent="."]
+position = Vector3(0.0, 1.5, 0.2)
+
+[node name="EchoTimer" type="Timer" parent="."]
+wait_time = 2.4
+autostart = true
+
+[connection signal="timeout" from="EchoTimer" to="." method="_on_echo_timer_timeout"]
