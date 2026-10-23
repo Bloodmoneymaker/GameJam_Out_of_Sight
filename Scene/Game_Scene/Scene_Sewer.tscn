@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://j1w0n6po3l0y" path="res://Scene/Tiles/Sewer/Tile_Sewer_T.tscn" id="8_6fknj"]
 [ext_resource type="PackedScene" uid="uid://be0iijflamv81" path="res://Scene/Tiles/Sewer/Tile_Sewer_Road_Broken.tscn" id="9_a04rc"]
 [ext_resource type="PackedScene" uid="uid://do84opv2c4k2l" path="res://Scene/Objects/Object_Ladder.tscn" id="10_6fknj"]
+[ext_resource type="Script" uid="uid://b8hmifiu4x832" path="res://Scene/kill_zone/kill_zone.gd" id="10_aqe60"]
 [ext_resource type="PackedScene" uid="uid://dmlt886ifl4tx" path="res://Scene/Objects/Pipes/Object_Pipe_Ground_3.tscn" id="10_mo070"]
 [ext_resource type="PackedScene" uid="uid://b4q3ufmxwfxex" path="res://Scene/Objects/Object_Metal_Grid.tscn" id="11_eiupl"]
 [ext_resource type="PackedScene" uid="uid://ciqlc1lu1ft" path="res://Scene/Objects/Object_Sewer_Poop_Pipe.tscn" id="12_uimu7"]
@@ -21,6 +22,9 @@
 [ext_resource type="PackedScene" uid="uid://d0hvi01mv18v1" path="res://Scene/Objects/Pipes/Object_Pipe_3.tscn" id="19_jm8v7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(116.25783, 6.4692383, 97.294205)
 
 [node name="Scene_Sewer" type="Node3D" unique_id=914583633]
 script = ExtResource("1_tqypf")
@@ -214,6 +218,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
 
 [node name="Tile_Sewer_Road_Broken" parent="NavigationRegion3D/Map-Layout/Node3D" unique_id=1136334430 instance=ExtResource("9_a04rc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+
+[node name="KillZone" type="Area3D" parent="NavigationRegion3D/Map-Layout" unique_id=1310234963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.657669, 9.536743e-07, -22.93375)
+script = ExtResource("10_aqe60")
+metadata/_custom_type_script = "uid://b8hmifiu4x832"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Map-Layout/KillZone" unique_id=838594793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.914543, -5.193035, 16.324196)
+shape = SubResource("BoxShape3D_g4v7s")
 
 [node name="Decoration" type="Node3D" parent="NavigationRegion3D/Map-Layout" unique_id=544763042]
 
