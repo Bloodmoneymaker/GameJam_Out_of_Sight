@@ -48,6 +48,19 @@ func load_scene(scene_idx: SCENE) -> void:
 		win_screen.hide()
 	if is_instance_valid(lose_screen):
 		lose_screen.hide()
+	get_tree().paused = false
+
+
+func return_to_main_menu() -> void:
+	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	delete_all_scenes()
+	if is_instance_valid(win_screen):
+		win_screen.hide()
+	if is_instance_valid(lose_screen):
+		lose_screen.hide()
+	if is_instance_valid(ui_main):
+		ui_main.show()
 
 
 func get_scene_title(scene_idx: int) -> String:

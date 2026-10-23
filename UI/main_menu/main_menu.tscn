@@ -1,20 +1,25 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://r11i5dam5tlt"]
 
-[ext_resource type="Script" path="res://UI/main_menu/main_menu.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://buwmuqjhswijc" path="res://UI/main_menu/main_menu.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://UI/main_menu/echo_backdrop.tscn" id="2_echo_backdrop"]
+[ext_resource type="PackedScene" path="res://UI/main_menu/level_tile.tscn" id="3_level_tile"]
+[ext_resource type="PackedScene" path="res://UI/buttons/general_button.tscn" id="4_general_button"]
 
 [sub_resource type="StyleBoxFlat" id="PanelStyle"]
-bg_color = Color(0.012, 0.03, 0.05, 0.97)
-border_color = Color(0.07, 0.42, 0.5, 0.85)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+bg_color = Color(0.008, 0.023, 0.035, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.07, 0.43, 0.5, 0.85)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 24
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=252403074]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,8 +27,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
+level_tile_scene = ExtResource("3_level_tile")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="SubViewportContainer" parent="." unique_id=1499514605]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,58 +37,92 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.004, 0.012, 0.024, 1)
+stretch = true
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="SubViewport" type="SubViewport" parent="Background" unique_id=646611190]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="EchoBackdrop" parent="Background/SubViewport" unique_id=1718194189 instance=ExtResource("2_echo_backdrop")]
+
+[node name="MenuPanel" type="PanelContainer" parent="." unique_id=423041584]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.12
+anchor_right = 0.62
+anchor_bottom = 0.88
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-
-[node name="MenuPanel" type="PanelContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(760, 490)
-layout_mode = 2
 theme_override_styles/panel = SubResource("PanelStyle")
 
-[node name="Margins" type="MarginContainer" parent="CenterContainer/MenuPanel"]
+[node name="Margins" type="MarginContainer" parent="MenuPanel" unique_id=1243520629]
 layout_mode = 2
-theme_override_constants/margin_left = 38
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 38
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 26
 
-[node name="MenuContent" type="VBoxContainer" parent="CenterContainer/MenuPanel/Margins"]
+[node name="MenuContent" type="VBoxContainer" parent="MenuPanel/Margins" unique_id=231151592]
 layout_mode = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 15
 
-[node name="Title" type="Label" parent="CenterContainer/MenuPanel/Margins/MenuContent"]
+[node name="Eyebrow" type="Label" parent="MenuPanel/Margins/MenuContent" unique_id=1379658750]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.62, 0.94, 1, 1)
-theme_override_font_sizes/font_size = 52
-text = "OUT OF SIGHT"
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.22, 0.79, 0.84, 1)
+theme_override_font_sizes/font_size = 14
+text = "FIELD TERMINAL   /   SECTOR ACCESS"
 
-[node name="Subtitle" type="Label" parent="CenterContainer/MenuPanel/Margins/MenuContent"]
+[node name="Title" type="Label" parent="MenuPanel/Margins/MenuContent" unique_id=247381478]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.47, 0.65, 0.72, 1)
-theme_override_font_sizes/font_size = 18
-text = "CHOOSE YOUR LEVEL"
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.72, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 46
+text = "EchoMan"
 
-[node name="LevelGrid" type="GridContainer" parent="CenterContainer/MenuPanel/Margins/MenuContent"]
+[node name="Divider" type="HSeparator" parent="MenuPanel/Margins/MenuContent" unique_id=342644412]
+layout_mode = 2
+
+[node name="LevelHeading" type="Label" parent="MenuPanel/Margins/MenuContent" unique_id=1540128845]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "AVAILABLE LEVEL"
+
+[node name="LevelGrid" type="GridContainer" parent="MenuPanel/Margins/MenuContent" unique_id=1435417940]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/h_separation = 14
-theme_override_constants/v_separation = 14
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
 columns = 2
 
-[node name="QuitButton" type="Button" parent="CenterContainer/MenuPanel/Margins/MenuContent"]
-custom_minimum_size = Vector2(180, 48)
+[node name="Footer" type="HBoxContainer" parent="MenuPanel/Margins/MenuContent" unique_id=635342946]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.85, 0.91, 0.93, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_constants/separation = 12
+
+[node name="QuitButton" parent="MenuPanel/Margins/MenuContent/Footer" unique_id=746528124 instance=ExtResource("4_general_button")]
+custom_minimum_size = Vector2(160, 44)
+layout_mode = 2
 text = "QUIT GAME"
+
+[node name="ControlsHint" type="Label" parent="MenuPanel/Margins/MenuContent/Footer" unique_id=1197642994]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.33, 0.52, 0.58, 1)
+theme_override_font_sizes/font_size = 13
+text = "ESC   RETURN TO THIS TERMINAL"
+horizontal_alignment = 2
+
+[node name="SignalStatus" type="Label" parent="." unique_id=1949037334]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.69
+anchor_right = 0.96
+offset_top = 44.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.3, 0.82, 0.84, 1)
+theme_override_font_sizes/font_size = 14
+text = "●  ECHO FIELD / LIVE"
+horizontal_alignment = 2
