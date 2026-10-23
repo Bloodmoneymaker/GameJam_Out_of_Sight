@@ -23,6 +23,18 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2ds7"]
 size = Vector3(10, 1, 10)
 
+[sub_resource type="BoxMesh" id="BoundarySideMesh"]
+size = Vector3(0.4, 4, 10.4)
+
+[sub_resource type="BoxShape3D" id="BoundarySideShape"]
+size = Vector3(0.4, 4, 10.4)
+
+[sub_resource type="BoxMesh" id="BoundaryEndMesh"]
+size = Vector3(10.4, 4, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoundaryEndShape"]
+size = Vector3(10.4, 4, 0.4)
+
 [node name="Tutorial_1" type="Node3D" unique_id=538531758]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1121125147]
@@ -38,6 +50,48 @@ mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/Floor/StaticBody3D" unique_id=1382494864]
 shape = SubResource("BoxShape3D_v2ds7")
+
+[node name="BoundaryWalls" type="Node3D" parent="LevelMeshes"]
+
+[node name="LeftWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
+position = Vector3(-5.2, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/LeftWall"]
+shape = SubResource("BoundarySideShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/LeftWall"]
+mesh = SubResource("BoundarySideMesh")
+material_override = ExtResource("3_y3f04")
+
+[node name="RightWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
+position = Vector3(5.2, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/RightWall"]
+shape = SubResource("BoundarySideShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/RightWall"]
+mesh = SubResource("BoundarySideMesh")
+material_override = ExtResource("3_y3f04")
+
+[node name="StartWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
+position = Vector3(0, 1.5, 5.2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/StartWall"]
+shape = SubResource("BoundaryEndShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/StartWall"]
+mesh = SubResource("BoundaryEndMesh")
+material_override = ExtResource("3_y3f04")
+
+[node name="EndWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
+position = Vector3(0, 1.5, -5.2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/EndWall"]
+shape = SubResource("BoundaryEndShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/EndWall"]
+mesh = SubResource("BoundaryEndMesh")
+material_override = ExtResource("3_y3f04")
 
 [node name="BeaconGoal" parent="." unique_id=2011488940 instance=ExtResource("4_msfi0")]
 position = Vector3(0, 0, -3.2)
