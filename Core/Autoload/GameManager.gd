@@ -1,7 +1,7 @@
 # GameManager.gd (Autoload)
 extends Node
 
-enum SCENE {DEBUG,XXX,LEVEL1}
+enum SCENE {DEBUG,XXX,LEVEL1,SEWER}
 
 # Scene
 var container_scene:Node
@@ -16,7 +16,8 @@ var lose_screen: Control
 var scene:Dictionary = {
 	SCENE.DEBUG : preload("res://Scene/scene_debug.tscn"),
 	SCENE.XXX : preload("res://Scene/scene_test.tscn"),
-	SCENE.LEVEL1 : preload("res://Scene/scene_level_1.tscn")
+	SCENE.LEVEL1 : preload("res://Scene/scene_level_1.tscn"),
+	SCENE.SEWER : preload("res://Scene/Game_Scene/Scene_Sewer.tscn"),
 }
 
 func load_scene(scene_idx:SCENE) -> void:
