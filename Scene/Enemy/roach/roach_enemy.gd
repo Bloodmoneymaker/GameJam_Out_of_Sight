@@ -15,6 +15,8 @@ extends "res://Scene/Enemy/enemy.gd"
 @export var sound_attack: Array[AudioStream] = []
 @export var sound_body: AudioStream
 
+var _echo_step := false
+
 
 func _ready() -> void:
 	super._ready()
@@ -57,3 +59,6 @@ func _emit_bone_echo(index: int) -> void:
 func _on_timer_timeout() -> void:
 	if not Engine.is_editor_hint() and _is_walking and not is_stunned():
 		sound_trigger_movement()
+		_echo_step = not _echo_step
+		if _echo_step:
+			Echo.spider_echo(global_position + Vector3.UP * 0.8)
