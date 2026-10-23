@@ -1,7 +1,7 @@
 # GameManager.gd (Autoload)
 extends Node
 
-enum SCENE {DEBUG,TUTORIAL_1,TUTORIAL_2,LEVEL1,SEWER}
+enum SCENE {DEBUG,TUTORIAL_1,TUTORIAL_2,LEVEL1,SEWER,FOREST}
 
 # Scene
 var container_scene:Node
@@ -21,6 +21,7 @@ var scene: Dictionary = {
 	SCENE.LEVEL1: "res://Scene/scene_level_1.tscn",
 	SCENE.SEWER: "res://Scene/Game_Scene/Scene_Sewer.tscn",
 	SCENE.DEBUG: "res://Scene/scene_debug.tscn",
+	SCENE.FOREST : "res://Scene/Game_Scene/Scene_Forest.tscn",
 }
 
 var scene_titles: Dictionary = {

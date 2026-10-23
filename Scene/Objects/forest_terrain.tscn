@@ -1,5 +1,7 @@
 [gd_scene format=4 uid="uid://hlsbod1lvalu"]
 
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="1_ardmw"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2lph"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ig8gw"]
@@ -43,6 +45,7 @@ data = PackedVector3Array(-50, 14.403999, 52.164997, -49.501, 14.403999, 51.6410
 
 [node name="Scene_Forest" type="MeshInstance3D" parent="Forest_Terrain" unique_id=243654623]
 mesh = SubResource("ArrayMesh_qw5ur")
+surface_material_override/0 = ExtResource("1_ardmw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=607181642]
 shape = SubResource("ConcavePolygonShape3D_oerm0")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_7nip6"]
 [ext_resource type="PackedScene" uid="uid://hlsbod1lvalu" path="res://Scene/Objects/forest_terrain.tscn" id="2_qkw6n"]
+[ext_resource type="PackedScene" uid="uid://b2fingr8pmtbl" path="res://Scene/Objects/Enviroment/tree_2.tscn" id="3_cfstr"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
@@ -11,6 +12,19 @@ script = ExtResource("1_7nip6")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=883556494]
 navigation_mesh = SubResource("NavigationMesh_g4v7s")
 
-[node name="Node3D" type="Node3D" parent="NavigationRegion3D" unique_id=1775486685]
+[node name="Forest_Terrain" parent="NavigationRegion3D" unique_id=1416159144 instance=ExtResource("2_qkw6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.046277, 0)
 
-[node name="Forest_Terrain" parent="NavigationRegion3D/Node3D" unique_id=1416159144 instance=ExtResource("2_qkw6n")]
+[node name="Enviroment" type="Node3D" parent="NavigationRegion3D" unique_id=735068116]
+
+[node name="Tree_2" parent="NavigationRegion3D/Enviroment" unique_id=548919051 instance=ExtResource("3_cfstr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5643005, 0, 0)
+
+[node name="Tree_3" parent="NavigationRegion3D/Enviroment" unique_id=427075507 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -2.5643005, -0.41645622, 6)
+
+[node name="Tree_4" parent="NavigationRegion3D/Enviroment" unique_id=2042217668 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.790121, 0, -0.61295086, 0, 1, 0, 0.61295086, 0, 0.790121, 6.7074127, -1.0749664, -4.6169186)
+
+[node name="Tree_5" parent="NavigationRegion3D/Enviroment" unique_id=1286621002 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.9452865, 0, -0.32624134, 0, 1, 0, 0.32624134, 0, 0.9452865, 4.7570577, 0.502223, 1.9361987)
