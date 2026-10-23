@@ -1,6 +1,6 @@
 extends ColorRect
 
-const ECHO_INTERVAL := 2.0
+const ECHO_INTERVAL := 2.8
 const MAX_WAVES := 4
 
 @onready var echo_material: ShaderMaterial = material as ShaderMaterial

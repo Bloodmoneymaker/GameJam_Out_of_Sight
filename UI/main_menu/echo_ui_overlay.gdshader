@@ -6,12 +6,12 @@ uniform vec4 wave_data[4];
 uniform float now = 0.0;
 uniform vec2 viewport_pixel_size = vec2(0.001, 0.001);
 uniform vec3 echo_color : source_color = vec3(0.15, 0.85, 1.0);
-uniform float darkness : hint_range(0.0, 1.0) = 0.0;
+uniform float darkness : hint_range(0.0, 1.0) = 0.12;
 uniform float edge_threshold : hint_range(0.0, 1.0) = 0.1;
 
-const float WAVE_TRAVEL_TIME = 3.0;
+const float WAVE_TRAVEL_TIME = 3.8;
 const float AFTERGLOW_DURATION = 1.3;
-const float MAX_WAVE_AGE = 4.5;
+const float MAX_WAVE_AGE = 5.5;
 
 float luminance(vec3 color) {
 	return dot(color, vec3(0.299, 0.587, 0.114));
@@ -61,7 +61,7 @@ void fragment() {
 	float glow = clamp(total_afterglow, 0.0, 1.0);
 	float echo_line = clamp(total_ring * 0.55 + glow * 0.2, 0.0, 1.0);
 	vec3 result = sampled_color * darkness;
-	result += sampled_color * glow * 0.7;
+	result += sampled_color * glow * 0.45;
 	result += echo_color * edge * echo_line * 0.45;
 	result += echo_color * clamp(total_ring, 0.0, 1.0) * 0.08;
 	COLOR = vec4(result, 1.0);
