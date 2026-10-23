@@ -53,7 +53,7 @@ transform = Transform3D(0.5382305, 0, -0.84279764, 0, 1, 0, 0.84279764, 0, 0.538
 transform = Transform3D(-0.7116464, 0, -0.7025378, 0, 1, 0, 0.7025378, 0, -0.7116464, -6.5165005, -0.67367065, -17.7082)
 
 [node name="Tree_52" parent="NavigationRegion3D/Enviroment/Trees" unique_id=647513458 instance=ExtResource("5_nmxlp")]
-transform = Transform3D(0.5382305, 0, -0.84279764, 0, 1, 0, 0.84279764, 0, 0.5382305, -1.4262093, -1.785422, -3.6955957)
+transform = Transform3D(0.5382305, 0, -0.84279764, 0, 1, 0, 0.84279764, 0, 0.5382305, -1.4262093, -1.785421, -3.6955957)
 
 [node name="Tree_14" parent="NavigationRegion3D/Enviroment/Trees" unique_id=205988634 instance=ExtResource("5_nmxlp")]
 transform = Transform3D(0.5382305, 0, -0.84279764, 0, 1, 0, 0.84279764, 0, 0.5382305, -11.800321, 0.8352941, -2.569275)
