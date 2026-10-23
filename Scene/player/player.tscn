@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://k5m0ikpjagej" path="res://Scene/scanner/scanner.tscn" id="2_ubwr7"]
 [ext_resource type="PackedScene" uid="uid://qk63jreoynvu" path="res://Scene/player/echo_charger_component/echo_charger.tscn" id="3_echo_charger"]
 [ext_resource type="PackedScene" uid="uid://pot372665roe" path="res://UI/echoCharge/echoCharge.tscn" id="4_charge_ui"]
+[ext_resource type="PackedScene" path="res://Shader/echo_contours.tscn" id="echo_contours"]
 [ext_resource type="PackedScene" path="res://Scene/player/health_component/health_component.tscn" id="health_component"]
 [ext_resource type="PackedScene" path="res://UI/health_hearts/health_hearts.tscn" id="health_hearts"]
-[ext_resource type="PackedScene" path="res://Shader/echo_contours.tscn" id="echo_contours"]
 
 [sub_resource type="CapsuleShape3D" id="PlayerShape"]
 radius = 0.4
@@ -16,6 +16,7 @@ height = 1.8
 script = ExtResource("1_player")
 
 [node name="EchoCharger" parent="." unique_id=1745474185 instance=ExtResource("3_echo_charger")]
+refresh_time = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=842021159]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -28,7 +29,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 current = true
 
-[node name="EchoContours" parent="Head/Camera3D" instance=ExtResource("echo_contours")]
+[node name="EchoContours" parent="Head/Camera3D" unique_id=1113797267 instance=ExtResource("echo_contours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="Scanner" parent="Head/Camera3D" unique_id=596071866 node_paths=PackedStringArray("player") instance=ExtResource("2_ubwr7")]
 transform = Transform3D(0.99999994, -5.6060543e-07, 0.00035106743, 0, 0.99999875, 0.0015968577, -0.00035106787, -0.0015968576, 0.9999987, 0.29352674, -0.389848, -0.3144157)

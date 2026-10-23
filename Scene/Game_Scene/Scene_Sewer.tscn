@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bn67lsatih7pd" path="res://Scene/Objects/Pipes/Object_Pipe_1.tscn" id="17_65gmr"]
 [ext_resource type="PackedScene" uid="uid://chqn6hlhrq47d" path="res://Scene/Objects/Pipes/Object_Pipe_2.tscn" id="18_4el5n"]
 [ext_resource type="PackedScene" uid="uid://d0hvi01mv18v1" path="res://Scene/Objects/Pipes/Object_Pipe_3.tscn" id="19_jm8v7"]
+[ext_resource type="PackedScene" uid="uid://76pkpl3m5xs3" path="res://Scene/beacon/beacon.tscn" id="20_beacon"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
@@ -235,6 +236,9 @@ transform = Transform3D(0.13811176, -0.99041665, 0, 0.9231577, 0.12873262, -0.36
 
 [node name="Object_Ladder" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=2018036478 instance=ExtResource("10_6fknj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -41.384487)
+
+[node name="BeaconGoal" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1355522778 instance=ExtResource("20_beacon")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0.19961119, -40.94934)
 
 [node name="Object_Metal_Grid" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1953721503 instance=ExtResource("11_eiupl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -20)
