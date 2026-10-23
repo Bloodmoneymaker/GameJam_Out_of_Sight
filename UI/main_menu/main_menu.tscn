@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dgsbqjrrau6fr" path="res://UI/main_menu/mouse_left_icon.svg" id="5_mouse_icon"]
 [ext_resource type="Texture2D" uid="uid://bydeuf0uvfe4t" path="res://UI/main_menu/space_key_icon.svg" id="6_space_icon"]
 [ext_resource type="Texture2D" uid="uid://cprdaqdabe8a" path="res://UI/main_menu/esc_key_icon.svg" id="7_esc_icon"]
+[ext_resource type="Script" path="res://UI/main_menu/echo_ui_overlay.gd" id="8_echo_ui_script"]
+[ext_resource type="Shader" path="res://UI/main_menu/echo_ui_overlay.gdshader" id="9_echo_ui_shader"]
 
 [sub_resource type="StyleBoxFlat" id="PanelStyle"]
 bg_color = Color(0.008, 0.023, 0.035, 0.94)
@@ -21,6 +23,9 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 0.55)
 shadow_size = 24
+
+[sub_resource type="ShaderMaterial" id="EchoUIOverlayMaterial"]
+shader = ExtResource("9_echo_ui_shader")
 
 [node name="MainMenu" type="Control" unique_id=252403074]
 layout_mode = 3
@@ -261,3 +266,14 @@ layout_mode = 2
 texture = ExtResource("7_esc_icon")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="EchoUIOverlay" type="ColorRect" parent="."]
+material = SubResource("EchoUIOverlayMaterial")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_echo_ui_script")
