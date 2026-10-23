@@ -9,6 +9,8 @@ extends Control
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	quit_button.pressed.connect(_on_quit_pressed)
+	quit_button.mouse_entered.connect(_play_hover_sound)
+	quit_button.focus_entered.connect(_play_hover_sound)
 	_build_level_tiles()
 
 
@@ -21,4 +23,12 @@ func _build_level_tiles() -> void:
 
 
 func _on_quit_pressed() -> void:
+	AudioManager.play_sound_2d(Audio.SOUND.UI_Click)
+	await get_tree().create_timer(
+		Audio.sound[Audio.SOUND.UI_Click].get_length()
+	).timeout
 	get_tree().quit()
+
+
+func _play_hover_sound() -> void:
+	AudioManager.play_sound_2d(Audio.SOUND.UI_Hover)

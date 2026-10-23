@@ -7,6 +7,7 @@ var sound_players = {}
 var music_player = null
 var current_music_index = -1
 var sound_player_amount:int = 30
+var ui_sound_players: Array[AudioStreamPlayer] = []
 @onready var current_music:AudioStream = null
 
 func _ready() -> void:
@@ -18,6 +19,13 @@ func _ready() -> void:
 		add_child(sound_player)
 		sound_player.bus = "Sound"						# Player in den Audio-Bus zuweisen
 		sound_players[i] = sound_player 				# Hinzufügen in den Array
+	
+	# UI-Soundplayer erstellen (nicht räumlich)
+	for i in range(8):
+		var ui_player = AudioStreamPlayer.new()
+		add_child(ui_player)
+		ui_player.bus = "Sound"
+		ui_sound_players.append(ui_player)
 	
 	# Musicplayer erstellen
 	music_player = AudioStreamPlayer.new()				# Benötigt keine räumliche Position
@@ -36,6 +44,16 @@ func play_sound_3d(sound_idx:int,position:Vector3) -> void:
 			sound_player.play()
 			return
 		print("No availabel sound player -> increased the pool!")
+
+## Spielt einen UI-Sound ohne räumliche Position ab
+func play_sound_2d(sound_idx: int) -> void:
+	for ui_player in ui_sound_players:
+		if not ui_player.playing:
+			ui_player.stream = Audio.sound[sound_idx]
+			ui_player.play()
+			return
+	print("No available UI sound player!")
+
 
 ## AudioStream, Position,Pitchscale,Max-Distance
 func play_sound_3d_special(sound:AudioStream,position:Vector3,pitch_scale:float,max_distance:float) -> void:
