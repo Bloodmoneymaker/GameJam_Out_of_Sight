@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dk0qf3qh3t2lm"]
+
+[ext_resource type="PackedScene" uid="uid://m4wh6nhq55vb" path="res://Scene/player/player.tscn" id="3_msfi0"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="3_y3f04"]
+[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="4_msfi0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ej00m"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_jeqfl"]
+sky_material = SubResource("ProceduralSkyMaterial_ej00m")
+
+[sub_resource type="Environment" id="Environment_rdiye"]
+background_mode = 2
+sky = SubResource("Sky_jeqfl")
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+material = ExtResource("3_y3f04")
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2ds7"]
+size = Vector3(10, 1, 10)
+
+[node name="Tutorial_1" type="Node3D" unique_id=538531758]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1121125147]
+environment = SubResource("Environment_rdiye")
+
+[node name="LevelMeshes" type="Node3D" parent="." unique_id=221971816]
+
+[node name="Floor" type="MeshInstance3D" parent="LevelMeshes" unique_id=1057895427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelMeshes/Floor" unique_id=124625189]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/Floor/StaticBody3D" unique_id=1382494864]
+shape = SubResource("BoxShape3D_v2ds7")
+
+[node name="BeaconGoal" parent="." unique_id=2011488940 instance=ExtResource("4_msfi0")]
+position = Vector3(0, 0, -3.2)
+
+[node name="Player" parent="." unique_id=425749429 instance=ExtResource("3_msfi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.233079)
+
+[node name="TutorialHUD" type="CanvasLayer" parent="."]
+
+[node name="Instructions" type="Label" parent="TutorialHUD"]
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -370.0
+offset_top = 28.0
+offset_right = 370.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0.45, 0.9, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0.005, 0.015, 0.025, 0.95)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "FOLLOW THE ECHO TO THE BEACON\nReach the floating sphere to win."
+horizontal_alignment = 1
+vertical_alignment = 1

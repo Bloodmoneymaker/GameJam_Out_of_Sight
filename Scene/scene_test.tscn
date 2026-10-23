@@ -1,9 +1,8 @@
-[gd_scene format=3 uid="uid://dk0qf3qh3t2lm"]
+[gd_scene format=3 uid="uid://64fcuox4bhtc"]
 
-[ext_resource type="Script" uid="uid://dh8rcojyxusv" path="res://Scene/scene_test.gd" id="1_rdiye"]
+[ext_resource type="Script" path="res://Scene/scene_test.gd" id="1_rdiye"]
 [ext_resource type="PackedScene" uid="uid://m4wh6nhq55vb" path="res://Scene/player/player.tscn" id="3_msfi0"]
 [ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="3_y3f04"]
-[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="4_msfi0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ej00m"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

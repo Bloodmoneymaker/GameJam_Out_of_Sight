@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="1_echo_material"]
+
+[sub_resource type="BoxMesh" id="EchoPlatformMesh"]
+size = Vector3(2.8, 0.5, 4.0)
+
+[sub_resource type="BoxShape3D" id="EchoPlatformShape"]
+size = Vector3(2.8, 0.5, 4.0)
+
+[node name="TutorialPlatform" type="Node3D"]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.25, 0)
+mesh = SubResource("EchoPlatformMesh")
+material_override = ExtResource("1_echo_material")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("EchoPlatformShape")

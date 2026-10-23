@@ -1,0 +1,112 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://Scene/Tutorial/tutorial_platform.tscn" id="2_platform"]
+[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="3_beacon"]
+[ext_resource type="Script" path="res://Scene/kill_zone/kill_zone.gd" id="4_kill_zone"]
+
+[sub_resource type="Environment" id="DarkEchoEnvironment"]
+background_mode = 1
+background_color = Color(0.004, 0.012, 0.02, 1)
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="FallResetShape"]
+size = Vector3(40, 2, 140)
+
+[node name="Tutorial_2" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("DarkEchoEnvironment")
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+position = Vector3(0, 1, 1)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="Platform_01" parent="Platforms" instance=ExtResource("2_platform")]
+
+[node name="Platform_02" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0.8, 0, -5)
+
+[node name="Platform_03" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0, 0, -10)
+
+[node name="Platform_04" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(-0.8, 0, -15)
+
+[node name="Platform_05" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0, 0, -20)
+
+[node name="Platform_06" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0.8, 0, -25)
+
+[node name="Platform_07" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0, 0, -30)
+
+[node name="Platform_08" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(-0.8, 0, -35)
+
+[node name="Platform_09" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0, 0, -40)
+
+[node name="Platform_10" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0.8, 0, -45)
+
+[node name="Platform_11" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0, 0, -50)
+
+[node name="Platform_12" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(-0.8, 0, -55)
+
+[node name="Platform_13" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0, 0, -60)
+
+[node name="Platform_14" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0.8, 0, -65)
+
+[node name="Platform_15" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0, 0, -70)
+
+[node name="Platform_16" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(-0.8, 0, -75)
+
+[node name="Platform_17" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0, 0, -80)
+
+[node name="Platform_18" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0.8, 0, -85)
+
+[node name="Platform_19" parent="Platforms" instance=ExtResource("2_platform")]
+position = Vector3(0, 0, -90)
+
+[node name="FallResetZone" type="Area3D" parent="." node_paths=PackedStringArray("respawn_point")]
+position = Vector3(0, -12, -47.5)
+script = ExtResource("4_kill_zone")
+respawn_point = NodePath("../PlayerSpawn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FallResetZone"]
+shape = SubResource("FallResetShape")
+
+[node name="BeaconGoal" parent="." instance=ExtResource("3_beacon")]
+position = Vector3(0, 0, -96)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 1, 1)
+
+[node name="TutorialHUD" type="CanvasLayer" parent="."]
+
+[node name="Instructions" type="Label" parent="TutorialHUD"]
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -440.0
+offset_top = 28.0
+offset_right = 440.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(0.35, 0.88, 0.94, 1)
+theme_override_colors/font_outline_color = Color(0.005, 0.015, 0.025, 0.95)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 21
+text = "LEFT CLICK TO SEND AN ECHO\nFollow the outlines, jump between platforms, and reach the beacon."
+horizontal_alignment = 1
+vertical_alignment = 1
