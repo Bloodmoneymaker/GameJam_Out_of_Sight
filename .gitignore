@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Generated CI exports and diagnostics
+/build/
+/dist/

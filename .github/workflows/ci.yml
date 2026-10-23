@@ -1,0 +1,17 @@
+name: CI Build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    name: Check project and build Web
+    uses: ./.github/workflows/web-build.yml

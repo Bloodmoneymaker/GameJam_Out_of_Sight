@@ -1,0 +1,99 @@
+name: Release Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (for example 0.1.2). Leave empty to increment the latest patch version.'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  PROJECT_NAME: OutOfSight
+
+jobs:
+  prepare:
+    name: Determine release version
+    runs-on: ubuntu-22.04
+    outputs:
+      release_tag: ${{ steps.version.outputs.release_tag }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Determine version
+        id: version
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          if [[ -n "$REQUESTED_VERSION" ]]; then
+            VERSION="${REQUESTED_VERSION#v}"
+            if [[ ! "$VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+              echo "::error::Version must look like 1.2.3 (optionally prefixed with v)."
+              exit 1
+            fi
+            RELEASE_TAG="v${VERSION}"
+          else
+            LATEST_TAG="v0.0.0"
+            while IFS= read -r TAG; do
+              if [[ "$TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+                LATEST_TAG="$TAG"
+                break
+              fi
+            done < <(git tag --list 'v*' --sort=-v:refname)
+            IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST_TAG#v}"
+            RELEASE_TAG="v${MAJOR}.${MINOR}.$((PATCH + 1))"
+          fi
+          if git show-ref --tags --verify --quiet "refs/tags/$RELEASE_TAG"; then
+            echo "::error::Tag $RELEASE_TAG already exists."
+            exit 1
+          fi
+          echo "Using release tag $RELEASE_TAG"
+          echo "release_tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+
+  web:
+    name: Build and validate Web release
+    needs: prepare
+    uses: ./.github/workflows/web-build.yml
+
+  release:
+    name: Create GitHub Release
+    needs: [prepare, web]
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ needs.prepare.outputs.release_tag }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Download validated Web build
+        uses: actions/download-artifact@v4
+        with:
+          name: OutOfSight-web
+          path: build/web
+      - name: Package Web build, source and checksums
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          (cd build/web && zip -r "../../dist/${PROJECT_NAME}-${RELEASE_TAG}-web.zip" .)
+          git archive --format=zip --prefix="${PROJECT_NAME}-${RELEASE_TAG}/" \
+            --output="dist/${PROJECT_NAME}-${RELEASE_TAG}-source.zip" "$GITHUB_SHA"
+          (cd dist && sha256sum ./*.zip > SHA256SUMS.txt)
+      - name: Create tag and GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/* \
+            --target "$GITHUB_SHA" \
+            --generate-notes \
+            --title "${PROJECT_NAME} ${RELEASE_TAG}"
