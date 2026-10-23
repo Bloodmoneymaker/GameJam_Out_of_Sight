@@ -17,8 +17,8 @@ func _draw() -> void:
 	])
 	var outline := shape.duplicate()
 	outline.append(shape[0])
-	var dim_color := Color(0.12, 0.2, 0.24, 0.85)
-	var health_color := Color(1.0, 0.2, 0.32, 1.0)
+	var dim_color := Color(0.1, 0.24, 0.28, 0.85)
+	var health_color := Color(0.2, 0.84, 0.9, 1.0)
 	var outline_color := dim_color.lerp(health_color, fill)
 	if fill > 0.0:
 		var glow_color := health_color
