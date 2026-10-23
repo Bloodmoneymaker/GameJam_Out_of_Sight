@@ -1,30 +1,32 @@
-[gd_scene format=3 uid="uid://c602ey48v0cy6"]
+[gd_scene load_steps=5 format=3 uid="uid://c602ey48v0cy6"]
 
 [ext_resource type="Script" uid="uid://d1qe3kt2443xb" path="res://Scene/beacon/beacon.gd" id="1_nq64o"]
 [ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="2_lq3dk"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_v2ds7"]
+[sub_resource type="SphereMesh" id="BeaconSphere"]
 material = ExtResource("2_lq3dk")
+radius = 0.38
+height = 0.76
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v2ds7"]
+[sub_resource type="SphereShape3D" id="BeaconTriggerShape"]
 radius = 1.6416016
-height = 3.2832031
 
 [node name="Beacon" type="Node3D" unique_id=2011488940]
 script = ExtResource("1_nq64o")
 beacon_rate = 1.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1819722435]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8069974, 0)
-mesh = SubResource("CapsuleMesh_v2ds7")
+[node name="Orb" type="MeshInstance3D" parent="." unique_id=1819722435]
+position = Vector3(0, 1.55, 0)
+mesh = SubResource("BeaconSphere")
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D" unique_id=2146268050]
+[node name="Area3D" type="Area3D" parent="." unique_id=2146268050]
+position = Vector3(0, 0.8069974, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D" unique_id=666164551]
-shape = SubResource("CapsuleShape3D_v2ds7")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=666164551]
+shape = SubResource("BeaconTriggerShape")
 
 [node name="Timer" type="Timer" parent="." unique_id=266699483]
 autostart = true
 
-[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
