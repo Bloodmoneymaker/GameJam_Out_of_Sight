@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://v24r134pg0g4" path="res://Scene/scanner/scanner.gd" id="1_4ht74"]
 [ext_resource type="PackedScene" uid="uid://e04ntqy17tmy" path="res://Scene/scanner/bullet/bullet.tscn" id="2_bullet"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="3_echo_material"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_haquo"]
 
@@ -343,7 +344,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.062877655, -0.99337506)
 transform = Transform3D(0.7402003, 0, 0.6723867, 0, 1.0000002, 0, -0.6723866, 0, 0.7402004, 0, -0.07080749, 0.089101434)
 
 [node name="Echo_Scanner" type="MeshInstance3D" parent="Node3D" unique_id=331600480]
+transform = Transform3D(-0.2, 0, -3.019916e-08, 0, 0.2, 0, 3.019916e-08, 0, -0.2, 0, 0, 0)
 mesh = SubResource("ArrayMesh_hg5gu")
+surface_material_override/0 = ExtResource("3_echo_material")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D" unique_id=1834853801]
 libraries/ = SubResource("AnimationLibrary_1f825")
