@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://jwvyylejrfop"]
 
 [ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_7nip6"]
+[ext_resource type="PackedScene" uid="uid://hlsbod1lvalu" path="res://Scene/Objects/forest_terrain.tscn" id="2_qkw6n"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
@@ -12,6 +13,4 @@ navigation_mesh = SubResource("NavigationMesh_g4v7s")
 
 [node name="Node3D" type="Node3D" parent="NavigationRegion3D" unique_id=1775486685]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Node3D" unique_id=1111058131]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Node3D/StaticBody3D" unique_id=2065502668]
+[node name="Forest_Terrain" parent="NavigationRegion3D/Node3D" unique_id=1416159144 instance=ExtResource("2_qkw6n")]
