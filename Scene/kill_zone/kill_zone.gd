@@ -11,5 +11,4 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is PlayerCharacter:
-		body.global_position = respawn_point.global_position if respawn_point else Vector3(0, 1, 0)
-		body.velocity = Vector3.ZERO
+		GameManager.show_lose_screen()
