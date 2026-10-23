@@ -13,20 +13,52 @@ var ui_main
 var win_screen: Control
 var lose_screen: Control
 
-var scene:Dictionary = {
-	SCENE.DEBUG : preload("res://Scene/scene_debug.tscn"),
-	SCENE.XXX : preload("res://Scene/scene_test.tscn"),
-	SCENE.LEVEL1 : preload("res://Scene/scene_level_1.tscn"),
-	SCENE.SEWER : preload("res://Scene/Game_Scene/Scene_Sewer.tscn"),
+## Paths are loaded only after a menu tile is selected. Preloading a level that
+## references autoloads can create a resource-loading cycle during startup.
+var scene: Dictionary = {
+	SCENE.DEBUG: "res://Scene/scene_debug.tscn",
+	SCENE.XXX: "res://Scene/scene_test.tscn",
+	SCENE.LEVEL1: "res://Scene/scene_level_1.tscn",
+	SCENE.SEWER: "res://Scene/Game_Scene/Scene_Sewer.tscn",
 }
 
-func load_scene(scene_idx:SCENE) -> void:
-	var new_scene = scene[scene_idx].instantiate()
+var scene_titles: Dictionary = {
+	SCENE.DEBUG: "Debug Arena",
+	SCENE.XXX: "Echo Test",
+	SCENE.LEVEL1: "Level 1",
+	SCENE.SEWER: "Sewer",
+}
+
+func load_scene(scene_idx: SCENE) -> void:
+	if not scene.has(scene_idx):
+		push_error("Unknown scene id: %s" % scene_idx)
+		return
+
+	var packed_scene := load(scene[scene_idx]) as PackedScene
+	if packed_scene == null:
+		push_error("Could not load scene: %s" % scene[scene_idx])
+		return
+
+	delete_all_scenes()
+	var new_scene := packed_scene.instantiate()
 	container_scene.add_child(new_scene)
+	if is_instance_valid(ui_main):
+		ui_main.hide()
+	if is_instance_valid(win_screen):
+		win_screen.hide()
+	if is_instance_valid(lose_screen):
+		lose_screen.hide()
+
+
+func get_scene_title(scene_idx: int) -> String:
+	return str(scene_titles.get(scene_idx, "Level %d" % scene_idx))
 
 func delete_all_scenes() -> void:
-	for child in container_scene.get_children():
-		child.queue_free()
+	for container in [container_scene, container_entity, container_object, container_projectiles]:
+		if not is_instance_valid(container):
+			continue
+		for child in container.get_children():
+			child.queue_free()
 
 func show_win_screen() -> void:
 	if is_instance_valid(lose_screen) and lose_screen.visible:
