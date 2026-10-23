@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cxhmgcms5x8oy" path="res://Scene/Enemy/roach/roach_enemy.tscn" id="7_eu8i2"]
 [ext_resource type="PackedScene" uid="uid://df2an83abrc4c" path="res://Scene/trap/trap_strohman/strohman_trap.tscn" id="7_yf6jp"]
 [ext_resource type="PackedScene" uid="uid://clo2yuiy8okcw" path="res://Scene/trap/trigger_lever/trigger_lever.tscn" id="9_60ncs"]
+[ext_resource type="PackedScene" uid="uid://71ekjtpqhcnr" path="res://Scene/trap/trap_movingWall/moving_wall_trap.tscn" id="10_moving_wall"]
 
 [sub_resource type="Environment" id="Environment_6bkcm"]
 background_mode = 2
@@ -184,3 +185,8 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 
 
 [node name="TriggerLever" parent="." unique_id=1203229357 instance=ExtResource("9_60ncs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.355817, 0, 1.7558395)
+
+[node name="MovingWallTrap2" parent="." unique_id=759150810 node_paths=PackedStringArray("trigger") instance=ExtResource("10_moving_wall")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.86315, 0, 4.3261757)
+closed_offset = Vector3(-2.2, 0, 0)
+trigger = NodePath("../TriggerLever")

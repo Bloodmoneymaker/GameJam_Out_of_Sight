@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://71ekjtpqhcnr"]
+
+[ext_resource type="Script" uid="uid://w6glprdvuc1i" path="res://Scene/trap/trap_movingWall/moving_wall_trap.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://c4a1gdwa1fp72" path="res://Scene/echo_mesh/echo_mesh.gd" id="2_echo_mesh_script"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="2_kxl4k"]
+
+[sub_resource type="BoxMesh" id="WallMesh"]
+size = Vector3(2.2, 2.5, 0.3)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_43pc2"]
+data = PackedVector3Array(-1.1, 1.25, 0.14999999, 1.1, 1.25, 0.14999999, -1.1, -1.25, 0.14999999, 1.1, 1.25, 0.14999999, 1.1, -1.25, 0.14999999, -1.1, -1.25, 0.14999999, 1.1, 1.25, -0.14999999, -1.1, 1.25, -0.14999999, 1.1, -1.25, -0.14999999, -1.1, 1.25, -0.14999999, -1.1, -1.25, -0.14999999, 1.1, -1.25, -0.14999999, 1.1, 1.25, 0.14999999, 1.1, 1.25, -0.14999999, 1.1, -1.25, 0.14999999, 1.1, 1.25, -0.14999999, 1.1, -1.25, -0.14999999, 1.1, -1.25, 0.14999999, -1.1, 1.25, -0.14999999, -1.1, 1.25, 0.14999999, -1.1, -1.25, -0.14999999, -1.1, 1.25, 0.14999999, -1.1, -1.25, 0.14999999, -1.1, -1.25, -0.14999999, 1.1, 1.25, 0.14999999, -1.1, 1.25, 0.14999999, 1.1, 1.25, -0.14999999, -1.1, 1.25, 0.14999999, -1.1, 1.25, -0.14999999, 1.1, 1.25, -0.14999999, -1.1, -1.25, 0.14999999, 1.1, -1.25, 0.14999999, -1.1, -1.25, -0.14999999, 1.1, -1.25, 0.14999999, 1.1, -1.25, -0.14999999, -1.1, -1.25, -0.14999999)
+
+[node name="MovingWallTrap" type="Node3D" unique_id=759150810]
+script = ExtResource("1_script")
+
+[node name="EchoWall" type="MeshInstance3D" parent="." unique_id=208180698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 1.25, 0)
+material_override = ExtResource("2_kxl4k")
+mesh = SubResource("WallMesh")
+script = ExtResource("2_echo_mesh_script")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EchoWall" unique_id=1287897551]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EchoWall/StaticBody3D" unique_id=630174548]
+shape = SubResource("ConcavePolygonShape3D_43pc2")
+
+[node name="ReturnTimer" type="Timer" parent="." unique_id=1212590464]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="timeout" from="ReturnTimer" to="." method="_on_return_timer_timeout"]
