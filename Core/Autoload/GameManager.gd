@@ -1,7 +1,7 @@
 # GameManager.gd (Autoload)
 extends Node
 
-enum SCENE {DEBUG,TUTORIAL_1,TUTORIAL_2,LEVEL1,SEWER,FOREST,TUTORIAL_3}
+enum SCENE {DEBUG,TUTORIAL_1,TUTORIAL_2,LEVEL1,SEWER,FOREST,TUTORIAL_3,Graveyard}
 
 # Scene
 var container_scene:Node
@@ -24,6 +24,7 @@ var scene: Dictionary = {
 	SCENE.SEWER: "res://Scene/Game_Scene/Scene_Sewer.tscn",
 	SCENE.DEBUG: "res://Scene/scene_debug.tscn",
 	SCENE.FOREST : "res://Scene/Game_Scene/Scene_Forest.tscn",
+	SCENE.Graveyard : "res://Scene/Game_Scene/Scene_Graveyard.tscn"
 }
 
 var scene_titles: Dictionary = {
@@ -31,8 +32,10 @@ var scene_titles: Dictionary = {
 	SCENE.TUTORIAL_1: "Tutorial 1",
 	SCENE.TUTORIAL_2: "Tutorial 2",
 	SCENE.TUTORIAL_3: "Tutorial 3",
-	SCENE.LEVEL1: "Level 1",
+	SCENE.LEVEL1: "Level_1",
 	SCENE.SEWER: "Sewer",
+	SCENE.Graveyard: "Graveyard",
+	SCENE.FOREST: "Forest"
 }
 
 func load_scene(scene_idx: SCENE) -> void:
