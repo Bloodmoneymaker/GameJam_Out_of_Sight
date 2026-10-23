@@ -1,41 +1,33 @@
 @tool
+class_name Enemy
 extends CharacterBody3D
-
-@export var audio_player:AudioStreamPlayer3D
-@export var timer:Timer
-@export var animation_player:AnimationPlayer
-@export var animation_tree:AnimationTree
-@onready var ani_tree:AnimationTree = $Monster_Schabe/AnimationTree
-@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
-
-@export var sound_movment:Array[AudioStream] = []
-@export var sound_attack:Array[AudioStream] = []
-@export var sound_body:AudioStream
-
+## Shared movement and echo stun behaviour. Assign optional nodes in the Inspector.
 
 @export_group("AI")
+@export var chase_enabled: bool = true
+@export var target_group: StringName = &"player"
 @export var chase_speed: float = 3.0
 @export var stop_distance: float = 1.5
+@export var navigation_agent: NavigationAgent3D
+
+@export_group("Echo Stun")
+@export var echo_stun_enabled: bool = true
 @export_range(0.0, 10.0, 0.1) var stun_duration: float = 1.5
+@export var refresh_stun_on_hit: bool = true
+## Optional hit point, e.g. the collision shape. Defaults to the enemy origin.
+@export var echo_hit_point: Node3D
 
-@export var skeleton:Skeleton3D
+var _player: Node3D
+var _is_walking := true
+var _stun_time_remaining := 0.0
+var _incoming_echoes: Array[IncomingEcho] = []
 
-@export var bones:Array[BoneAttachment3D] = []
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-
-	if is_in_group("enemy"):
-		Echo.wave_emitted.connect(_on_echo_emitted)
-	audio_player.stream = sound_body
-	audio_player.play()
-
-
-var _player: PlayerCharacter
-var _is_walking := true
-var _stun_time_remaining := 0.0
-var _incoming_echoes: Array[IncomingEcho] = []
+	add_to_group("enemy")
+	Echo.wave_emitted.connect(_on_echo_emitted)
 
 
 class IncomingEcho:
@@ -63,19 +55,19 @@ func _physics_process(delta: float) -> void:
 		_player = _find_player()
 
 	var direction := Vector3.ZERO
-	if _stun_time_remaining <= 0.0 and is_instance_valid(_player):
+	if chase_enabled and not is_stunned() and is_instance_valid(_player):
 		var player_offset := _player.global_position - global_position
 		player_offset.y = 0.0
 		if player_offset.length() > stop_distance:
-			var nav_target := _player.global_position
-			var navigation_map := navigation_agent.get_navigation_map()
-			if navigation_map.is_valid() and NavigationServer3D.map_get_iteration_id(navigation_map) > 0:
-				nav_target = NavigationServer3D.map_get_closest_point(navigation_map, nav_target)
-			navigation_agent.target_position = nav_target
-			direction = navigation_agent.get_next_path_position() - global_position
-			direction.y = 0.0
-			if direction.length_squared() <= 0.001:
-				direction = player_offset
+			direction = player_offset
+			if is_instance_valid(navigation_agent):
+				var navigation_map := navigation_agent.get_navigation_map()
+				if navigation_map.is_valid() and NavigationServer3D.map_get_iteration_id(navigation_map) > 0:
+					navigation_agent.target_position = NavigationServer3D.map_get_closest_point(navigation_map, _player.global_position)
+					direction = navigation_agent.get_next_path_position() - global_position
+					direction.y = 0.0
+					if direction.length_squared() <= 0.001:
+						direction = player_offset
 			direction = direction.normalized()
 
 	if _stun_time_remaining > 0.0:
@@ -105,24 +97,27 @@ func is_stunned() -> bool:
 
 
 func _on_echo_emitted(origin: Vector3, speed: float, lifetime: float, can_stun: bool) -> void:
-	if not can_stun or lifetime <= 0.0:
+	if not echo_stun_enabled or not can_stun or lifetime <= 0.0:
 		return
 	var distance := _echo_hit_position().distance_to(origin)
 	_incoming_echoes.append(IncomingEcho.new(origin, speed, lifetime, distance))
 
 
 func _echo_hit_position() -> Vector3:
-	return $CollisionShape3D.global_position
+	return echo_hit_point.global_position if is_instance_valid(echo_hit_point) else global_position
 
 
 func _update_echo_hits(delta: float) -> void:
+	if not echo_stun_enabled:
+		_incoming_echoes.clear()
+		return
 	for index in range(_incoming_echoes.size() - 1, -1, -1):
 		var wave := _incoming_echoes[index]
 		wave.age = minf(wave.age + delta, wave.lifetime)
 		var gap := _echo_hit_position().distance_to(wave.origin) - wave.speed * wave.age
 		# Detect the travelling front, including a wave emitted at our position.
 		if gap <= 0.0 and wave.previous_gap >= 0.0:
-			_stun_time_remaining = stun_duration
+			apply_stun()
 			_incoming_echoes.remove_at(index)
 		elif wave.age >= wave.lifetime:
 			_incoming_echoes.remove_at(index)
@@ -130,43 +125,30 @@ func _update_echo_hits(delta: float) -> void:
 			wave.previous_gap = gap
 
 
+func apply_stun() -> void:
+	if is_stunned() and not refresh_stun_on_hit:
+		return
+	_stun_time_remaining = maxf(stun_duration, 0.0)
+	if is_stunned():
+		velocity.x = 0.0
+		velocity.z = 0.0
+		_set_walking(false)
+
+
 func _set_walking(walking: bool) -> void:
 	if _is_walking == walking:
 		return
 	_is_walking = walking
-	animation_tree.set("parameters/XXX/transition_request", "Walk" if walking else "Idle")
+	_on_walking_changed(walking)
 
 
-func _find_player() -> PlayerCharacter:
-	for node in get_tree().get_nodes_in_group("player"):
-		if node is PlayerCharacter:
+## Override in a specific enemy to update its animations.
+func _on_walking_changed(_walking: bool) -> void:
+	pass
+
+
+func _find_player() -> Node3D:
+	for node in get_tree().get_nodes_in_group(target_group):
+		if node is Node3D:
 			return node
 	return null
-
-func sound_trigger_movement() -> void:
-	AudioManager.play_sound_3d_special(sound_movment.pick_random(),global_position,1.0,15)
-
-func sound_trigger_position() -> void:
-	AudioManager.play_sound_3d(0,global_position)
-
-func send_echo() -> void:
-	_emit_bone_echo(0)
-
-
-func send_xxx(xxx: int) -> void:
-	if xxx == 0 or xxx == 1:
-		for index in range(xxx, 6, 2):
-			_emit_bone_echo(index)
-
-
-func _emit_bone_echo(index: int) -> void:
-	if Engine.is_editor_hint() or index >= bones.size() or not is_instance_valid(bones[index]):
-		return
-	Echo.spider_echo(bones[index].global_position)
-
-
-func _on_timer_timeout() -> void:
-	timer.start()
-	if animation_tree.get("parameters/XXX/current_state") == "Walk":
-		sound_trigger_movement()
-	
