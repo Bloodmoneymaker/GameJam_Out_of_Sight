@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://do8qoowia74yn" path="res://Main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" path="res://UI/win_screen/win_screen.tscn" id="2_win_screen"]
-
 [ext_resource type="PackedScene" path="res://UI/lose_screen/lose_screen.tscn" id="3_lose_screen"]
 
 [node name="Main" type="Node3D" unique_id=253493729]
@@ -43,6 +42,6 @@ text = "MAIN_MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WinScreen" parent="CanvasLayer" instance=ExtResource("2_win_screen")]
+[node name="WinScreen" parent="CanvasLayer" unique_id=729980367 instance=ExtResource("2_win_screen")]
 
-[node name="LoseScreen" parent="CanvasLayer" instance=ExtResource("3_lose_screen")]
+[node name="LoseScreen" parent="CanvasLayer" unique_id=1946338800 instance=ExtResource("3_lose_screen")]
