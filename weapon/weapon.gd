@@ -21,9 +21,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	cooldown = maxf(cooldown - delta, 0.0)
 
-	if Input.is_action_pressed("shoot") and cooldown <= 0.0:
+	if InputMap.has_action("shoot") and Input.is_action_pressed("shoot") and cooldown <= 0.0:
 		shoot()
-	if scene_player.velocity.z <= 0.1:
+		
+	if is_instance_valid(scene_player) and scene_player.velocity.z <= 0.1:
 		anim_player.play("Stand")
 
 
