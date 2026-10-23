@@ -9,6 +9,7 @@ extends Node3D
 # UI's
 @onready var ui_main:Control = $CanvasLayer/UI_Main
 @onready var win_screen: Control = $CanvasLayer/WinScreen
+@onready var lose_screen: Control = $CanvasLayer/LoseScreen
 
 
 func _ready() -> void:
@@ -28,3 +29,4 @@ func _set_containers() -> void:
 func _set_ui() -> void:
 	GameManager.ui_main = ui_main
 	GameManager.win_screen = win_screen
+	GameManager.lose_screen = lose_screen

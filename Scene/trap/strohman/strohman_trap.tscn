@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://coby0h06nmaal" path="res://Scene/trap/strohman/strohman_trap.gd" id="1_script"]
 [ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="2_echo"]
 
+[ext_resource type="PackedScene" path="res://Scene/player/health_component/health_component.tscn" id="health_component"]
+
 [sub_resource type="CapsuleMesh" id="Body"]
 radius = 0.3
 height = 1.6
@@ -10,7 +12,7 @@ height = 1.6
 [sub_resource type="BoxMesh" id="Arms"]
 size = Vector3(1.6, 0.15, 0.15)
 
-[node name="StrohmanTrap" type="Node3D" unique_id=1539055285 groups=["player"]]
+[node name="StrohmanTrap" type="Node3D" unique_id=1539055285]
 script = ExtResource("1_script")
 start_active = true
 
@@ -30,7 +32,9 @@ one_shot = true
 
 [node name="EchoTimer" type="Timer" parent="." unique_id=720392280]
 process_callback = 0
-autostart = true
 
 [connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]
 [connection signal="timeout" from="EchoTimer" to="." method="_on_echo_timer_timeout"]
+
+[node name="HealthComponent" parent="." instance=ExtResource("health_component")]
+max_health = 3.0

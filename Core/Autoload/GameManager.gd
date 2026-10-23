@@ -11,6 +11,7 @@ var container_projectiles:Node
 #UI
 var ui_main
 var win_screen: Control
+var lose_screen: Control
 
 var scene:Dictionary = {
 	SCENE.DEBUG : preload("res://Scene/scene_debug.tscn"),
@@ -26,5 +27,14 @@ func delete_all_scenes() -> void:
 		child.queue_free()
 
 func show_win_screen() -> void:
+	if is_instance_valid(lose_screen) and lose_screen.visible:
+		return
 	if is_instance_valid(win_screen):
 		win_screen.show_win_screen()
+
+
+func show_lose_screen() -> void:
+	if is_instance_valid(win_screen) and win_screen.visible:
+		return
+	if is_instance_valid(lose_screen):
+		lose_screen.show_lose_screen()

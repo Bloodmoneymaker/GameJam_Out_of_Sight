@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bccuam5f44icj" path="res://Scene/player/player.gd" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://k5m0ikpjagej" path="res://Scene/scanner/scanner.tscn" id="2_ubwr7"]
-[ext_resource type="PackedScene" uid="uid://qk63jreoynvu" path="res://Scene/player/echo_charger/echo_charger.tscn" id="3_echo_charger"]
+[ext_resource type="PackedScene" uid="uid://qk63jreoynvu" path="res://Scene/player/echo_charger_component/echo_charger.tscn" id="3_echo_charger"]
 [ext_resource type="PackedScene" uid="uid://pot372665roe" path="res://UI/echoCharge/echoCharge.tscn" id="4_charge_ui"]
+[ext_resource type="PackedScene" path="res://Scene/player/health_component/health_component.tscn" id="health_component"]
+[ext_resource type="PackedScene" path="res://UI/health_hearts/health_hearts.tscn" id="health_hearts"]
 
 [sub_resource type="CapsuleShape3D" id="PlayerShape"]
 radius = 0.4
@@ -46,3 +48,12 @@ offset_right = 2.0
 offset_bottom = 2.0
 mouse_filter = 2
 color = Color(0.6, 0.9, 1, 0.6)
+
+[node name="HealthHearts" parent="HUD" unique_id=1016746661 node_paths=PackedStringArray("health_component") instance=ExtResource("health_hearts")]
+layout_mode = 3
+anchors_preset = 0
+health_component = NodePath("../../HealthComponent")
+health_per_heart = 1.0
+
+[node name="HealthComponent" parent="." unique_id=191218748 instance=ExtResource("health_component")]
+max_health = 3.0

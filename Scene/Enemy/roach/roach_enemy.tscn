@@ -1258,6 +1258,10 @@ radius = 0.45
 
 [node name="Entity_Roach" type="CharacterBody3D" unique_id=1248933683 node_paths=PackedStringArray("audio_player", "timer", "animation_player", "animation_tree", "skeleton", "bones", "navigation_agent", "echo_hit_point") groups=["enemy"]]
 script = ExtResource("1_us4qa")
+attack_enabled = true
+attack_range = 1.5
+attack_damage = 1.0
+attack_cooldown = 1.25
 navigation_agent = NodePath("NavigationAgent3D")
 echo_hit_point = NodePath("CollisionShape3D")
 sound_movment = Array[AudioStream]([ExtResource("2_mxnwa"), ExtResource("3_u2xs7"), ExtResource("4_vyamm"), ExtResource("5_breko"), ExtResource("6_e4t17"), ExtResource("7_nk2cl"), ExtResource("8_14yeg"), ExtResource("9_jlkqd")])

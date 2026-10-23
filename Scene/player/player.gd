@@ -16,9 +16,11 @@ var _was_on_floor := true
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var echo_charger = $EchoCharger
+@onready var health_component = $HealthComponent
 
 
 func _ready() -> void:
+	health_component.died.connect(_on_died)
 	camera.make_current()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -92,3 +94,16 @@ func _update_footsteps() -> void:
 
 func _feet_position() -> Vector3:
 	return global_position - Vector3(0, feet_offset, 0)
+
+
+func take_damage(amount: float) -> void:
+	health_component.take_damage(amount)
+
+
+func _on_died() -> void:
+	velocity = Vector3.ZERO
+	set_physics_process(false)
+	set_process_input(false)
+	set_process_unhandled_input(false)
+	$HUD.hide()
+	GameManager.show_lose_screen()

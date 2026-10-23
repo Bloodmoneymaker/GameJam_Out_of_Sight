@@ -7,12 +7,18 @@ extends Trap
 
 @onready var lifetime_timer: Timer = $LifetimeTimer
 @onready var echo_timer: Timer = $EchoTimer
+@onready var health_component = $HealthComponent
 
 
 func _ready() -> void:
+	health_component.died.connect(_on_died)
+	super._ready()
+
+
+func _on_activated() -> void:
 	lifetime_timer.start(lifetime)
 	echo_timer.start(echo_interval)
-	super._ready()
+	_emit_echo()
 
 
 func _on_deactivated() -> void:
@@ -33,3 +39,12 @@ func _on_lifetime_timer_timeout() -> void:
 
 func _on_echo_timer_timeout() -> void:
 	_emit_echo()
+
+
+func take_damage(amount: float) -> void:
+	health_component.take_damage(amount)
+
+
+func _on_died() -> void:
+	deactivate()
+	queue_free()
