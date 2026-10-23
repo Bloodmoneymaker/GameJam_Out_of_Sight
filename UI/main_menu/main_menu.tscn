@@ -53,10 +53,10 @@ render_target_update_mode = 4
 [node name="MenuPanel" type="PanelContainer" parent="." unique_id=423041584]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.055
-anchor_top = 0.12
-anchor_right = 0.62
-anchor_bottom = 0.88
+anchor_left = 0.035
+anchor_top = 0.03
+anchor_right = 0.745
+anchor_bottom = 0.97
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("PanelStyle")
@@ -98,7 +98,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
-columns = 2
+columns = 3
 
 [node name="Footer" type="HBoxContainer" parent="MenuPanel/Margins/MenuContent" unique_id=635342946]
 layout_mode = 2
@@ -112,7 +112,7 @@ text = "QUIT GAME"
 [node name="SignalStatus" type="Label" parent="." unique_id=1949037334]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.69
+anchor_left = 0.78
 anchor_right = 0.985
 offset_top = 44.0
 offset_bottom = 72.0
@@ -125,7 +125,7 @@ horizontal_alignment = 2
 [node name="ControlHints" type="VBoxContainer" parent="." unique_id=1663530139]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.69
+anchor_left = 0.78
 anchor_top = 0.24
 anchor_right = 0.985
 anchor_bottom = 0.78

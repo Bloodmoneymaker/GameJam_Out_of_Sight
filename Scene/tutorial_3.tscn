@@ -1,0 +1,123 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://m4wh6nhq55vb" path="res://Scene/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://cxhmgcms5x8oy" path="res://Scene/Enemy/roach/roach_enemy.tscn" id="2_roach"]
+[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="3_beacon"]
+[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="4_echo_material"]
+
+[sub_resource type="ProceduralSkyMaterial" id="TutorialSkyMaterial"]
+sky_horizon_color = Color(0.055, 0.17, 0.2, 1)
+ground_horizon_color = Color(0.015, 0.035, 0.045, 1)
+
+[sub_resource type="Sky" id="TutorialSky"]
+sky_material = SubResource("TutorialSkyMaterial")
+
+[sub_resource type="Environment" id="TutorialEnvironment"]
+background_mode = 2
+sky = SubResource("TutorialSky")
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(14, 1, 24)
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(14, 1, 24)
+
+[sub_resource type="BoxMesh" id="SideWallMesh"]
+size = Vector3(0.4, 4, 24.4)
+
+[sub_resource type="BoxShape3D" id="SideWallShape"]
+size = Vector3(0.4, 4, 24.4)
+
+[sub_resource type="BoxMesh" id="EndWallMesh"]
+size = Vector3(14.4, 4, 0.4)
+
+[sub_resource type="BoxShape3D" id="EndWallShape"]
+size = Vector3(14.4, 4, 0.4)
+
+[node name="Tutorial_3" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("TutorialEnvironment")
+
+[node name="LevelMeshes" type="Node3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="LevelMeshes"]
+position = Vector3(0, -0.5, -1)
+mesh = SubResource("FloorMesh")
+material_override = ExtResource("4_echo_material")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelMeshes"]
+position = Vector3(0, -0.5, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/StaticBody3D"]
+shape = SubResource("FloorShape")
+
+[node name="BoundaryWalls" type="Node3D" parent="LevelMeshes"]
+
+[node name="LeftWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
+position = Vector3(-7.2, 1.5, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/LeftWall"]
+shape = SubResource("SideWallShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/LeftWall"]
+mesh = SubResource("SideWallMesh")
+material_override = ExtResource("4_echo_material")
+
+[node name="RightWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
+position = Vector3(7.2, 1.5, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/RightWall"]
+shape = SubResource("SideWallShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/RightWall"]
+mesh = SubResource("SideWallMesh")
+material_override = ExtResource("4_echo_material")
+
+[node name="StartWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
+position = Vector3(0, 1.5, 11.2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/StartWall"]
+shape = SubResource("EndWallShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/StartWall"]
+mesh = SubResource("EndWallMesh")
+material_override = ExtResource("4_echo_material")
+
+[node name="EndWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
+position = Vector3(0, 1.5, -13.2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/EndWall"]
+shape = SubResource("EndWallShape")
+
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/EndWall"]
+mesh = SubResource("EndWallMesh")
+material_override = ExtResource("4_echo_material")
+
+[node name="RoachEnemy" parent="." instance=ExtResource("2_roach")]
+position = Vector3(0, 0, -1)
+
+[node name="BeaconGoal" parent="." instance=ExtResource("3_beacon")]
+position = Vector3(0, 0, -10)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 1, 7)
+
+[node name="TutorialHUD" type="CanvasLayer" parent="."]
+
+[node name="Instructions" type="Label" parent="TutorialHUD"]
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 28.0
+offset_right = 480.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.35, 0.88, 0.94, 1)
+theme_override_colors/font_outline_color = Color(0.005, 0.015, 0.025, 0.95)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 21
+text = "THE ROACH CAN BE STUNNED BY YOUR ECHO\nStun it, get past, and reach the beacon behind it."
+horizontal_alignment = 1
+vertical_alignment = 1
