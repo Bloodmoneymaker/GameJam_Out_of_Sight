@@ -6,6 +6,7 @@
 
 [node name="Main" type="Node3D" unique_id=253493729]
 script = ExtResource("1_ig7tw")
+scene = 0
 
 [node name="Container" type="Node" parent="." unique_id=1095692054]
 
