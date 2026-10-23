@@ -51,7 +51,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(480, 260)
+custom_minimum_size = Vector2(480, 340)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
@@ -73,6 +73,11 @@ theme_override_colors/font_color = Color(0.84, 0.91, 0.94, 1)
 theme_override_font_sizes/font_size = 20
 text = "You ran out of health."
 horizontal_alignment = 1
+
+[node name="RetryButton" parent="CenterContainer/PanelContainer/VBoxContainer" instance=ExtResource("2_button")]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "RETRY LEVEL"
 
 [node name="ReturnButton" parent="CenterContainer/PanelContainer/VBoxContainer" instance=ExtResource("2_button")]
 custom_minimum_size = Vector2(0, 56)

@@ -12,6 +12,7 @@ var container_projectiles:Node
 var ui_main
 var win_screen: Control
 var lose_screen: Control
+var current_scene_id: int = -1
 
 ## Paths are loaded only after a menu tile is selected. Preloading a level that
 ## references autoloads can create a resource-loading cycle during startup.
@@ -42,6 +43,7 @@ func load_scene(scene_idx: SCENE) -> void:
 		push_error("Could not load scene: %s" % scene[scene_idx])
 		return
 
+	current_scene_id = scene_idx
 	delete_all_scenes()
 	var new_scene := packed_scene.instantiate()
 	container_scene.add_child(new_scene)
@@ -52,6 +54,13 @@ func load_scene(scene_idx: SCENE) -> void:
 	if is_instance_valid(lose_screen):
 		lose_screen.hide()
 	get_tree().paused = false
+
+
+func retry_current_scene() -> void:
+	if current_scene_id < 0:
+		push_warning("Cannot retry: no level has been selected yet.")
+		return
+	load_scene(current_scene_id)
 
 
 func return_to_main_menu() -> void:
