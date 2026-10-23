@@ -3,6 +3,13 @@
 [ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_7nip6"]
 [ext_resource type="PackedScene" uid="uid://hlsbod1lvalu" path="res://Scene/Objects/forest_terrain.tscn" id="2_qkw6n"]
 [ext_resource type="PackedScene" uid="uid://b2fingr8pmtbl" path="res://Scene/Objects/Enviroment/tree_2.tscn" id="3_cfstr"]
+[ext_resource type="PackedScene" uid="uid://gqqvlcqi6rdj" path="res://Scene/Objects/Mushrooms/Big_Mushroom_1.tscn" id="4_h3wxn"]
+[ext_resource type="PackedScene" uid="uid://cok05abmvt0pr" path="res://Scene/Objects/Enviroment/tree_3.tscn" id="5_nmxlp"]
+[ext_resource type="PackedScene" uid="uid://d064iwh5gdi5n" path="res://Scene/Objects/Enviroment/Bolder_1.tscn" id="6_qpo1d"]
+[ext_resource type="PackedScene" uid="uid://d16e65apcmqi0" path="res://Scene/Objects/Enviroment/bolder_5.tscn" id="7_mdj5g"]
+[ext_resource type="PackedScene" uid="uid://c5jnu2o0dni6" path="res://Scene/Objects/Enviroment/Bolder_4.tscn" id="8_xx6v7"]
+[ext_resource type="PackedScene" uid="uid://cko2d81oucapj" path="res://Scene/Objects/Enviroment/Bolder_3.tscn" id="9_xx6v7"]
+[ext_resource type="PackedScene" uid="uid://bbqull6nfdy67" path="res://Scene/Objects/Enviroment/bush_1.tscn" id="10_51o1v"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
@@ -13,18 +20,368 @@ script = ExtResource("1_7nip6")
 navigation_mesh = SubResource("NavigationMesh_g4v7s")
 
 [node name="Forest_Terrain" parent="NavigationRegion3D" unique_id=1416159144 instance=ExtResource("2_qkw6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.046277, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006714821, -1.0540404, -0.0018510818)
 
 [node name="Enviroment" type="Node3D" parent="NavigationRegion3D" unique_id=735068116]
 
-[node name="Tree_2" parent="NavigationRegion3D/Enviroment" unique_id=548919051 instance=ExtResource("3_cfstr")]
+[node name="Trees" type="Node3D" parent="NavigationRegion3D/Enviroment" unique_id=515997471]
+
+[node name="Tree_3" parent="NavigationRegion3D/Enviroment/Trees" unique_id=888318587 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.142659, -0.99630463, 3.148067)
+
+[node name="Tree_4" parent="NavigationRegion3D/Enviroment/Trees" unique_id=828190978 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.06282366, 0, 0.99802464, 0, 1, 0, -0.99802464, 0, -0.06282366, -9.202033, -0.38968027, -9.792021)
+
+[node name="Tree_9" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1125497763 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.99990296, 0, -0.013931386, 0, 1, 0, 0.013931386, 0, -0.99990296, -8.202033, 0.7155565, 5.207979)
+
+[node name="Tree_10" parent="NavigationRegion3D/Enviroment/Trees" unique_id=222659931 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.24533726, 0, -0.9694378, 0, 1, 0, 0.9694378, 0, -0.24533726, 2.797967, -0.2844435, 13.207979)
+
+[node name="Tree_33" parent="NavigationRegion3D/Enviroment/Trees" unique_id=842401181 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.24533726, 0, -0.9694378, 0, 1, 0, 0.9694378, 0, -0.24533726, 6.085778, -0.2844435, 7.227331)
+
+[node name="Tree_13" parent="NavigationRegion3D/Enviroment/Trees" unique_id=218115024 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(0.5382305, 0, -0.84279764, 0, 1, 0, 0.84279764, 0, 0.5382305, 2.8296413, -0.60690653, -7.637228)
+
+[node name="Tree_14" parent="NavigationRegion3D/Enviroment/Trees" unique_id=205988634 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(0.5382305, 0, -0.84279764, 0, 1, 0, 0.84279764, 0, 0.5382305, -11.800321, 0.8352941, -2.569275)
+
+[node name="Tree_15" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1621351590 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(0.96552336, 0, -0.26031628, 0, 1, 0, 0.26031628, 0, 0.96552336, -20.90895, -0.31729424, -11.34989)
+
+[node name="Tree_16" parent="NavigationRegion3D/Enviroment/Trees" unique_id=2069806867 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.32360944, 0, -0.9461907, 0, 1, 0, 0.9461907, 0, -0.32360944, -22.27779, 0.8352941, -3.3821645)
+
+[node name="Tree_17" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1678189590 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(0.5382305, 0, -0.84279764, 0, 1, 0, 0.84279764, 0, 0.5382305, -26.27779, 0.5173894, 2.6178355)
+
+[node name="Tree_18" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1711636577 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(0.5382305, 0, -0.84279764, 0, 1, 0, 0.84279764, 0, 0.5382305, -24.27779, 0.2722329, 9.617836)
+
+[node name="Tree_19" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1950172468 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.6804224, 0, -0.73282015, 0, 1, 0, 0.73282015, 0, -0.6804224, -17.27779, 0.52187526, 9.617836)
+
+[node name="Tree_25" parent="NavigationRegion3D/Enviroment/Trees" unique_id=2124537008 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(0.5382305, 0, -0.84279764, 0, 1, 0, 0.84279764, 0, 0.5382305, -20.27779, -0.8680879, 20.617836)
+
+[node name="Tree_26" parent="NavigationRegion3D/Enviroment/Trees" unique_id=764032515 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.6804224, 0, -0.73282015, 0, 1, 0, 0.73282015, 0, -0.6804224, -13.27779, -0.1487621, 20.617836)
+
+[node name="Tree_22" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1183893510 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.6804224, 0, -0.73282015, 0, 1, 0, 0.73282015, 0, -0.6804224, -26.18731, 0.52187526, 32.15748)
+
+[node name="Tree_21" parent="NavigationRegion3D/Enviroment/Trees" unique_id=805291991 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(0.8903691, 0, -0.45523936, 0, 1, 0, 0.45523936, 0, 0.8903691, -14.455935, 0.3624934, 27.63496)
+
+[node name="Tree_23" parent="NavigationRegion3D/Enviroment/Trees" unique_id=353580811 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.73282015, 0, 0.6804225, 0, 1, 0, -0.6804225, 0, -0.73282015, -25.599249, -0.12972558, 16.039848)
+
+[node name="Tree_24" parent="NavigationRegion3D/Enviroment/Trees" unique_id=276376185 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.4552394, 0, -0.8903691, 0, 1, 0, 0.8903691, 0, -0.4552394, -21.07673, 0.3463887, 27.771223)
+
+[node name="Tree_5" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1363197750 instance=ExtResource("5_nmxlp")]
+transform = Transform3D(-0.06282366, 0, 0.99802464, 0, 1, 0, -0.99802464, 0, -0.06282366, 8.522065, 0.8506392, -9.792021)
+
+[node name="Tree_2" parent="NavigationRegion3D/Enviroment/Trees" unique_id=548919051 instance=ExtResource("3_cfstr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5643005, 0, 0)
 
-[node name="Tree_3" parent="NavigationRegion3D/Enviroment" unique_id=427075507 instance=ExtResource("3_cfstr")]
+[node name="Tree_20" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1101091948 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.7870161, 0, 0.6169325, 0, 1, 0, -0.6169325, 0, 0.7870161, -17.50043, -0.28668022, -5.56702)
+
+[node name="Tree_6" parent="NavigationRegion3D/Enviroment/Trees" unique_id=427075507 instance=ExtResource("3_cfstr")]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -2.5643005, -0.41645622, 6)
 
-[node name="Tree_4" parent="NavigationRegion3D/Enviroment" unique_id=2042217668 instance=ExtResource("3_cfstr")]
-transform = Transform3D(0.790121, 0, -0.61295086, 0, 1, 0, 0.61295086, 0, 0.790121, 6.7074127, -1.0749664, -4.6169186)
+[node name="Tree_7" parent="NavigationRegion3D/Enviroment/Trees" unique_id=2042217668 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.790121, 0, -0.61295086, 0, 1, 0, 0.61295086, 0, 0.790121, 8.707413, -1.0749664, -5.6169186)
 
-[node name="Tree_5" parent="NavigationRegion3D/Enviroment" unique_id=1286621002 instance=ExtResource("3_cfstr")]
+[node name="Tree_27" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1854256649 instance=ExtResource("3_cfstr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.858574, -0.24854207, 19.414127)
+
+[node name="Tree_28" parent="NavigationRegion3D/Enviroment/Trees" unique_id=2093932429 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -26.858574, -0.6356096, 25.414127)
+
+[node name="Tree_29" parent="NavigationRegion3D/Enviroment/Trees" unique_id=386092851 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.790121, 0, -0.61295086, 0, 1, 0, 0.61295086, 0, 0.790121, -15.586861, -1.0749664, 13.797209)
+
+[node name="Tree_30" parent="NavigationRegion3D/Enviroment/Trees" unique_id=285347609 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, -28.973955, -0.34676266, 0.30375624)
+
+[node name="Tree_31" parent="NavigationRegion3D/Enviroment/Trees" unique_id=759264652 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.9659258, 0, -0.25881898, 0, 1, 0, 0.25881898, 0, 0.9659258, -33.734234, -0.41645622, 5.720374)
+
+[node name="Tree_32" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1191889028 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.4236236, 0, -0.9058384, 0, 1, 0, 0.9058384, 0, 0.4236236, -19.595818, -0.31944847, 13.601332)
+
+[node name="Tree_11" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1959631657 instance=ExtResource("3_cfstr")]
+transform = Transform3D(0.790121, 0, -0.61295086, 0, 1, 0, 0.61295086, 0, 0.790121, -2.3492384, -1.068543, -11.866819)
+
+[node name="Tree_12" parent="NavigationRegion3D/Enviroment/Trees" unique_id=393814606 instance=ExtResource("3_cfstr")]
+transform = Transform3D(-0.27183858, 0, -0.96234286, 0, 1, 0, 0.96234286, 0, -0.27183858, 7.279256, 0.648469, -15.657811)
+
+[node name="Tree_8" parent="NavigationRegion3D/Enviroment/Trees" unique_id=1286621002 instance=ExtResource("3_cfstr")]
 transform = Transform3D(0.9452865, 0, -0.32624134, 0, 1, 0, 0.32624134, 0, 0.9452865, 4.7570577, 0.502223, 1.9361987)
+
+[node name="Mushrooms" type="Node3D" parent="NavigationRegion3D/Enviroment" unique_id=1001047282]
+
+[node name="Big_Mushroom_1" parent="NavigationRegion3D/Enviroment/Mushrooms" unique_id=1215234419 instance=ExtResource("4_h3wxn")]
+transform = Transform3D(0.65592164, -0.14895272, 0.7399864, 0, 0.9803365, 0.19733307, -0.754829, -0.12943503, 0.6430239, 4.47497, 0.31195378, 1.3653324)
+
+[node name="Big_Mushroom_7" parent="NavigationRegion3D/Enviroment/Mushrooms" unique_id=1973630103 instance=ExtResource("4_h3wxn")]
+transform = Transform3D(-0.2682193, -0.19010235, 0.94441485, -9.773994e-09, 0.9803365, 0.19733305, -0.96335804, 0.052928545, -0.2629453, 2.6686125, -0.21011281, 6.7890058)
+
+[node name="Big_Mushroom_2" parent="NavigationRegion3D/Enviroment/Mushrooms" unique_id=1797807776 instance=ExtResource("4_h3wxn")]
+transform = Transform3D(0.45453143, -0.11846407, 0.88281786, 0.036780447, 0.9927675, 0.1142811, -0.889971, -0.01947382, 0.45560113, 7.654027, 0.14354086, 2.335304)
+
+[node name="Big_Mushroom_4" parent="NavigationRegion3D/Enviroment/Mushrooms" unique_id=2054873656 instance=ExtResource("4_h3wxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6558714, -0.7300873, -5.0521917)
+
+[node name="Big_Mushroom_5" parent="NavigationRegion3D/Enviroment/Mushrooms" unique_id=567268521 instance=ExtResource("4_h3wxn")]
+transform = Transform3D(0.98783135, 0.15552886, 0, -0.15552886, 0.98783135, 0, 0, 0, 1, -4.200083, -0.63463736, -7.0521917)
+
+[node name="Big_Mushroom_6" parent="NavigationRegion3D/Enviroment/Mushrooms" unique_id=1007106908 instance=ExtResource("4_h3wxn")]
+transform = Transform3D(0.8562552, 0.13481288, 0.49865076, -0.15552886, 0.98783135, 0, -0.49258286, -0.07755458, 0.866803, -6.351251, 0.44800782, -0.83938694)
+
+[node name="Big_Mushroom_3" parent="NavigationRegion3D/Enviroment/Mushrooms" unique_id=2045471038 instance=ExtResource("4_h3wxn")]
+transform = Transform3D(0.66017467, 0.16987294, 0.7316506, -0.09079661, 0.98499525, -0.14676729, -0.74560404, 0.030460652, 0.6656928, 8.475689, 0.01779139, 2.3563623)
+
+[node name="Bolders" type="Node3D" parent="NavigationRegion3D/Enviroment" unique_id=1342901505]
+
+[node name="Bolder_1" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=874939963 instance=ExtResource("6_qpo1d")]
+transform = Transform3D(0.5757243, 0, -0.8176439, 0, 1, 0, 0.8176439, 0, 0.5757243, 2, -0.53872633, -9.149227)
+
+[node name="Bolder_2" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1240301620 instance=ExtResource("6_qpo1d")]
+transform = Transform3D(0.41043097, 0, 0.9118917, 0, 1, 0, -0.9118917, 0, 0.41043097, -6.102085, -0.01811862, 15.850773)
+
+[node name="Bolder_16" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1381030860 instance=ExtResource("6_qpo1d")]
+transform = Transform3D(-0.9974152, 0, 0.071854144, 0, 1, 0, -0.071854144, 0, -0.9974152, 1.1091766, -0.2632215, 19.631851)
+
+[node name="Bolder_3" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=583916641 instance=ExtResource("6_qpo1d")]
+transform = Transform3D(0.37339637, 0, 0.9276719, 0, 1, 0, -0.9276719, 0, 0.37339637, 17, -0.032840252, -20.149227)
+
+[node name="Bolder_4" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=459454630 instance=ExtResource("6_qpo1d")]
+transform = Transform3D(0.38088036, 0, 0.9246243, 0, 1, 0, -0.9246243, 0, 0.38088036, 24, -0.032840252, 15.850773)
+
+[node name="Bolder_5" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=251851186 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.131725, 0.916962, -11.72607)
+
+[node name="Bolder_22" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1083416970 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(2.53, 0, 0, 0, 2.53, 0, 0, 0, 2.53, -2.6700945, 0.916962, 22.860607)
+
+[node name="Bolder_23" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1580504071 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(1.9587462, -0.2934698, -1.5741944, -0.90350896, -2.2559805, -0.7036502, -1.3220758, 1.1069449, -1.8514016, -3.472743, 0.9914707, 24.66526)
+
+[node name="Bolder_24" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=121869949 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(-0.5125098, 0.13476728, 2.4738774, 1.0631245, 2.2938142, 0.09528768, -2.2378552, 1.0588441, -0.5212952, 5.691346, 1.4249605, 16.217476)
+
+[node name="Bolder_25" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1493718168 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(-0.51250976, 0.13476723, 2.4738774, -0.09984988, 2.5230775, -0.15813348, -2.475532, -0.12966883, -0.5057887, 5.010842, 0.6372675, 8.347466)
+
+[node name="Bolder_26" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1672666926 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(-0.51250976, 0.13476723, 2.4738774, -0.09984988, 2.5230775, -0.15813348, -2.475532, -0.12966883, -0.5057887, -1.8626885, 0.63726795, -5.5369854)
+
+[node name="Bolder_59" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1493981343 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(-3.8344612, -0.3550502, -3.2437742, -0.19871312, 5.021225, -0.31470412, 3.2570915, -0.1116465, -3.837983, 4.916954, 6.6930065, -42.406906)
+
+[node name="Bolder_60" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1576288155 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(-3.8344612, -0.3550502, -3.2437742, -0.19871312, 5.021225, -0.31470412, 3.2570915, -0.1116465, -3.837983, -10.223511, 3.321237, -39.63217)
+
+[node name="Bolder_61" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1154939253 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(4.416724, -0.511887, 3.7631292, -0.47363535, -5.801027, -0.23319782, 3.7681348, -0.12916405, -4.440169, 1.8746233, 1.9481688, -25.565208)
+
+[node name="Bolder_62" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1213877924 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(7.201244, 2.28177, 6.0449357, 1.6052628, -9.399634, 1.6357355, 6.2586613, -0.21453436, -7.374872, -43.114056, 1.9481688, -2.152378)
+
+[node name="Bolder_63" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=831899145 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(7.201244, 2.28177, 6.0449357, 1.6052628, -9.399634, 1.6357355, 6.2586613, -0.21453436, -7.374872, -41.296917, 1.9481688, 13.916384)
+
+[node name="Bolder_64" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1449606364 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(5.3123016, -0.49725962, -8.070801, 1.605263, -9.399634, 1.6357358, -7.9251633, -2.2372382, -5.0786014, -41.296917, 1.9481688, 29.916384)
+
+[node name="Bolder_65" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1724465329 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(-3.5460835, -2.1277, -8.746647, 1.6052632, -9.399634, 1.6357358, -8.857429, -0.851701, 3.7981822, -8.631203, 1.9481707, 41.648933)
+
+[node name="Bolder_66" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=910937068 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(7.666926, 0.2836088, -5.8943567, 1.6052632, -9.399634, 1.6357358, -5.678644, -2.274218, -7.4957705, -1.6312027, 1.9481707, 40.648933)
+
+[node name="Bolder_67" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=957608614 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(7.6669254, 0.2836087, -5.894357, -5.894795, 0.81734467, -7.6281695, 0.27434695, 9.636241, 0.8205004, -6.5830154, 5.203184, 37.095848)
+
+[node name="Bolder_68" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1380939609 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(7.6669254, 0.2836087, -5.894357, -5.894795, 0.81734467, -7.6281695, 0.27434695, 9.636241, 0.8205004, 15.314251, 5.203186, 45.5913)
+
+[node name="Bolder_69" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=381799784 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(7.6669254, 0.2836087, -5.894357, -5.894795, 0.81734467, -7.6281695, 0.27434695, 9.636241, 0.8205004, 33.09838, 5.203186, 43.602615)
+
+[node name="Bolder_70" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1919919721 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(5.5653596, -6.165801, -4.9613805, -5.894795, 0.8173447, -7.6281695, 5.28051, 7.4108353, -3.2865448, 36.655872, 8.231581, 40.495598)
+
+[node name="Bolder_71" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=564115386 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(5.5653596, -6.165801, -4.9613805, -5.894795, 0.8173447, -7.6281695, 5.28051, 7.4108353, -3.2865448, 38.96654, 5.5820694, 13.615984)
+
+[node name="Bolder_72" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1410410983 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(5.5653596, -6.165801, -4.9613805, -5.894795, 0.8173447, -7.6281695, 5.28051, 7.4108353, -3.2865448, 42.43269, 9.17915, -15.387297)
+
+[node name="Bolder_73" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1564928409 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(5.5653596, -6.165801, -4.9613805, -5.894795, 0.8173447, -7.6281695, 5.28051, 7.4108353, -3.2865448, 27.359032, 9.00659, -34.410088)
+
+[node name="Bolder_74" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=962134270 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(-2.9214585, -9.134286, 1.2788831, -5.894795, 0.8173448, -7.6281695, 7.093807, -3.0825968, -5.812153, 33.95182, 9.00659, -37.693993)
+
+[node name="Bolder_75" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=356278116 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(-2.9214585, -9.134286, 1.2788831, -5.894795, 0.8173448, -7.6281695, 7.093807, -3.0825968, -5.812153, -10.252819, 9.00659, -41.318867)
+
+[node name="Bolder_29" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1617067516 instance=ExtResource("7_mdj5g")]
+transform = Transform3D(-0.5125098, 0.13476723, 2.4738777, -2.2156081, -1.1554708, -0.39605883, 1.108742, -2.246691, 0.35208777, -12.6831455, 1.063754, -6.26267)
+
+[node name="Bolder_6" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1823146977 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(0.70652497, 0.49028063, -0.51034045, -0.397441, 0.8715646, 0.28708145, 0.5855452, 0, 0.8106398, -8.16506, 0.21929371, -4.176631)
+
+[node name="Bolder_27" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=949633089 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(0.70652497, 0.49028063, -0.51034045, -0.397441, 0.8715646, 0.28708145, 0.5855452, 0, 0.8106398, -1.8377094, -1.264366, -5.8410645)
+
+[node name="Bolder_11" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=838732707 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(0.9194633, -0.21477862, 0.32932907, 0.29370773, 0.9320555, -0.21215236, -0.26138714, 0.2917928, 0.92007273, -4.400674, -1.2763395, -11.932121)
+
+[node name="Bolder_12" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=603492367 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(0.9194633, -0.21477862, 0.32932907, 0.29370773, 0.9320555, -0.21215236, -0.26138714, 0.2917928, 0.92007273, 5.4769683, 0.16022158, -15.120628)
+
+[node name="Bolder_7" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1135720151 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(0.8106398, 0, -0.5855452, 0, 1, 0, 0.5855452, 0, 0.8106398, 4.6346946, -0.2533859, 6.494775)
+
+[node name="Bolder_20" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=649391129 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-0.351839, 0, -0.93606055, 0, 1, 0, 0.93606055, 0, -0.351839, 8.048056, 0.06658375, 4.099324)
+
+[node name="Bolder_21" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=160652175 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-0.17401603, -0.18833311, -0.96656555, -0.6817636, -0.68522364, 0.25625587, -0.710575, 0.7035617, -0.0091587305, 8.048056, -0.8437749, -0.13961744)
+
+[node name="Bolder_8" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=501693640 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(0.06451991, 0, 0.99791646, -0.44470483, 0.8952156, 0.028752223, -0.89335036, -0.44563332, 0.05775923, -4.0198894, -0.18371856, 1.26336)
+
+[node name="Bolder_17" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=110594395 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-0.12500502, 0.122991525, -0.9845035, 0.4316235, -0.8867265, -0.16558084, -0.8933503, -0.44563323, 0.057759233, 2.1858916, -1.3330835, -2.7262824)
+
+[node name="Bolder_9" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1996637047 instance=ExtResource("9_xx6v7")]
+transform = Transform3D(0.77475125, 0, 0.63226616, 0.1091436, 0.984988, -0.13373978, -0.62277454, 0.17262287, 0.76312065, 6.6844363, 0.1806742, -8.096333)
+
+[node name="Bolder_10" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1260146089 instance=ExtResource("9_xx6v7")]
+transform = Transform3D(0.6639978, 0.632504, 0.39880505, -0.41383404, 0.7550763, -0.50852865, -0.62277454, 0.17262287, 0.76312065, -6.421875, 0.01764381, -5.5171742)
+
+[node name="Bolder_28" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=90171587 instance=ExtResource("9_xx6v7")]
+transform = Transform3D(0.32461283, -0.3422308, 0.88176227, 0.45359072, 0.8743801, 0.17238013, -0.82998896, 0.34400252, 0.43906745, -2.8775434, -0.8368584, -4.9831896)
+
+[node name="Bolder_18" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=63106984 instance=ExtResource("9_xx6v7")]
+transform = Transform3D(0.6902964, -0.33789766, 0.63977814, 0.3682968, 0.92521715, 0.09127306, -0.6227745, 0.17262286, 0.7631206, 1.9121788, -0.61227226, -2.7443588)
+
+[node name="Bolder_13" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=57664689 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-0.6143956, -0.48512432, 0.6222317, -0.397441, 0.8715646, 0.28708145, -0.6815854, -0.07091886, -0.7282938, 6.3844366, -0.3437866, 14.364488)
+
+[node name="Bolder_14" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=912090138 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-0.19306397, -0.06446061, -0.9790665, -0.4447048, 0.8952155, 0.02875222, 0.8746221, 0.44094658, -0.20149982, 3.0697527, -0.18371856, 8.382112)
+
+[node name="Bolder_30" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=46767413 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(2.206123, 2.6513813, -3.918111, 1.2205671, 3.8578317, 3.2978404, 4.5707364, -2.3099155, 1.0104718, -40.368423, -0.18371856, 39.354107)
+
+[node name="Bolder_31" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=618032592 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(5.002674, -0.342772, -1.4505687, 1.2205673, 3.8578317, 3.2978404, 0.8554876, -3.4997199, 3.7773666, -29.182724, -0.18371856, 44.149246)
+
+[node name="Bolder_32" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1222425050 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(5.044273, -1.2965509, -0.3502287, -0.3857791, -0.094929695, -5.2048597, 1.2864206, 5.055525, -0.18755412, -15.1986475, -0.18371856, 43.58329)
+
+[node name="Bolder_33" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=36985943 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(4.856251, 1.8734707, -0.39410973, -0.3857791, -0.09492967, -5.2048597, -1.8752044, 4.871291, 0.050142273, 7.718423, -0.18371856, 42.307278)
+
+[node name="Bolder_34" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=771527262 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-4.785889, -2.0469334, 0.39205837, -0.048908502, -0.8713852, -5.1465225, 2.0835686, -4.7221947, 0.7797403, 24.612617, -0.18371665, 42.99903)
+
+[node name="Bolder_35" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1008863332 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-0.588521, -5.113007, 0.87130404, -0.04890853, -0.8713851, -5.146522, 5.1864853, -0.5884007, 0.050337553, 42.460667, -0.18371665, 22.252913)
+
+[node name="Bolder_36" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=306629627 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-0.588521, -5.113007, 0.87130404, -0.04890853, -0.8713851, -5.146522, 5.1864853, -0.5884007, 0.050337553, 40.460667, 1.289981, 33.396774)
+
+[node name="Bolder_37" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1941124136 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-1.2598522, 4.996554, -0.83402175, -0.048908535, -0.8713852, -5.1465216, -5.065448, -1.2343035, 0.25712427, 40.467876, 1.289981, -8.603226)
+
+[node name="Bolder_38" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=530787809 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-1.2598522, 4.996554, -0.83402175, -0.048908535, -0.8713852, -5.1465216, -5.065448, -1.2343035, 0.25712427, 40.467876, 1.289981, 4.3967743)
+
+[node name="Bolder_39" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1230674088 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-1.2598522, 4.996554, -0.83402175, -0.048908535, -0.8713852, -5.1465216, -5.065448, -1.2343035, 0.25712427, 40.467876, 1.289981, -23.603226)
+
+[node name="Bolder_40" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=954545486 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(5.107394, 1.0542105, -0.22703038, -0.048908524, -0.8713854, -5.146522, -1.0772707, 5.0376287, -0.8427115, 12.822155, 1.289981, -44.031696)
+
+[node name="Bolder_54" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1308144264 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(4.1457567, 3.1206894, -0.5677789, -0.048908524, -0.8713854, -5.1465216, -3.1715436, 4.09272, -0.66282165, 31.354572, 1.289981, -43.66472)
+
+[node name="Bolder_55" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1642262584 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(4.6941366, 2.2434998, -0.42446834, -0.048908517, -0.8713854, -5.1465216, -2.282778, 4.632037, -0.7625826, 34.657375, 1.289981, -31.737913)
+
+[node name="Bolder_56" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1630898122 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-1.3912892, 4.9627295, -0.827046, -0.048908483, -0.8713854, -5.1465216, -5.030936, -1.363956, 0.27874836, 40.632984, 1.289981, -41.078697)
+
+[node name="Bolder_41" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=2146693319 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(0.5354521, -5.1204324, 0.86188054, -0.048908524, -0.8713854, -5.1465216, 5.192232, 0.51983935, -0.13735917, 24.38198, 1.289981, -40.851215)
+
+[node name="Bolder_42" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1298787027 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(1.7024919, -4.8679533, 0.80804145, -0.048908524, -0.8713854, -5.1465216, 4.9343195, 1.6709559, -0.32981017, 16.920082, 1.289981, -6.2329063)
+
+[node name="Bolder_58" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1905692466 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(3.9874532, -3.3275273, 0.5255091, -0.04890848, -0.87138546, -5.1465216, 3.3684127, 3.9264011, -0.69681126, 16.578644, -0.17804897, 20.12162)
+
+[node name="Bolder_43" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1065273657 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(5.2175946, -0.15670133, -0.023051351, -0.04890848, -0.87138546, -5.1465216, 0.1506468, 5.1443663, -0.87245315, -20.817543, 1.289981, -23.90904)
+
+[node name="Bolder_57" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=171398747 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-2.9277968, -3.9109583, 1.8386899, 0.048167914, 2.1912467, 4.737562, -4.3213496, 2.6741743, -1.192941, -15.5483465, 1.289981, -15.986688)
+
+[node name="Bolder_45" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1098790257 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(5.2186413, -0.115125254, -0.03010078, -0.04890848, -0.87138546, -5.1465216, 0.10847917, 5.145465, -0.8722384, -41.06253, 1.289981, -21.279026)
+
+[node name="Bolder_53" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1473812579 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(1.7318609, 4.852493, -0.83806074, -0.048908476, -0.8713854, -5.1465216, -4.9240875, 1.7153357, -0.24363898, -44.120686, 1.289981, -27.823483)
+
+[node name="Bolder_46" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1541704040 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-1.0639597, -5.0370297, 0.8629586, -0.048908476, -0.8713854, -5.1465216, 5.1101832, -1.0570693, 0.13041572, -42.756714, 1.289981, -9.9304285)
+
+[node name="Bolder_47" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=244516061 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(1.9082366, -4.793475, 0.7934759, -0.04890846, -0.87138534, -5.1465216, 4.8584585, 1.8739412, -0.3634579, -41.961594, 1.289981, 6.9505835)
+
+[node name="Bolder_48" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=4458268 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(1.8889353, -4.8630257, 0.17687005, 0.2751083, 0.29614204, 5.2043257, -4.858457, -1.8739417, 0.36345792, -41.573227, 1.289981, 21.950584)
+
+[node name="Bolder_49" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=735147091 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(2.6183038, -4.5142913, 0.118470535, 0.27510834, 0.29614204, 5.2043257, -4.507457, -2.6041987, 0.3864575, -40.573227, 1.289981, -37.049416)
+
+[node name="Bolder_50" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=636072868 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(5.2038655, 0.28841352, -0.29149505, 0.2751084, 0.2961421, 5.204326, 0.30408525, -5.2036037, 0.28002736, -32.13272, 1.289981, -41.147343)
+
+[node name="Bolder_51" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1185612898 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(5.1358533, -0.90721416, -0.21986474, 0.2751083, 0.29614207, 5.2043257, -0.89201605, -5.1320205, 0.33918157, -17.33125, 1.289981, -41.453156)
+
+[node name="Bolder_52" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1971743911 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-5.190229, 0.49939683, 0.24594527, 0.2751083, 0.29614204, 5.204325, 0.48394367, 5.1876073, -0.32077336, -1.0007057, 1.289981, -44.450146)
+
+[node name="Bolder_44" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1095278082 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(2.478333, -4.533502, 0.7440409, -0.048908476, -0.87138546, -5.1465216, 4.5938935, 2.4364755, -0.4561896, -5.6211367, 0.65390503, 27.395708)
+
+[node name="Bolder_19" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=2046939698 instance=ExtResource("8_xx6v7")]
+transform = Transform3D(-0.99257416, 0.098134905, 0.07187702, 0.0975844, 0.99516505, -0.011140075, -0.072622694, -0.0040432946, -0.99735147, 0.5928103, -0.7953528, 2.1646333)
+
+[node name="Bolder_15" parent="NavigationRegion3D/Enviroment/Bolders" unique_id=1023063715 instance=ExtResource("9_xx6v7")]
+transform = Transform3D(-0.773191, 0.0033347278, 0.63416433, -0.192494, 0.95157313, -0.23969789, -0.60425305, -0.30740508, -0.735106, 4.465676, 0.01764381, 15.438781)
+
+[node name="Bush" type="Node3D" parent="NavigationRegion3D/Enviroment" unique_id=1578977577]
+
+[node name="Bush_1" parent="NavigationRegion3D/Enviroment/Bush" unique_id=1343127445 instance=ExtResource("10_51o1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.512202, -1.2509031, 1.7465936)
+
+[node name="Bush_2" parent="NavigationRegion3D/Enviroment/Bush" unique_id=1623784763 instance=ExtResource("10_51o1v")]
+transform = Transform3D(0.89011586, 0, 0.4557343, -0.09123636, 0.97975576, 0.17819798, -0.44650832, -0.20019639, 0.8720961, -6.5711746, 0.58507943, 1.7465936)
+
+[node name="Bush_3" parent="NavigationRegion3D/Enviroment/Bush" unique_id=1197000932 instance=ExtResource("10_51o1v")]
+transform = Transform3D(-0.9955769, -0.08571336, -0.038466632, -0.091236375, 0.9797558, 0.178198, 0.02241379, 0.18091932, -0.98324245, -2.3955622, -1.3603733, -4.1014385)
+
+[node name="Bush_4" parent="NavigationRegion3D/Enviroment/Bush" unique_id=1071226144 instance=ExtResource("10_51o1v")]
+transform = Transform3D(-0.5728709, -0.1980083, 0.79536873, -0.09123638, 0.97975594, 0.17819804, -0.8145519, 0.029517896, -0.5793393, 4.4135094, -0.79405904, -4.268462)
