@@ -70,7 +70,7 @@ func weapon_impact_echo(origin: Vector3) -> void:
 
 
 func spider_echo(origin: Vector3) -> void:
-	_emit_wave(origin, 10.0, 0.1, 0.02, true, Color(0.097030394, 0.09369888, 0.083710216, 1.0))
+	_emit_wave(origin, 4.5, 0.75, 0.25, true, Color.TRANSPARENT)
 
 
 func beacon_echo(origin: Vector3) -> void:
