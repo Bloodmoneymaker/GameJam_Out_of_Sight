@@ -16,6 +16,7 @@ extends CharacterBody3D
 @export_group("AI")
 @export var chase_speed: float = 3.0
 @export var stop_distance: float = 1.5
+@export_range(0.0, 10.0, 0.1) var stun_duration: float = 1.5
 
 @export var skeleton:Skeleton3D
 
@@ -25,23 +26,44 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 
+	if is_in_group("enemy"):
+		Echo.wave_emitted.connect(_on_echo_emitted)
 	audio_player.stream = sound_body
 	audio_player.play()
 
 
 var _player: PlayerCharacter
 var _is_walking := true
+var _stun_time_remaining := 0.0
+var _incoming_echoes: Array[IncomingEcho] = []
+
+
+class IncomingEcho:
+	var origin: Vector3
+	var speed: float
+	var lifetime: float
+	var age := 0.0
+	var previous_gap: float
+
+	func _init(source: Vector3, wave_speed: float, wave_lifetime: float, distance: float) -> void:
+		origin = source
+		speed = wave_speed
+		lifetime = wave_lifetime
+		previous_gap = distance
 
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
-	if not is_instance_valid(_player):
+	_stun_time_remaining = maxf(_stun_time_remaining - delta, 0.0)
+	_update_echo_hits(delta)
+
+	if _stun_time_remaining <= 0.0 and not is_instance_valid(_player):
 		_player = _find_player()
 
 	var direction := Vector3.ZERO
-	if is_instance_valid(_player):
+	if _stun_time_remaining <= 0.0 and is_instance_valid(_player):
 		var player_offset := _player.global_position - global_position
 		player_offset.y = 0.0
 		if player_offset.length() > stop_distance:
@@ -56,7 +78,11 @@ func _physics_process(delta: float) -> void:
 				direction = player_offset
 			direction = direction.normalized()
 
-	if direction.length_squared() > 0.001:
+	if _stun_time_remaining > 0.0:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		_set_walking(false)
+	elif direction.length_squared() > 0.001:
 		velocity.x = direction.x * chase_speed
 		velocity.z = direction.z * chase_speed
 		look_at(global_position + direction, Vector3.UP)
@@ -72,6 +98,37 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= float(ProjectSettings.get_setting("physics/3d/default_gravity")) * delta
 
 	move_and_slide()
+
+
+func is_stunned() -> bool:
+	return _stun_time_remaining > 0.0
+
+
+func _on_echo_emitted(origin: Vector3, speed: float, lifetime: float, can_stun: bool) -> void:
+	if not can_stun or lifetime <= 0.0:
+		return
+	var distance := _echo_hit_position().distance_to(origin)
+	_incoming_echoes.append(IncomingEcho.new(origin, speed, lifetime, distance))
+
+
+func _echo_hit_position() -> Vector3:
+	return $CollisionShape3D.global_position
+
+
+func _update_echo_hits(delta: float) -> void:
+	for index in range(_incoming_echoes.size() - 1, -1, -1):
+		var wave := _incoming_echoes[index]
+		wave.age = minf(wave.age + delta, wave.lifetime)
+		var gap := _echo_hit_position().distance_to(wave.origin) - wave.speed * wave.age
+		# Detect the travelling front, including a wave emitted at our position.
+		if gap <= 0.0 and wave.previous_gap >= 0.0:
+			_stun_time_remaining = stun_duration
+			_incoming_echoes.remove_at(index)
+		elif wave.age >= wave.lifetime:
+			_incoming_echoes.remove_at(index)
+		else:
+			wave.previous_gap = gap
+
 
 func _set_walking(walking: bool) -> void:
 	if _is_walking == walking:
@@ -93,20 +150,19 @@ func sound_trigger_position() -> void:
 	AudioManager.play_sound_3d(0,global_position)
 
 func send_echo() -> void:
-	Echo.spider_echo(bones[0].global_position)
+	_emit_bone_echo(0)
 
-func send_xxx(xxx:int) -> void:
-	match xxx:
-		0:
-			Echo.spider_echo(bones[0].global_position)
-			Echo.spider_echo(bones[2].global_position)
-			Echo.spider_echo(bones[4].global_position)
 
-		1:
-			Echo.spider_echo(bones[1].global_position)
-			Echo.spider_echo(bones[3].global_position)
-			Echo.spider_echo(bones[5].global_position)
+func send_xxx(xxx: int) -> void:
+	if xxx == 0 or xxx == 1:
+		for index in range(xxx, 6, 2):
+			_emit_bone_echo(index)
 
+
+func _emit_bone_echo(index: int) -> void:
+	if Engine.is_editor_hint() or index >= bones.size() or not is_instance_valid(bones[index]):
+		return
+	Echo.spider_echo(bones[index].global_position)
 
 
 func _on_timer_timeout() -> void:

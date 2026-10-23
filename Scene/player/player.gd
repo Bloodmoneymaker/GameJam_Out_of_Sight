@@ -48,7 +48,7 @@ func _emit_wave_at_aim() -> void:
 	var query := PhysicsRayQueryParameters3D.create(origin, target, 0xFFFFFFFF, [get_rid()])
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 	if not hit.is_empty():
-	Echo.player_aim_echo(hit.position + hit.normal * 0.1)
+		Echo.player_aim_echo(hit.position + hit.normal * 0.1)
 
 
 func _physics_process(delta: float) -> void:

@@ -13,6 +13,9 @@ const REFLECTION_STRENGTH := 0.5
 ## Walls closer than this to the source are skipped; their reflection would overlap the original.
 const MIN_WALL_DISTANCE := 0.25
 
+## Receivers decide whether and when this wave hits them.
+signal wave_emitted(origin: Vector3, speed: float, lifetime: float, can_stun: bool)
+
 var _origins := PackedVector4Array()
 var _params := PackedVector4Array()
 var _planes := PackedVector4Array()
@@ -43,11 +46,11 @@ func _process(delta: float) -> void:
 
 
 func player_scan_echo(origin: Vector3) -> void:
-	_emit_wave(origin, 10.0, 1.5, 1.0, true, Color.TRANSPARENT)
+	_emit_wave(origin, 10.0, 1.5, 1.0, true, Color.TRANSPARENT, true)
 
 
 func player_aim_echo(origin: Vector3) -> void:
-	_emit_wave(origin, 10.0, 1.0, 0.7, true, Color(0.0, 0.0, 0.718, 1.0))
+	_emit_wave(origin, 10.0, 1.0, 0.7, true, Color(0.0, 0.0, 0.718, 1.0), true)
 
 
 func player_jump_echo(origin: Vector3) -> void:
@@ -63,7 +66,7 @@ func player_footstep_echo(origin: Vector3) -> void:
 
 
 func weapon_impact_echo(origin: Vector3) -> void:
-	_emit_wave(origin, 15.0, 0.1, 0.3, true, Color.TRANSPARENT)
+	_emit_wave(origin, 15.0, 0.1, 0.3, true, Color.TRANSPARENT, true)
 
 
 func spider_echo(origin: Vector3) -> void:
@@ -80,7 +83,7 @@ func debug_echo(origin: Vector3) -> void:
 
 ## Spawns a wave plus first-order wall reflections, overwriting the oldest waves as needed.
 ## A transparent color uses the material's wave_color.
-func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float, reflect: bool, color: Color) -> void:
+func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float, reflect: bool, color: Color, can_stun: bool = false) -> void:
 	if color.a == 0.0:
 		color = MATERIAL.get_shader_parameter("wave_color")
 	var rgb := Vector4(color.r, color.g, color.b, 1.0)
@@ -95,6 +98,7 @@ func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float
 			_add(mirrored, reflected, plane, rgb)
 
 	_push()
+	wave_emitted.emit(origin, speed, lifetime, can_stun)
 
 
 ## Returns unique wall planes (normal facing the origin, distance) the wave can reach.

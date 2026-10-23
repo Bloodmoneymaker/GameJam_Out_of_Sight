@@ -41,6 +41,7 @@ enabled=PackedStringArray("res://addons/audiomanager_[simple]/plugin.cfg")
 [global_group]
 
 player=""
+enemy=""
 
 [input]
 
