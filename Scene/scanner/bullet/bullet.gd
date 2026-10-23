@@ -4,10 +4,6 @@ class_name Bullet
 @export var speed: float = 60.0
 @export var damage: float = 10.0
 @export var lifetime: float = 3.0
-@export var impact_echo_speed: float = 15.0
-@export var impact_echo_lifetime: float = 4.0
-@export var impact_echo_intensity: float = 1.0
-
 var _impacted := false
 
 
@@ -35,7 +31,7 @@ func _on_body_entered(body: Node) -> void:
 
 
 func _finish_impact(body: Node, impact_position: Vector3) -> void:
-	Echo.emit_wave(impact_position, impact_echo_speed, impact_echo_lifetime, impact_echo_intensity)
+	Echo.weapon_impact_echo(impact_position)
 	if is_instance_valid(body) and body.has_method("take_damage"):
 		body.call("take_damage", damage)
 	queue_free()

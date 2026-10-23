@@ -22,7 +22,7 @@ func _ready() -> void:
 func try_scan(origin: Vector3) -> bool:
 	if not _consume_charge():
 		return false
-	Echo.emit_wave(origin, 10.0, 1.5, 1.0)
+	Echo.player_scan_echo(origin)
 	AudioManager.play_sound_3d(Audio.SOUND.Scan, origin)
 	return true
 

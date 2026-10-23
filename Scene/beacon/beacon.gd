@@ -1,11 +1,6 @@
 extends Node3D
 
-@export_range(0.1, 60.0, 0.1) var beacon_rate: float = 5.0
-@export_range(2.0,10.0,0.1) var beacon_speed:float = 5.0
-@export_range(1.0,5.0,0.1) var beacon_lifetime:float = 2.0
-@export_range(0.5,3.0,0.1) var beacon_intensity:float = 1.0
-@export var beacon_color = Color(0.033, 0.277, 0.184, 1.0)
-@export var beacon_refelecting:bool = true
+@export_range(0.1, 60.0, 0.1) var beacon_rate: float = 1.0
 
 @onready var timer: Timer = $Timer
 
@@ -16,7 +11,7 @@ func _ready() -> void:
 
 
 func _emit_echo() -> void:
-	Echo.emit_wave(global_position, beacon_speed, beacon_lifetime, beacon_intensity, beacon_refelecting, beacon_color)
+	Echo.beacon_echo(global_position)
 
 
 

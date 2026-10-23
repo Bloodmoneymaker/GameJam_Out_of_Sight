@@ -13,12 +13,6 @@ extends CharacterBody3D
 @export var sound_body:AudioStream
 
 
-@export var echo_speed:float = 2.0
-@export var echo_lifetime:float = 1.0
-@export var echo_intensity:float = 1.0
-@export var echo_reflecting:bool = true
-@export var echo_color:Color = Color.BURLYWOOD
-
 @export_group("AI")
 @export var chase_speed: float = 3.0
 @export var stop_distance: float = 1.5
@@ -99,19 +93,19 @@ func sound_trigger_position() -> void:
 	AudioManager.play_sound_3d(0,global_position)
 
 func send_echo() -> void:
-	Echo.emit_wave(bones[0].global_position,echo_speed,echo_lifetime,echo_intensity,echo_reflecting,echo_color)
+	Echo.spider_echo(bones[0].global_position)
 
 func send_xxx(xxx:int) -> void:
 	match xxx:
 		0:
-			Echo.emit_wave(bones[0].global_position,echo_speed,echo_lifetime,echo_intensity,echo_reflecting,echo_color)
-			Echo.emit_wave(bones[2].global_position,echo_speed,echo_lifetime,echo_intensity,echo_reflecting,echo_color)
-			Echo.emit_wave(bones[4].global_position,echo_speed,echo_lifetime,echo_intensity,echo_reflecting,echo_color)
+			Echo.spider_echo(bones[0].global_position)
+			Echo.spider_echo(bones[2].global_position)
+			Echo.spider_echo(bones[4].global_position)
 
 		1:
-			Echo.emit_wave(bones[1].global_position,echo_speed,echo_lifetime,echo_intensity,echo_reflecting,echo_color)
-			Echo.emit_wave(bones[3].global_position,echo_speed,echo_lifetime,echo_intensity,echo_reflecting,echo_color)
-			Echo.emit_wave(bones[5].global_position,echo_speed,echo_lifetime,echo_intensity,echo_reflecting,echo_color)
+			Echo.spider_echo(bones[1].global_position)
+			Echo.spider_echo(bones[3].global_position)
+			Echo.spider_echo(bones[5].global_position)
 
 
 

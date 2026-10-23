@@ -42,10 +42,45 @@ func _process(delta: float) -> void:
 	MATERIAL.set_shader_parameter("now", _time)
 
 
-## Spawns a wave plus its first-order wall reflections.
-## Overwrites the oldest waves when all slots are taken.
-## Without a color (transparent) the material's wave_color is used.
-func emit_wave(origin: Vector3, speed := 10.0, lifetime := 3.0, intensity := 1.0, reflect := true, color := Color.TRANSPARENT) -> void:
+func player_scan_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 10.0, 1.5, 1.0, true, Color.TRANSPARENT)
+
+
+func player_aim_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 10.0, 1.0, 0.7, true, Color(0.0, 0.0, 0.718, 1.0))
+
+
+func player_jump_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 5.0, 1.0, 0.6, true, Color.TRANSPARENT)
+
+
+func player_landing_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 5.0, 0.5, 0.5, true, Color.TRANSPARENT)
+
+
+func player_footstep_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 4.5, 0.75, 0.25, true, Color.TRANSPARENT)
+
+
+func weapon_impact_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 15.0, 0.1, 0.3, true, Color.TRANSPARENT)
+
+
+func spider_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 10.0, 0.1, 0.02, true, Color(0.097030394, 0.09369888, 0.083710216, 1.0))
+
+
+func beacon_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 5.0, 2.0, 1.0, true, Color(0.033, 0.277, 0.184, 1.0))
+
+
+func debug_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 15.0, 4.0, 1.0, true, Color.TRANSPARENT)
+
+
+## Spawns a wave plus first-order wall reflections, overwriting the oldest waves as needed.
+## A transparent color uses the material's wave_color.
+func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float, reflect: bool, color: Color) -> void:
 	if color.a == 0.0:
 		color = MATERIAL.get_shader_parameter("wave_color")
 	var rgb := Vector4(color.r, color.g, color.b, 1.0)
