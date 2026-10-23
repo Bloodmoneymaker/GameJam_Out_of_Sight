@@ -1,7 +1,5 @@
 extends Node3D
 
-
-
 # Container
 @onready var container_scene:Node = $Container/Container_Scene
 @onready var container_entity:Node = $Container/Container_Entity
@@ -10,6 +8,7 @@ extends Node3D
 
 # UI's
 @onready var ui_main:Control = $CanvasLayer/UI_Main
+@onready var win_screen: Control = $CanvasLayer/WinScreen
 
 
 func _ready() -> void:
@@ -28,3 +27,4 @@ func _set_containers() -> void:
 
 func _set_ui() -> void:
 	GameManager.ui_main = ui_main
+	GameManager.win_screen = win_screen

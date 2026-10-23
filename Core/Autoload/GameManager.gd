@@ -10,6 +10,7 @@ var container_object:Node
 var container_projectiles:Node
 #UI
 var ui_main
+var win_screen: Control
 
 var scene:Dictionary = {
 	SCENE.DEBUG : preload("res://Scene/scene_debug.tscn"),
@@ -23,3 +24,7 @@ func load_scene(scene_idx:SCENE) -> void:
 func delete_all_scenes() -> void:
 	for child in container_scene.get_children():
 		child.queue_free()
+
+func show_win_screen() -> void:
+	if is_instance_valid(win_screen):
+		win_screen.show_win_screen()

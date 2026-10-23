@@ -27,4 +27,5 @@ func _on_timer_timeout() -> void:
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is PlayerCharacter:
 		player_entered_beacon.emit(body)
+		GameManager.show_win_screen()
 		print("Spieler hat den Bereich betreten!")
