@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var scene: GameManager.SCENE = GameManager.SCENE.LEVEL1
 # Container
 @onready var container_scene:Node = $Container/Container_Scene
 @onready var container_entity:Node = $Container/Container_Entity
@@ -15,7 +16,7 @@ extends Node3D
 func _ready() -> void:
 	_set_containers()
 	_set_ui()
-	GameManager.load_scene(GameManager.SCENE.LEVEL1)
+	GameManager.load_scene(scene)
 	#AudioManager.play_sound_3d(Audio.SOUND.A,Vector3.ZERO)
 	#AudioManager.play_music(Audio.MUSIC.A)
 
