@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgl4h0215a5fd" path="res://Scene/Tiles/tile_road_t.tscn" id="5_n2mbg"]
 [ext_resource type="PackedScene" uid="uid://dny1eb6s8ciw4" path="res://Scene/Tiles/tile_road_edge.tscn" id="6_n2mbg"]
 [ext_resource type="PackedScene" uid="uid://cxhmgcms5x8oy" path="res://Scene/Enemy/roach/roach_enemy.tscn" id="7_eu8i2"]
+[ext_resource type="PackedScene" uid="uid://df2an83abrc4c" path="res://Scene/trap/strohman/strohman_trap.tscn" id="7_yf6jp"]
 
 [sub_resource type="Environment" id="Environment_6bkcm"]
 background_mode = 2
@@ -173,6 +174,9 @@ transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, 12, 
 
 [node name="Tile_Road_Edge4" parent="NavigationRegion3D/Node3D" unique_id=514090806 instance=ExtResource("6_n2mbg")]
 transform = Transform3D(-1, 0, -3.1786506e-08, 0, 1, 0, 3.1786506e-08, 0, -1, 12, 0, -16)
+
+[node name="StrohmanTrap" parent="NavigationRegion3D" unique_id=1539055285 instance=ExtResource("7_yf6jp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20268965, 0, 1.1886411)
 
 [node name="Entity_Roach" parent="." unique_id=1248933683 instance=ExtResource("7_eu8i2")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)

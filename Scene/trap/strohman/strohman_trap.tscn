@@ -10,7 +10,7 @@ height = 1.6
 [sub_resource type="BoxMesh" id="Arms"]
 size = Vector3(1.6, 0.15, 0.15)
 
-[node name="StrohmanTrap" type="Node3D" unique_id=1539055285]
+[node name="StrohmanTrap" type="Node3D" unique_id=1539055285 groups=["player"]]
 script = ExtResource("1_script")
 start_active = true
 
