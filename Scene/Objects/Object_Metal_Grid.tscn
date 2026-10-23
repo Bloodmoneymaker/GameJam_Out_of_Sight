@@ -42,5 +42,5 @@ data = PackedVector3Array(-1.4668, 3.0028, -0.0262, -1.4411, -0.0028, -0.0131, -
 [node name="Metal_Wall" type="MeshInstance3D" parent="Object_Metal_Grid" unique_id=1261874189]
 mesh = SubResource("ArrayMesh_dvcgd")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Object_Metal_Grid" unique_id=2039275864]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2039275864]
 shape = SubResource("ConcavePolygonShape3D_xl8sq")
