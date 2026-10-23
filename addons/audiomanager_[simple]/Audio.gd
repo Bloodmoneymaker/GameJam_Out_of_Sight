@@ -3,7 +3,7 @@
 extends Node
 
 # find some better names :D
-enum SOUND {Scan,B,C,RoachScream_1,UI_Hover,UI_Click}
+enum SOUND {Scan,B,C,RoachScream_1,UI_Hover,UI_Click,WaterDrop}
 enum MUSIC {A,B,C}
 
 # place your sound here
@@ -13,7 +13,8 @@ var sound:Dictionary = {
 	SOUND.C : preload("res://addons/audiomanager_[simple]/beep.mp3"),
 	SOUND.RoachScream_1 : preload("res://Asset/AudioFX/roach_scream_01.wav"),
 	SOUND.UI_Hover : preload("res://Asset/AudioFX/UI/ui_hover_fx_01.wav"),
-	SOUND.UI_Click : preload("res://Asset/AudioFX/UI/ui_click_fx_01.wav")
+	SOUND.UI_Click : preload("res://Asset/AudioFX/UI/ui_click_fx_01.wav"),
+	SOUND.WaterDrop : preload("res://Asset/AudioFX/water_drop_fx_01.wav")
 }
 
 

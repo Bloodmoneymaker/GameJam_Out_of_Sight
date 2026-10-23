@@ -20,7 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://bn67lsatih7pd" path="res://Scene/Objects/Pipes/Object_Pipe_1.tscn" id="17_65gmr"]
 [ext_resource type="PackedScene" uid="uid://chqn6hlhrq47d" path="res://Scene/Objects/Pipes/Object_Pipe_2.tscn" id="18_4el5n"]
 [ext_resource type="PackedScene" uid="uid://d0hvi01mv18v1" path="res://Scene/Objects/Pipes/Object_Pipe_3.tscn" id="19_jm8v7"]
-[ext_resource type="PackedScene" uid="uid://76pkpl3m5xs3" path="res://Scene/beacon/beacon.tscn" id="20_beacon"]
+[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="20_beacon"]
+[ext_resource type="Script" uid="uid://ddstq4mqqj844" path="res://Scene/Objects/WaterDrip/water_drip.gd" id="22_65gmr"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 
@@ -36,6 +37,9 @@ navigation_mesh = SubResource("NavigationMesh_g4v7s")
 [node name="Map-Layout" type="Node3D" parent="NavigationRegion3D" unique_id=665174812]
 
 [node name="Tile_Sewer_Cross" parent="NavigationRegion3D/Map-Layout" unique_id=1595145833 instance=ExtResource("2_7lagt")]
+
+[node name="Tile_Sewer_Cross3" parent="NavigationRegion3D/Map-Layout" unique_id=1876102663 instance=ExtResource("2_7lagt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
 
 [node name="Tile_Sewer_Cross2" parent="NavigationRegion3D/Map-Layout" unique_id=946807002 instance=ExtResource("2_7lagt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
@@ -182,9 +186,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 12, 
 
 [node name="Road_T" type="Node3D" parent="NavigationRegion3D/Map-Layout" unique_id=1152803274]
 
-[node name="Tile_Sewer_T3" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1763451226 instance=ExtResource("8_6fknj")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 12)
-
 [node name="Tile_Sewer_T4" parent="NavigationRegion3D/Map-Layout/Road_T" unique_id=1916235158 instance=ExtResource("8_6fknj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, 0, -12)
 
@@ -305,3 +306,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.685865, -9.536743e-07, -0.
 
 [node name="Object_Pipe_13" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=977932967 instance=ExtResource("18_4el5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.685865, -9.536743e-07, -0.20004451)
+
+[node name="Tropfen" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=2078097311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.984865, 0.6692571, -1.708855)
+script = ExtResource("22_65gmr")
+
+[node name="Tropfen2" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=1090447655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.998018, 0.6692571, -11.917891)
+script = ExtResource("22_65gmr")
+
+[node name="Tropfen3" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=961903416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7007995, 0.79365903, -19.24993)
+script = ExtResource("22_65gmr")
+
+[node name="Tropfen4" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=1068721507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7007995, 0.91936445, -16.750683)
+script = ExtResource("22_65gmr")
+
+[node name="Tropfen5" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=292716790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24996138, 2.8264601, -24.914125)
+script = ExtResource("22_65gmr")
+
+[node name="Tropfen6" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=1396553191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24996138, 2.8264601, -24.203176)
+script = ExtResource("22_65gmr")
+
+[node name="Tropfen7" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=1043308532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54580855, 2.8264601, -24.52464)
+script = ExtResource("22_65gmr")
+
+[node name="Tropfen8" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=721886023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54580855, 2.8264601, -23.955307)
+script = ExtResource("22_65gmr")
+
+[node name="Tropfen9" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=558447633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6994686, 0.3438186, -12.81872)
+script = ExtResource("22_65gmr")
+
+[node name="Tropfen10" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=1374006009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020193934, 0.6426331, 22.994759)
+script = ExtResource("22_65gmr")
+interval = 1.0
+
+[node name="Object_Pipe_1" parent="NavigationRegion3D/Map-Layout" unique_id=2118484005 instance=ExtResource("17_65gmr")]
+transform = Transform3D(0.032810595, 0.9876427, 0.1532495, 0, 0.15333205, -0.98817474, -0.9994616, 0.032422602, 0.005030916, 7.900002, 0.9791312, -16.777239)

@@ -82,6 +82,11 @@ func strohman_echo(origin: Vector3, source: Node3D) -> void:
 	_emit_wave(origin, 10.0, 1.5, 1.0, true, Color.TRANSPARENT, false, source)
 
 
+## Small and without reflections: dripping water is frequent and should not use up wave slots.
+func water_drop_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 3.0, 0.6, 0.3, false, Color(0.25, 0.55, 1.0, 1.0))
+
+
 func debug_echo(origin: Vector3) -> void:
 	_emit_wave(origin, 15.0, 4.0, 1.0, true, Color.TRANSPARENT)
 

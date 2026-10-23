@@ -6,7 +6,7 @@ extends Node
 var sound_players = {}
 var music_player = null
 var current_music_index = -1
-var sound_player_amount:int = 30
+var sound_player_amount:int = 100
 var ui_sound_players: Array[AudioStreamPlayer] = []
 @onready var current_music:AudioStream = null
 
@@ -35,15 +35,7 @@ func _ready() -> void:
 
 ## Audio.SOUND.XXX, Position
 func play_sound_3d(sound_idx:int,position:Vector3) -> void:
-	for sound_player in sound_players.values():
-		if not sound_player.playing:
-			sound_player.max_distance = 0
-			sound_player.pitch_scale = 1.0
-			sound_player.stream = Audio.sound[sound_idx]
-			sound_player.global_position = position
-			sound_player.play()
-			return
-		print("No availabel sound player -> increased the pool!")
+	play_sound_3d_special(Audio.sound[sound_idx],position,1.0,0)
 
 ## Spielt einen UI-Sound ohne räumliche Position ab
 func play_sound_2d(sound_idx: int) -> void:
@@ -55,17 +47,23 @@ func play_sound_2d(sound_idx: int) -> void:
 	print("No available UI sound player!")
 
 
-## AudioStream, Position,Pitchscale,Max-Distance
-func play_sound_3d_special(sound:AudioStream,position:Vector3,pitch_scale:float,max_distance:float) -> void:
+## AudioStream, Position,Pitchscale,Max-Distance (0 = unbegrenzt)
+## Optional: Lautstärke in dB, unit_size (Distanz in m, bis zu der der Sound voll laut ist)
+## und Abklingkurve. Die Standardwerte entsprechen Godots Defaults.
+func play_sound_3d_special(sound:AudioStream,position:Vector3,pitch_scale:float,max_distance:float,volume_db:float = 0.0,unit_size:float = 10.0,attenuation:AudioStreamPlayer3D.AttenuationModel = AudioStreamPlayer3D.ATTENUATION_INVERSE_DISTANCE) -> void:
 	for sound_player in sound_players.values():
 		if not sound_player.playing:
+			# Player werden wiederverwendet: alle Einstellungen jedes Mal neu setzen
 			sound_player.stream = sound
 			sound_player.max_distance = max_distance
 			sound_player.pitch_scale = pitch_scale
+			sound_player.volume_db = volume_db
+			sound_player.unit_size = unit_size
+			sound_player.attenuation_model = attenuation
 			sound_player.global_position = position
 			sound_player.play()
 			return
-		print("No availabel sound player -> increased the pool!")
+	print("No available sound player! Increase sound_player_amount.")
 	
 
 func play_music(music_idx:int) -> void:
