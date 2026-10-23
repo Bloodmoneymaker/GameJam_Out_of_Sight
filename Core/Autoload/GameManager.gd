@@ -51,6 +51,7 @@ func load_scene(scene_idx: SCENE) -> void:
 	container_scene.add_child(new_scene)
 	if is_instance_valid(ui_main):
 		ui_main.hide()
+	Echo.clear_waves()
 	if is_instance_valid(win_screen):
 		win_screen.hide()
 	if is_instance_valid(lose_screen):
@@ -69,6 +70,7 @@ func return_to_main_menu() -> void:
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	delete_all_scenes()
+	Echo.clear_waves()
 	if is_instance_valid(win_screen):
 		win_screen.hide()
 	if is_instance_valid(lose_screen):

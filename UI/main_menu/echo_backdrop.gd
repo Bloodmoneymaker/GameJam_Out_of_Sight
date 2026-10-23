@@ -14,7 +14,7 @@ func _ready() -> void:
 	_camera_base_rotation = camera.rotation
 	echo_timer.wait_time = echo_interval
 	echo_timer.start()
-	_emit_echo()
+	call_deferred("_emit_echo")
 
 
 func _process(delta: float) -> void:
@@ -27,4 +27,6 @@ func _on_echo_timer_timeout() -> void:
 
 
 func _emit_echo() -> void:
+	if not is_instance_valid(GameManager.ui_main) or not GameManager.ui_main.visible:
+		return
 	Echo.beacon_echo(echo_origin.global_position)

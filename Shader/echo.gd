@@ -86,6 +86,15 @@ func debug_echo(origin: Vector3) -> void:
 	_emit_wave(origin, 15.0, 4.0, 1.0, true, Color.TRANSPARENT)
 
 
+func clear_waves() -> void:
+	for index in range(MAX_WAVES):
+		_origins[index] = Vector4.ZERO
+		_params[index] = Vector4.ZERO
+		_planes[index] = Vector4.ZERO
+		_colors[index] = Vector4.ZERO
+	_push()
+
+
 ## Spawns a wave plus first-order wall reflections, overwriting the oldest waves as needed.
 ## A transparent color uses the material's wave_color.
 func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float, reflect: bool, color: Color, can_stun: bool = false, lure_source: Node3D = null) -> void:
