@@ -1,5 +1,9 @@
 extends Node3D
 
+const SOUND_MAX_DISTANCE := 30.0
+const SOUND_VOLUME_DB := 6.0
+const SOUND_UNIT_SIZE := 10.0
+
 @export_range(0.1, 60.0, 0.1) var beacon_rate: float = 1.0
 @export_range(0.0, 0.5, 0.01) var float_amplitude: float = 0.12
 @export_range(0.5, 10.0, 0.1) var float_cycle_duration: float = 2.8
@@ -30,6 +34,14 @@ func _emit_echo() -> void:
 
 
 func _on_timer_timeout() -> void:
+	AudioManager.play_sound_3d_special(
+		Audio.sound[Audio.SOUND.Beacon],
+		orb.global_position,
+		1.0,
+		SOUND_MAX_DISTANCE,
+		SOUND_VOLUME_DB,
+		SOUND_UNIT_SIZE
+	)
 	_emit_echo()
 
 

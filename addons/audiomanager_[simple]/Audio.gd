@@ -4,7 +4,7 @@
 extends Node
 
 # find some better names :D
-enum SOUND {Scan,B,C,RoachScream_1,UI_Hover,UI_Click,WaterDrop,PlayerHit}
+enum SOUND {Scan,B,C,RoachScream_1,UI_Hover,UI_Click,WaterDrop,PlayerHit,Beacon,PlayerStep_01,PlayerStep_02,PlayerStep_03,PlayerStep_04,PlayerStep_05,PlayerStep_06}
 enum MUSIC {A,B,C}
 
 # place your sound here
@@ -16,7 +16,14 @@ var sound:Dictionary = {
 	SOUND.UI_Hover : preload("res://Asset/AudioFX/UI/ui_hover_fx_01.wav"),
 	SOUND.UI_Click : preload("res://Asset/AudioFX/UI/ui_click_fx_01.wav"),
 	SOUND.WaterDrop : preload("res://Asset/AudioFX/water_drop_fx_01.wav"),
-	SOUND.PlayerHit : preload("res://Asset/AudioFX/Player_hit_01.wav")
+	SOUND.PlayerHit : preload("res://Asset/AudioFX/Player_hit_01.wav"),
+	SOUND.Beacon : preload("res://Asset/AudioFX/beacon_sfx_01.wav"),
+	SOUND.PlayerStep_01 : preload("res://Asset/AudioFX/player_step_01.wav"),
+	SOUND.PlayerStep_02 : preload("res://Asset/AudioFX/player_step_02.wav"),
+	SOUND.PlayerStep_03 : preload("res://Asset/AudioFX/player_step_03.wav"),
+	SOUND.PlayerStep_04 : preload("res://Asset/AudioFX/player_step_04.wav"),
+	SOUND.PlayerStep_05 : preload("res://Asset/AudioFX/player_step_05.wav"),
+	SOUND.PlayerStep_06 : preload("res://Asset/AudioFX/player_step_06.wav")
 }
 
 

@@ -11,6 +11,14 @@ class_name PlayerCharacter
 @export var feet_offset := 0.9
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var _player_step_sounds: Array[int] = [
+	Audio.SOUND.PlayerStep_01,
+	Audio.SOUND.PlayerStep_02,
+	Audio.SOUND.PlayerStep_03,
+	Audio.SOUND.PlayerStep_04,
+	Audio.SOUND.PlayerStep_05,
+	Audio.SOUND.PlayerStep_06
+]
 var _step_progress := 0.0
 var _was_on_floor := true
 
@@ -91,6 +99,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 		Echo.player_jump_echo(_feet_position())
+		_play_step_pair()
 
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -113,18 +122,33 @@ func _update_footsteps() -> void:
 	if on_floor and not _was_on_floor:
 		# Landing
 		Echo.player_landing_echo(_feet_position())
+		_play_step_pair()
 		_step_progress = 0.0
 	elif on_floor:
 		_step_progress += Vector2(velocity.x, velocity.z).length() * get_physics_process_delta_time()
 		if _step_progress >= step_distance:
 			_step_progress = 0.0
 			Echo.player_footstep_echo(_feet_position())
+			_play_single_step()
 
 	_was_on_floor = on_floor
 
 
 func _feet_position() -> Vector3:
 	return global_position - Vector3(0, feet_offset, 0)
+
+
+func _play_single_step() -> void:
+	AudioManager.play_sound_3d(_player_step_sounds.pick_random(), _feet_position())
+
+
+func _play_step_pair() -> void:
+	_player_step_sounds.shuffle()
+	var step_position := _feet_position()
+	AudioManager.play_sound_3d(_player_step_sounds[0], step_position)
+	await get_tree().create_timer(0.06).timeout
+	if is_inside_tree():
+		AudioManager.play_sound_3d(_player_step_sounds[1], _feet_position())
 
 
 func take_damage(amount: float) -> void:
