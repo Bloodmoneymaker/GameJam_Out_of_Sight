@@ -11,7 +11,7 @@ background_color = Color(0.004, 0.012, 0.02, 1)
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="FallResetShape"]
-size = Vector3(40, 2, 140)
+size = Vector3(40, 2, 60)
 
 [node name="Tutorial_2" type="Node3D"]
 
@@ -43,44 +43,8 @@ position = Vector3(0.8, 0, -25)
 [node name="Platform_07" parent="Platforms" instance=ExtResource("2_platform")]
 position = Vector3(0, 0, -30)
 
-[node name="Platform_08" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(-0.8, 0, -35)
-
-[node name="Platform_09" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(0, 0, -40)
-
-[node name="Platform_10" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(0.8, 0, -45)
-
-[node name="Platform_11" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(0, 0, -50)
-
-[node name="Platform_12" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(-0.8, 0, -55)
-
-[node name="Platform_13" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(0, 0, -60)
-
-[node name="Platform_14" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(0.8, 0, -65)
-
-[node name="Platform_15" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(0, 0, -70)
-
-[node name="Platform_16" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(-0.8, 0, -75)
-
-[node name="Platform_17" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(0, 0, -80)
-
-[node name="Platform_18" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(0.8, 0, -85)
-
-[node name="Platform_19" parent="Platforms" instance=ExtResource("2_platform")]
-position = Vector3(0, 0, -90)
-
 [node name="FallResetZone" type="Area3D" parent="." node_paths=PackedStringArray("respawn_point")]
-position = Vector3(0, -12, -47.5)
+position = Vector3(0, -12, -17.5)
 script = ExtResource("4_kill_zone")
 respawn_point = NodePath("../PlayerSpawn")
 
@@ -88,7 +52,7 @@ respawn_point = NodePath("../PlayerSpawn")
 shape = SubResource("FallResetShape")
 
 [node name="BeaconGoal" parent="." instance=ExtResource("3_beacon")]
-position = Vector3(0, 0, -96)
+position = Vector3(0, 0, -36)
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector3(0, 1, 1)
