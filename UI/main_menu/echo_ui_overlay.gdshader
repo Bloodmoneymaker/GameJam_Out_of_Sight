@@ -10,7 +10,7 @@ uniform float darkness : hint_range(0.0, 1.0) = 0.0;
 uniform float edge_threshold : hint_range(0.0, 1.0) = 0.1;
 
 const float WAVE_TRAVEL_TIME = 3.0;
-const float AFTERGLOW_DURATION = 0.7;
+const float AFTERGLOW_DURATION = 1.3;
 const float MAX_WAVE_AGE = 4.5;
 
 float luminance(vec3 color) {
@@ -55,36 +55,6 @@ void fragment() {
 		vec2 signal = wave_signal(point, source, age, speed);
 		total_ring += signal.x;
 		total_afterglow += signal.y;
-
-		vec2 left = vec2(-source.x, source.y);
-		vec2 right = vec2(2.0 * aspect.x - source.x, source.y);
-		vec2 top = vec2(source.x, -source.y);
-		vec2 bottom = vec2(source.x, 2.0 - source.y);
-		signal = wave_signal(point, left, age, speed);
-		total_ring += signal.x * 0.28;
-		total_afterglow += signal.y * 0.28;
-		signal = wave_signal(point, right, age, speed);
-		total_ring += signal.x * 0.28;
-		total_afterglow += signal.y * 0.28;
-		signal = wave_signal(point, top, age, speed);
-		total_ring += signal.x * 0.28;
-		total_afterglow += signal.y * 0.28;
-		signal = wave_signal(point, bottom, age, speed);
-		total_ring += signal.x * 0.28;
-		total_afterglow += signal.y * 0.28;
-
-		signal = wave_signal(point, vec2(left.x, top.y), age, speed);
-		total_ring += signal.x * 0.1;
-		total_afterglow += signal.y * 0.1;
-		signal = wave_signal(point, vec2(left.x, bottom.y), age, speed);
-		total_ring += signal.x * 0.1;
-		total_afterglow += signal.y * 0.1;
-		signal = wave_signal(point, vec2(right.x, top.y), age, speed);
-		total_ring += signal.x * 0.1;
-		total_afterglow += signal.y * 0.1;
-		signal = wave_signal(point, vec2(right.x, bottom.y), age, speed);
-		total_ring += signal.x * 0.1;
-		total_afterglow += signal.y * 0.1;
 	}
 
 	vec3 sampled_color = texture(screen_texture, uv).rgb;
