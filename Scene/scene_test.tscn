@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://64fcuox4bhtc"]
 
-[ext_resource type="Script" path="res://Scene/scene_test.gd" id="1_rdiye"]
 [ext_resource type="PackedScene" uid="uid://m4wh6nhq55vb" path="res://Scene/player/player.tscn" id="3_msfi0"]
 [ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="3_y3f04"]
 
@@ -27,7 +26,6 @@ size = Vector3(10, 1, 10)
 material = ExtResource("3_y3f04")
 
 [node name="Scene_Test" type="Node3D" unique_id=538531758]
-script = ExtResource("1_rdiye")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1121125147]
 environment = SubResource("Environment_rdiye")

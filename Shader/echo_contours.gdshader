@@ -21,6 +21,8 @@ uniform float front_width = 0.6;
 uniform float afterglow = 0.25;
 // Forward+: use the visible scene's depth/normal prepass to find real contours.
 uniform sampler2D scene_depth : hint_depth_texture, repeat_disable, filter_nearest;
+// Opaque polygon materials encode their real mesh edges in magenta.
+uniform sampler2D scene_edges : hint_screen_texture, repeat_disable, filter_nearest;
 #if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
 uniform sampler2D scene_normals : hint_normal_roughness_texture, repeat_disable, filter_nearest;
 #endif
@@ -101,6 +103,9 @@ void fragment() {
 		contour = max(contour, contour_sample(SCREEN_UV + pixel * vec2(-0.7071, 0.7071), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
 		contour = max(contour, contour_sample(SCREEN_UV + pixel * vec2(0.7071, -0.7071), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
 		contour = max(contour, contour_sample(SCREEN_UV - pixel * vec2(0.7071, 0.7071), center, normal, INV_PROJECTION_MATRIX, 1.0 / VIEWPORT_SIZE));
+		vec3 edge_mask = textureLod(scene_edges, SCREEN_UV, 0.0).rgb;
+		float polygon_edge = clamp(min(edge_mask.r, edge_mask.b) - edge_mask.g, 0.0, 1.0);
+		contour = max(contour, polygon_edge);
 		vec3 world_pos = (INV_VIEW_MATRIX * vec4(center, 1.0)).xyz;
 		vec3 front = vec3(0.0);
 		vec3 glow = vec3(0.0);
