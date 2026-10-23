@@ -1,9 +1,10 @@
+
 ## Audio.gd (Autoload)
 # Dient als Datenbank für den AudioManager
 extends Node
 
 # find some better names :D
-enum SOUND {Scan,B,C,RoachScream_1,UI_Hover,UI_Click,WaterDrop}
+enum SOUND {Scan,B,C,RoachScream_1,UI_Hover,UI_Click,WaterDrop,PlayerHit}
 enum MUSIC {A,B,C}
 
 # place your sound here
@@ -14,7 +15,8 @@ var sound:Dictionary = {
 	SOUND.RoachScream_1 : preload("res://Asset/AudioFX/roach_scream_01.wav"),
 	SOUND.UI_Hover : preload("res://Asset/AudioFX/UI/ui_hover_fx_01.wav"),
 	SOUND.UI_Click : preload("res://Asset/AudioFX/UI/ui_click_fx_01.wav"),
-	SOUND.WaterDrop : preload("res://Asset/AudioFX/water_drop_fx_01.wav")
+	SOUND.WaterDrop : preload("res://Asset/AudioFX/water_drop_fx_01.wav"),
+	SOUND.PlayerHit : preload("res://Asset/AudioFX/Player_hit_01.wav")
 }
 
 
