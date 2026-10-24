@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://qt25abalbaw6"]
 
 [ext_resource type="Script" uid="uid://csvfxa38wheyc" path="res://Scene/Game_Scene/Scene_Crypt.gd" id="1_rl1xh"]
 [ext_resource type="PackedScene" uid="uid://cdngubbkrfbvh" path="res://Scene/Tiles/Sewer/Tile_Sewer_Cross.tscn" id="2_dm346"]
@@ -178,31 +178,31 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 35.6
 transform = Transform3D(0.17364822, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364822, 34.1, 0, 0.9)
 
 [node name="GraveStone_01" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1492144484 instance=ExtResource("14_5qbyw")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.35, 0, -6)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.8632277, 0, -6)
 
 [node name="GraveStone_02" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1058407355 instance=ExtResource("15_578nx")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.35, 0, -11)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.77349746, 0, -11)
 
 [node name="GraveStone_03" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=989013075 instance=ExtResource("16_c56jy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -19.35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -18.72677)
 
 [node name="GraveStone_012" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1459631477 instance=ExtResource("14_5qbyw")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, -16.65)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, -17.11124)
 
 [node name="GraveStone_022" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1597760950 instance=ExtResource("15_578nx")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.35, 0, -24)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.796158, 0, -24)
 
 [node name="GraveStone_032" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=788270504 instance=ExtResource("16_c56jy")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 18, 0, -28.65)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 18, 0, -28.991169)
 
 [node name="GraveStone_013" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1074482055 instance=ExtResource("14_5qbyw")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28.65, 0, -43)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.19109, 0, -43)
 
 [node name="GraveStone_023" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=398380794 instance=ExtResource("15_578nx")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43.35, 0, -29.5)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 42.88729, 0, -29.5)
 
 [node name="GraveStone_033" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=214440746 instance=ExtResource("16_c56jy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -19.35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -16.447727)
 
 [node name="GraveStone_014" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1019819370 instance=ExtResource("14_5qbyw")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 22.65, 0, -6)
