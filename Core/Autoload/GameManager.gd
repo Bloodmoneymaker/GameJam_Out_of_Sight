@@ -15,6 +15,7 @@ var lose_screen: Control
 var current_scene_id: int = -1
 
 var level_times: Dictionary[SCENE, float] = {}
+var current_level_time: float = 0.0
 
 ## Paths are loaded only after a menu tile is selected. Preloading a level that
 ## references autoloads can create a resource-loading cycle during startup.
@@ -68,6 +69,7 @@ func load_scene(scene_idx: SCENE) -> void:
 		return
 
 	current_scene_id = scene_idx
+	current_level_time = 0.0
 	delete_all_scenes()
 	var new_scene := packed_scene.instantiate()
 	container_scene.add_child(new_scene)

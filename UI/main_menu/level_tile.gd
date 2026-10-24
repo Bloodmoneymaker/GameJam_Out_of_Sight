@@ -24,9 +24,9 @@ func _update_labels() -> void:
 	number_label.text = "%02d" % display_number
 	title_label.text = GameManager.get_scene_title(level_id).to_upper()
 	var levelTime = GameManager.level_times.get(level_id)
-	var text = "0:00"
-	if levelTime:
-		var total_seconds := int()
+	var text = "--:--"
+	if levelTime != null:
+		var total_seconds := int(levelTime)
 		var minutes: int = total_seconds / 60
 		var seconds: int = total_seconds % 60
 		text = "%02d:%02d" % [minutes, seconds]
