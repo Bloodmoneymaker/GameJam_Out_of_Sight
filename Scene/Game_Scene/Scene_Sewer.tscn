@@ -259,6 +259,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7129378, 0, -12)
 [node name="Object_Pipe_Ground_2" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=824584326 instance=ExtResource("15_aqe60")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 13.717897, 1.3946252, 5.309617)
 
+[node name="Object_Pipe_Ground_4" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1759491260 instance=ExtResource("15_aqe60")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 13.717897, 1.8206515, 5.309617)
+
+[node name="Object_Pipe_Ground_5" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=2035540384 instance=ExtResource("15_aqe60")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, -8.742278e-08, -1, 4.371139e-08, 1, -8.742278e-08, 1.9106855e-15, 6.776394, 3.1218605, 0.65499604)
+
+[node name="Object_Pipe_Ground_6" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1714981502 instance=ExtResource("15_aqe60")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, -8.742278e-08, -1, 4.371139e-08, 1, -8.742278e-08, 1.9106855e-15, 5.776394, 3.1218605, -0.7092624)
+
+[node name="Object_Pipe_Ground_7" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1645720432 instance=ExtResource("15_aqe60")]
+transform = Transform3D(1, -8.742278e-08, -4.3711385e-08, -8.742278e-08, -1, 4.371139e-08, -4.3711392e-08, -4.3711385e-08, -1, 2.608267, 3.1680863, -0.7092624)
+
 [node name="Object_Pipe_Ground_2_Bow" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=2085619013 instance=ExtResource("16_y1pok")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.908669, 0, 8.234246)
 
@@ -302,10 +314,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.657669, 9.536743e-07, 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1862955, 9.536743e-07, 5.0662494)
 
 [node name="Object_Pipe_12" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=91984002 instance=ExtResource("18_4el5n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.685865, -9.536743e-07, -0.6469327)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 25.497002, -9.536743e-07, -0.6469327)
 
 [node name="Object_Pipe_13" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=977932967 instance=ExtResource("18_4el5n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.685865, -9.536743e-07, -0.20004451)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 25.497002, -9.536743e-07, -0.20004451)
+
+[node name="Object_Pipe_14" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1584010863 instance=ExtResource("18_4el5n")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 22.56417, 0.026859045, -1.2710677)
+
+[node name="Object_Pipe_15" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=774436999 instance=ExtResource("18_4el5n")]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 18.685865, -0.04472196, -0.87982446)
+
+[node name="Object_Pipe_16" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=1694694901 instance=ExtResource("18_4el5n")]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 14.685865, 0.016830802, -0.87982446)
+
+[node name="Object_Pipe_18" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=745765442 instance=ExtResource("18_4el5n")]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 2.4436808, 0.016830802, -0.87982446)
+
+[node name="Object_Pipe_19" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=2129698448 instance=ExtResource("18_4el5n")]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 2.9474618, 0.016830802, -0.87982446)
+
+[node name="Object_Pipe_20" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=426328384 instance=ExtResource("18_4el5n")]
+transform = Transform3D(-8.742276e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -8.742276e-08, 3.947462, 0.016830802, 0.9223651)
+
+[node name="Object_Pipe_21" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=994038022 instance=ExtResource("18_4el5n")]
+transform = Transform3D(-8.742276e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -8.742276e-08, 3.443681, 0.016830802, 0.9223651)
+
+[node name="Object_Pipe_17" parent="NavigationRegion3D/Map-Layout/Decoration" unique_id=587525189 instance=ExtResource("18_4el5n")]
+transform = Transform3D(-0.7071067, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.7071067, 13.397038, 0.010213256, -1.3106152)
 
 [node name="Tropfen" type="Marker3D" parent="NavigationRegion3D/Map-Layout" unique_id=2078097311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.984865, 0.6692571, -1.708855)

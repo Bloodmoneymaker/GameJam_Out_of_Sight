@@ -1,5 +1,7 @@
 [gd_scene format=4 uid="uid://ddk63olr0dfct"]
 
+[ext_resource type="PackedScene" uid="uid://didvp64708g06" path="res://Asset/Blender/Object/Tiles/Sewer/HD/Tile_Sewer_Edge_HD.glb" id="1_faevr"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygl24"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5k7yb"]
@@ -41,10 +43,15 @@ data = PackedVector3Array(0.3333, 0, 3, 0.2227, -0.099999994, 2.319, 0.2227, 0, 
 
 [node name="Tile_Sewer_Edge" type="Node3D" parent="." unique_id=912338025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+visible = false
 
 [node name="Tile_Sewer_Road_Edge" type="MeshInstance3D" parent="Tile_Sewer_Edge" unique_id=323858057]
+visible = false
 mesh = SubResource("ArrayMesh_8cxvr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1256638773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 shape = SubResource("ConcavePolygonShape3D_rv3uk")
+
+[node name="Tile_Sewer_Edge_HD" parent="." unique_id=888149491 instance=ExtResource("1_faevr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
