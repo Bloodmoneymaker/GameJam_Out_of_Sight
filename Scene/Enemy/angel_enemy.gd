@@ -21,6 +21,7 @@ const SOUND_UNIT_SIZE := 8.0
 @export_range(0.1, 1.0, 0.05) var approach_fraction_max: float = 0.6
 @export_range(3.0, 20.0, 0.5) var flank_max_distance: float = 8.0
 
+var _visibility_radius := 2.5
 var _last_blink_was_quick := false
 var _sound_timer: Timer
 var _laugh_player: AudioStreamPlayer3D
@@ -30,6 +31,13 @@ var _blink_wait_remaining := 0.0
 
 func _ready() -> void:
 	super._ready()
+	# Enclose the entire model, including wings, regardless of its landing rotation.
+	for node in find_children("*", "MeshInstance3D", true, false):
+		var mesh_node := node as MeshInstance3D
+		var bounds := mesh_node.get_aabb()
+		for corner in range(8):
+			var world_corner := mesh_node.global_transform * bounds.get_endpoint(corner)
+			_visibility_radius = maxf(_visibility_radius, global_position.distance_to(world_corner) + 0.3)
 	_blink_wait_remaining = _next_blink_wait(20.0)
 	if is_instance_valid(_animation_player):
 		_animation_player.play("Angle_Stay")
@@ -134,6 +142,8 @@ func _update_special_chase_movement(delta: float, target: Node3D) -> bool:
 	if is_stunned() or not chase_enabled or not is_instance_valid(target):
 		return true
 
+	if _position_in_player_view(global_position):
+		return true
 	_blink_wait_remaining -= delta
 	if _blink_wait_remaining > 0.0:
 		return true
@@ -164,11 +174,32 @@ func _update_special_chase_movement(delta: float, target: Node3D) -> bool:
 				direction = path_offset.normalized()
 				hop_distance = minf(hop_distance, path_offset.length())
 
+	var destination := global_position + direction * hop_distance
+	if not can_teleport_to(destination):
+		_blink_wait_remaining = 0.2
+		return true
 	look_at(global_position - direction, Vector3.UP)
-	global_position += direction * hop_distance
+	global_position = destination
 	_try_laugh(0.6 if _is_behind_player() else 0.35)
 	_blink_wait_remaining = _next_blink_wait(distance_to_target)
 	_delay_attack_after_teleport(target)
+	return true
+
+
+## Shared by AI blinks and scripted level teleports. No camera means no teleport.
+func can_teleport_to(destination: Vector3) -> bool:
+	return not is_stunned() and not _position_in_player_view(global_position) and not _position_in_player_view(destination)
+
+
+func _position_in_player_view(position: Vector3) -> bool:
+	var camera := get_viewport().get_camera_3d()
+	if not is_instance_valid(camera):
+		return true
+	# Conservative sphere/frustum intersection: even a wing at the screen edge
+	# blocks teleportation. Darkness and intervening walls do not bypass this rule.
+	for plane in camera.get_frustum():
+		if plane.distance_to(position) > _visibility_radius:
+			return false
 	return true
 
 
@@ -205,6 +236,8 @@ func _try_flank_teleport(target: Node3D, distance_to_target: float) -> bool:
 		if nav_position.distance_to(target.global_position) < minimum_distance:
 			continue
 		if nav_position.distance_to(global_position) < 1.0:
+			continue
+		if not can_teleport_to(nav_position):
 			continue
 		var path := NavigationServer3D.map_get_path(
 			navigation_map, global_position, nav_position, true, navigation_agent.navigation_layers

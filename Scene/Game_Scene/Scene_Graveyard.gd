@@ -48,11 +48,13 @@ func _get_teleport_markers() -> Array[AngelTeleportMarker]:
 
 func _schedule_teleport(marker: AngelTeleportMarker) -> void:
 	await get_tree().create_timer(marker.delay + teleport_delay_offset).timeout
-	if is_instance_valid(marker) and is_instance_valid(marker.angel):
-		_teleport_angel(marker)
+	while is_instance_valid(marker) and is_instance_valid(marker.angel):
+		if _teleport_angel(marker):
+			return
+		await get_tree().create_timer(0.2).timeout
 
 
-func _teleport_angel(marker: AngelTeleportMarker) -> void:
+func _teleport_angel(marker: AngelTeleportMarker) -> bool:
 	var target := marker.global_position
 	if marker.snap_to_navmesh:
 		var region := get_node_or_null("NavigationRegion3D") as NavigationRegion3D
@@ -63,6 +65,9 @@ func _teleport_angel(marker: AngelTeleportMarker) -> void:
 				if candidate.distance_to(target) <= max_navmesh_snap_distance:
 					target = candidate
 
+	if not marker.angel.has_method("can_teleport_to") or not marker.angel.call("can_teleport_to", target):
+		return false
 	marker.angel.global_position = target
 	if marker.apply_rotation:
 		marker.angel.global_rotation.y = marker.global_rotation.y
+	return true
