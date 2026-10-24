@@ -20,6 +20,13 @@ func show_win_screen() -> void:
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	retry_button.grab_focus()
+	
+	var total_seconds := int(GameManager.levelTime)
+	var minutes: int = total_seconds / 60
+	var seconds: int = total_seconds % 60
+	var text = "%02d:%02d" % [minutes, seconds]
+	$CenterContainer/PanelContainer/VBoxContainer/Time.text = "Time: " +  text
+	
 	GameManager.completed_missions.append(GameManager.get_current_scene())
 	SignalManager.updateEnabledLevel.emit()
 

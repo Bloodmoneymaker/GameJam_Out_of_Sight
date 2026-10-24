@@ -14,6 +14,8 @@ var win_screen: Control
 var lose_screen: Control
 var current_scene_id: int = -1
 
+var levelTime: float = 0.0
+
 ## Paths are loaded only after a menu tile is selected. Preloading a level that
 ## references autoloads can create a resource-loading cycle during startup.
 var scene: Dictionary = {
