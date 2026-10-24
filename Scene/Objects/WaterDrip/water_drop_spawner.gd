@@ -6,6 +6,7 @@ enum EchoSize {LIGHT, NORMAL}
 
 @export_range(0.1, 100.0, 0.1, "or_greater") var drops_per_second: float = 1.0
 @export var echo_size: EchoSize = EchoSize.NORMAL
+@export var play_drop_sound: bool = false
 
 @onready var spawn_shape: CollisionShape3D = $CollisionShape3D
 @onready var drop_template: WaterDrop = $WaterDropTemplate
@@ -42,6 +43,7 @@ func _spawn_drop() -> void:
 	drop.top_level = true
 	drop.visible = true
 	drop.echo_size = int(echo_size)
+	drop.play_impact_sound = drop.play_impact_sound and play_drop_sound
 	drop.set_physics_process(true)
 	add_child(drop)
 	drop.global_position = spawn_shape.global_transform * _random_point_in_shape()

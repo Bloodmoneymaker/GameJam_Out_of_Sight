@@ -5,6 +5,8 @@ class_name WaterDrop
 enum EchoSize {LIGHT, NORMAL}
 
 @export var echo_size: EchoSize = EchoSize.NORMAL
+@export var play_impact_sound: bool = true
+@export var impact_sound: AudioStream = preload("res://Asset/AudioFX/water_drop_fx_01.wav")
 
 const MAX_LIFETIME := 10.0
 ## Volume fades evenly from SOUND_VOLUME_DB at the drop to silence at this distance
@@ -30,8 +32,9 @@ func _physics_process(delta: float) -> void:
 	if hit:
 		Echo.water_drop_echo(hit.position + hit.normal * 0.05, echo_size)
 		# Slight pitch variation so repeated drips don't sound identical
-		AudioManager.play_sound_3d_special(Audio.sound[Audio.SOUND.WaterDrop], hit.position, randf_range(0.9, 1.1), SOUND_MAX_DISTANCE,
-				SOUND_VOLUME_DB, 1.0, AudioStreamPlayer3D.ATTENUATION_DISABLED)
+		if play_impact_sound and impact_sound != null:
+			AudioManager.play_sound_3d_special(impact_sound, hit.position, randf_range(0.9, 1.1), SOUND_MAX_DISTANCE,
+					SOUND_VOLUME_DB, 1.0, AudioStreamPlayer3D.ATTENUATION_DISABLED)
 		var splash := WaterSplash.new()
 		splash.setup(hit.position, hit.normal)
 		get_parent().add_child(splash)

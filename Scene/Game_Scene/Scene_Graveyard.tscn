@@ -1111,6 +1111,6 @@ transform = Transform3D(-0.20613587, 0, 0.54862684, 0, 0.51088256, 0, -0.6158017
 transform = Transform3D(-0.20613587, 0, 0.54862684, 0, 0.51088256, 0, -0.6158017, 0, -0.18364951, 34.655704, -0.46787933, -12.911963)
 
 [node name="WaterDropSpawner" parent="." unique_id=1971688383 instance=ExtResource("31_laph3")]
-transform = Transform3D(13.280599, 0, 0, 0, 1.4637098, 0, 0, 0, 11.421642, 18.016096, 7.6115294, -19.892206)
+transform = Transform3D(13.280599, 0, 0, 0, 1.4637098, 0, 0, 0, 11.421642, 18.016096, 25.95325, -19.892206)
 drops_per_second = 60.0
 echo_size = 0
