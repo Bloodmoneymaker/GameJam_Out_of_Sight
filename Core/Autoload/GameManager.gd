@@ -1,7 +1,7 @@
 # GameManager.gd (Autoload)
 extends Node
 
-enum SCENE {DEBUG = 0,TUTORIAL_1 = 1,TUTORIAL_2 = 2,SEWER = 4,FOREST = 5,TUTORIAL_3 = 6,Graveyard = 7,NONE = -1}
+enum SCENE {DEBUG = 0,TUTORIAL_1 = 1,TUTORIAL_2 = 2,SEWER = 4,FOREST = 5,TUTORIAL_3 = 6,Graveyard = 7,CRYPT = 8,NONE = -1}
 
 # Scene
 var container_scene:Node
@@ -25,7 +25,8 @@ var scene: Dictionary = {
 	SCENE.SEWER: "res://Scene/Game_Scene/Scene_Sewer.tscn",
 	SCENE.DEBUG: "res://Scene/scene_debug.tscn",
 	SCENE.FOREST : "res://Scene/Game_Scene/Scene_Forest.tscn",
-	SCENE.Graveyard : "res://Scene/Game_Scene/Scene_Graveyard.tscn"
+	SCENE.Graveyard : "res://Scene/Game_Scene/Scene_Graveyard.tscn",
+	SCENE.CRYPT: "res://Scene/Game_Scene/Scene_Crypt.tscn"
 }
 
 var scene_titles: Dictionary = {
@@ -35,6 +36,7 @@ var scene_titles: Dictionary = {
 	SCENE.TUTORIAL_3: "Tutorial 3",
 	SCENE.SEWER: "Sewer",
 	SCENE.Graveyard: "Graveyard",
+	SCENE.CRYPT: "Crypt",
 	SCENE.FOREST: "Forest"
 }
 
