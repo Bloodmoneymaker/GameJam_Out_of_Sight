@@ -6,7 +6,6 @@ class_name PlayerCharacter
 @export var jump_velocity := 4.5
 @export var mouse_sensitivity := 0.002
 @export var aim_range := 100.0
-@export var interact_range := 2.5
 @export var step_distance := 1.8
 @export var feet_offset := 0.9
 
@@ -26,18 +25,12 @@ var _was_on_floor := true
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var echo_charger = $EchoCharger
 @onready var health_component = $HealthComponent
-@onready var interact_prompt: Label = $HUD/InteractPrompt
 
 
 func _ready() -> void:
 	health_component.died.connect(_on_died)
 	camera.make_current()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	interact_prompt.hide()
-
-
-func _process(_delta: float) -> void:
-	interact_prompt.visible = _get_aimed_trigger() != null
 
 
 func _input(event: InputEvent) -> void:
@@ -52,35 +45,11 @@ func _input(event: InputEvent) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and not event.is_echo():
-		var trigger := _get_aimed_trigger()
-		if is_instance_valid(trigger):
-			trigger.activate()
-			get_viewport().set_input_as_handled()
-		return
-
 	if event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			echo_charger.try_scan(head.global_position)
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			_emit_wave_at_aim()
-
-
-func _get_aimed_trigger() -> Node:
-	var origin := camera.global_position
-	var target := origin - camera.global_basis.z * interact_range
-	var query := PhysicsRayQueryParameters3D.create(origin, target, 0xFFFFFFFF, [get_rid()])
-	query.collide_with_areas = true
-	var hit := get_world_3d().direct_space_state.intersect_ray(query)
-	if hit.is_empty():
-		return null
-
-	var candidate := hit.collider as Node
-	while is_instance_valid(candidate):
-		if candidate.is_in_group("trigger") and candidate.has_method("activate"):
-			return candidate
-		candidate = candidate.get_parent()
-	return null
 
 
 func _emit_wave_at_aim() -> void:

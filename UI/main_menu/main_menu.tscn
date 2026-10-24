@@ -242,37 +242,6 @@ texture = ExtResource("7_esc_icon")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="InteractHint" type="HBoxContainer" parent="ControlHints" unique_id=473571283]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="InteractText" type="VBoxContainer" parent="ControlHints/InteractHint" unique_id=378698806]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 2
-alignment = 1
-
-[node name="InteractAction" type="Label" parent="ControlHints/InteractHint/InteractText" unique_id=973771256]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.72, 0.96, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "F"
-horizontal_alignment = 2
-
-[node name="InteractDescription" type="Label" parent="ControlHints/InteractHint/InteractText" unique_id=870708737]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.65, 0.7, 1)
-theme_override_font_sizes/font_size = 13
-text = "Interact with traps"
-horizontal_alignment = 2
-
-[node name="InteractIcon" type="TextureRect" parent="ControlHints/InteractHint" unique_id=1789035042]
-custom_minimum_size = Vector2(56, 40)
-layout_mode = 2
-texture = ExtResource("7_esc_icon")
-expand_mode = 1
-stretch_mode = 5
-
 [node name="EchoUIOverlay" type="ColorRect" parent="." unique_id=1485321121]
 material = SubResource("EchoUIOverlayMaterial")
 layout_mode = 1
