@@ -38,7 +38,7 @@ var scene_titles: Dictionary = {
 	SCENE.FOREST: "Forest"
 }
 
-var completed_missions: Array[SCENE] = [SCENE.TUTORIAL_1]
+var completed_missions: Array[SCENE] = []
 
 func get_current_scene() -> SCENE:
 	if is_instance_valid(ui_main) and ui_main.visible:
