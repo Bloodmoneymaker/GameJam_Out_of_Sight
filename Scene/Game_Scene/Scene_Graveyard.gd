@@ -1,7 +1,11 @@
 extends "res://Scene/Game_Scene.gd"
 
-const ANGEL_SCRIPT := preload("res://Scene/Enemy/angel_enemy.gd")
-const ANGEL_TELEPORT_DELAY := 2.0
+## Knoten, unter dem die AngelTeleportMarker liegen (leer = ganze Szene durchsuchen).
+@export var teleport_markers_root: Node3D
+## Zusätzliche Verzögerung, die auf jeden Marker-Delay addiert wird.
+@export_range(0.0, 60.0, 0.1, "suffix:s") var teleport_delay_offset := 0.0
+## Max. Abstand, den das Einrasten auf das Navmesh verschieben darf.
+@export var max_navmesh_snap_distance := 3.0
 
 
 func _ready() -> void:
@@ -18,9 +22,8 @@ func _ready() -> void:
 	else:
 		Echo.player_scan_echo(player.global_position + Vector3.UP)
 
-	await get_tree().create_timer(ANGEL_TELEPORT_DELAY).timeout
-	if is_instance_valid(player):
-		_teleport_angels(player)
+	for marker in _get_teleport_markers():
+		_schedule_teleport(marker)
 
 
 func _get_spawned_player() -> Node3D:
@@ -34,31 +37,32 @@ func _get_spawned_player() -> Node3D:
 	return null
 
 
-func _teleport_angels(player: Node3D) -> void:
-	var region := get_node_or_null("NavigationRegion3D") as NavigationRegion3D
-	if not is_instance_valid(region):
-		return
-	var navigation_map := region.get_navigation_map()
-	if not navigation_map.is_valid() or NavigationServer3D.map_get_iteration_id(navigation_map) <= 0:
-		return
+func _get_teleport_markers() -> Array[AngelTeleportMarker]:
+	var root: Node = teleport_markers_root if is_instance_valid(teleport_markers_root) else self
+	var markers: Array[AngelTeleportMarker] = []
+	for node in root.find_children("*", "Marker3D", true, false):
+		if node is AngelTeleportMarker:
+			markers.append(node)
+	return markers
 
-	var angels: Array[Enemy] = []
-	for node in find_children("*", "CharacterBody3D", true, false):
-		if node.get_script() == ANGEL_SCRIPT:
-			angels.append(node as Enemy)
-	angels.sort_custom(func(a: Enemy, b: Enemy) -> bool: return a.global_position.x < b.global_position.x)
 
-	for index in range(angels.size()):
-		var angel := angels[index]
-		var edge_positions: Array[Vector3] = [
-			Vector3(-4.0, player.global_position.y, -40.0) if index % 2 == 0 else Vector3(39.0, player.global_position.y, -40.0),
-			Vector3(39.0, player.global_position.y, 1.0) if index % 2 == 0 else Vector3(-4.0, player.global_position.y, 1.0),
-			Vector3(1.0, player.global_position.y, 3.0) if index % 2 == 0 else Vector3(37.0, player.global_position.y, 3.0),
-			Vector3(20.0, player.global_position.y, -41.0),
-		]
-		for desired in edge_positions:
-			var candidate := NavigationServer3D.map_get_closest_point(navigation_map, desired)
-			if candidate.distance_to(desired) > 3.0 or candidate.distance_to(player.global_position) < 12.0 or candidate.distance_to(angel.global_position) < 8.0:
-				continue
-			angel.global_position = candidate
-			break
+func _schedule_teleport(marker: AngelTeleportMarker) -> void:
+	await get_tree().create_timer(marker.delay + teleport_delay_offset).timeout
+	if is_instance_valid(marker) and is_instance_valid(marker.angel):
+		_teleport_angel(marker)
+
+
+func _teleport_angel(marker: AngelTeleportMarker) -> void:
+	var target := marker.global_position
+	if marker.snap_to_navmesh:
+		var region := get_node_or_null("NavigationRegion3D") as NavigationRegion3D
+		if is_instance_valid(region):
+			var navigation_map := region.get_navigation_map()
+			if navigation_map.is_valid() and NavigationServer3D.map_get_iteration_id(navigation_map) > 0:
+				var candidate := NavigationServer3D.map_get_closest_point(navigation_map, target)
+				if candidate.distance_to(target) <= max_navmesh_snap_distance:
+					target = candidate
+
+	marker.angel.global_position = target
+	if marker.apply_rotation:
+		marker.angel.global_rotation.y = marker.global_rotation.y
