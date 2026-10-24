@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://k5m0ikpjagej"]
 
 [ext_resource type="Script" uid="uid://v24r134pg0g4" path="res://Scene/scanner/scanner.gd" id="1_4ht74"]
-[ext_resource type="PackedScene" uid="uid://e04ntqy17tmy" path="res://Scene/scanner/bullet/bullet.tscn" id="2_bullet"]
 [ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="3_echo_material"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_haquo"]
@@ -335,10 +334,6 @@ nodes/StateMachine/position = Vector2(480, -106.666664)
 
 [node name="Scanner" type="Node3D" unique_id=596071866]
 script = ExtResource("1_4ht74")
-bullet_scene = ExtResource("2_bullet")
-
-[node name="BulletSpawn" type="Marker3D" parent="." unique_id=75710741]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.062877655, -0.99337506)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1236264288]
 transform = Transform3D(0.7402003, 0, 0.6723867, 0, 1.0000002, 0, -0.6723866, 0, 0.7402004, 0, -0.07080749, 0.089101434)

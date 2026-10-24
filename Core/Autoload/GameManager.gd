@@ -7,7 +7,6 @@ enum SCENE {DEBUG,TUTORIAL_1,TUTORIAL_2,LEVEL1,SEWER,FOREST,TUTORIAL_3,Graveyard
 var container_scene:Node
 var container_entity:Node
 var container_object:Node
-var container_projectiles:Node
 #UI
 var ui_main
 var win_screen: Control
@@ -107,7 +106,7 @@ func get_scene_title(scene_idx: int) -> String:
 	return str(scene_titles.get(scene_idx, "Level %d" % scene_idx))
 
 func delete_all_scenes() -> void:
-	for container in [container_scene, container_entity, container_object, container_projectiles]:
+	for container in [container_scene, container_entity, container_object]:
 		if not is_instance_valid(container):
 			continue
 		for child in container.get_children():

@@ -16,8 +16,6 @@ script = ExtResource("1_ig7tw")
 
 [node name="Container_Object" type="Node" parent="Container" unique_id=1920874077]
 
-[node name="Container_Projectiles" type="Node" parent="Container" unique_id=637539252]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1078344536]
 
 [node name="UI_Main" parent="CanvasLayer" unique_id=201389301 instance=ExtResource("4_main_menu")]
