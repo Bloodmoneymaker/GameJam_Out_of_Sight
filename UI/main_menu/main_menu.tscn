@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://buwmuqjhswijc" path="res://UI/main_menu/main_menu.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://bdeh326k04mff" path="res://UI/main_menu/echo_backdrop.tscn" id="2_echo_backdrop"]
-[ext_resource type="PackedScene" path="res://UI/main_menu/level_tile.tscn" id="3_level_tile"]
+[ext_resource type="PackedScene" uid="uid://b08xlvt5sw8ni" path="res://UI/main_menu/level_tile.tscn" id="3_level_tile"]
 [ext_resource type="PackedScene" path="res://UI/buttons/general_button.tscn" id="4_general_button"]
 [ext_resource type="Texture2D" uid="uid://dgsbqjrrau6fr" path="res://UI/main_menu/mouse_left_icon.svg" id="5_mouse_icon"]
 [ext_resource type="Texture2D" uid="uid://bydeuf0uvfe4t" path="res://UI/main_menu/space_key_icon.svg" id="6_space_icon"]
@@ -42,6 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 level_tile_scene = ExtResource("3_level_tile")
+enableAllLevel = false
 
 [node name="Background" type="SubViewportContainer" parent="." unique_id=1499514605]
 layout_mode = 1

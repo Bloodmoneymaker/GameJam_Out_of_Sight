@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://ib7qjn1acniu"]
 
-[ext_resource type="Script" path="res://UI/win_screen/win_screen.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://18xftnbm0fuq" path="res://UI/win_screen/win_screen.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://UI/buttons/general_button.tscn" id="2_button"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 36.0
+content_margin_top = 32.0
+content_margin_right = 36.0
+content_margin_bottom = 32.0
 bg_color = Color(0.035, 0.055, 0.08, 0.97)
 border_width_left = 2
 border_width_top = 2
@@ -14,12 +18,8 @@ corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
-content_margin_left = 36.0
-content_margin_top = 32.0
-content_margin_right = 36.0
-content_margin_bottom = 32.0
 
-[node name="WinScreen" type="Control"]
+[node name="WinScreen" type="Control" unique_id=816283108]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -28,58 +28,55 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
 script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1209787192]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
 color = Color(0.005, 0.012, 0.02, 0.78)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1442187534]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=889043691]
 custom_minimum_size = Vector2(480, 340)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=2066027710]
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Title" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1206330841]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.35, 1, 0.8, 1)
 theme_override_font_sizes/font_size = 40
 text = "YOU WON!"
 horizontal_alignment = 1
 
-[node name="Message" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="Message" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1191233975]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.84, 0.91, 0.94, 1)
 theme_override_font_sizes/font_size = 20
 text = "You reached the exit."
 horizontal_alignment = 1
 
-[node name="RetryButton" parent="CenterContainer/PanelContainer/VBoxContainer" instance=ExtResource("2_button")]
+[node name="RetryButton" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=474011663 instance=ExtResource("2_button")]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 text = "RETRY LEVEL"
 
-[node name="ReturnButton" parent="CenterContainer/PanelContainer/VBoxContainer" instance=ExtResource("2_button")]
+[node name="ReturnButton" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1998861659 instance=ExtResource("2_button")]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 text = "RETURN TO MENU"
