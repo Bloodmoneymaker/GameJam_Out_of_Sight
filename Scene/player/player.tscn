@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://k5m0ikpjagej" path="res://Scene/scanner/scanner.tscn" id="2_ubwr7"]
 [ext_resource type="PackedScene" uid="uid://qk63jreoynvu" path="res://Scene/player/echo_charger_component/echo_charger.tscn" id="3_echo_charger"]
 [ext_resource type="PackedScene" uid="uid://pot372665roe" path="res://UI/echoCharge/echoCharge.tscn" id="4_charge_ui"]
+[ext_resource type="Script" uid="uid://bi6rk2xyt4q73" path="res://Scene/player/timer.gd" id="7_ubgrh"]
 [ext_resource type="PackedScene" path="res://Shader/echo_contours.tscn" id="echo_contours"]
 [ext_resource type="PackedScene" path="res://Scene/player/health_component/health_component.tscn" id="health_component"]
 [ext_resource type="PackedScene" path="res://UI/health_hearts/health_hearts.tscn" id="health_hearts"]
@@ -54,22 +55,6 @@ offset_bottom = 2.0
 mouse_filter = 2
 color = Color(0.6, 0.9, 1, 0.6)
 
-[node name="InteractPrompt" type="Label" parent="HUD" unique_id=1306128461]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = 36.0
-offset_right = 90.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
-theme_override_font_sizes/font_size = 18
-text = "F — Interagieren"
-horizontal_alignment = 1
-
 [node name="HealthHearts" parent="HUD" unique_id=1016746661 node_paths=PackedStringArray("health_component") instance=ExtResource("health_hearts")]
 layout_mode = 3
 anchors_preset = 0
@@ -78,6 +63,14 @@ offset_top = 0.0
 offset_right = 136.0
 offset_bottom = 32.0
 health_component = NodePath("../../HealthComponent")
+
+[node name="TimerLabel" type="Label" parent="HUD" unique_id=753662557]
+offset_left = 1063.0
+offset_top = 16.0
+offset_right = 1127.0
+offset_bottom = 39.0
+text = "01:01:20"
+script = ExtResource("7_ubgrh")
 
 [node name="HealthComponent" parent="." unique_id=191218748 instance=ExtResource("health_component")]
 max_health = 3.0

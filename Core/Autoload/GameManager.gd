@@ -7,12 +7,14 @@ enum SCENE {DEBUG,TUTORIAL_1,TUTORIAL_2,LEVEL1,SEWER,FOREST,TUTORIAL_3,Graveyard
 var container_scene:Node
 var container_entity:Node
 var container_object:Node
-var container_projectiles:Node
 #UI
 var ui_main
 var win_screen: Control
 var lose_screen: Control
 var current_scene_id: int = -1
+
+var level_times: Dictionary[SCENE, float] = {}
+var current_level_time: float = 0.0
 
 ## Paths are loaded only after a menu tile is selected. Preloading a level that
 ## references autoloads can create a resource-loading cycle during startup.
@@ -40,6 +42,16 @@ var scene_titles: Dictionary = {
 
 var completed_missions: Array[SCENE] = []
 
+
+func addLevelTime(time: float) -> void:
+	var best_time: float = getLevelTime()
+	if best_time == -1.0 or time < best_time:
+		level_times[get_current_scene()] = time
+
+func getLevelTime() -> float:
+	var scene: SCENE = get_current_scene()
+	return level_times.get(scene, -1.0)
+
 func get_current_scene() -> SCENE:
 	if is_instance_valid(ui_main) and ui_main.visible:
 		return SCENE.NONE
@@ -56,6 +68,7 @@ func load_scene(scene_idx: SCENE) -> void:
 		return
 
 	current_scene_id = scene_idx
+	current_level_time = 0.0
 	delete_all_scenes()
 	var new_scene := packed_scene.instantiate()
 	container_scene.add_child(new_scene)
@@ -93,7 +106,7 @@ func get_scene_title(scene_idx: int) -> String:
 	return str(scene_titles.get(scene_idx, "Level %d" % scene_idx))
 
 func delete_all_scenes() -> void:
-	for container in [container_scene, container_entity, container_object, container_projectiles]:
+	for container in [container_scene, container_entity, container_object]:
 		if not is_instance_valid(container):
 			continue
 		for child in container.get_children():
