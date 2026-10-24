@@ -11,14 +11,13 @@ extends Button
 func _ready() -> void:
 	_connect_level_selection()
 	_update_labels()
+		
 
 
 func _connect_level_selection() -> void:
 	if not pressed.is_connected(_on_pressed):
 		pressed.connect(_on_pressed)
 
-	mouse_entered.connect(_play_hover_sound)
-	focus_entered.connect(_play_hover_sound)
 
 func _update_labels() -> void:
 	number_label.text = "%02d" % display_number
@@ -31,3 +30,12 @@ func _on_pressed() -> void:
 
 func _play_hover_sound() -> void:
 	AudioManager.play_sound_2d(Audio.SOUND.UI_Hover)
+
+
+func _on_focus_entered() -> void:
+	if !disabled:
+		_play_hover_sound()
+
+func _on_mouse_entered() -> void:
+	if !disabled:
+		_play_hover_sound()

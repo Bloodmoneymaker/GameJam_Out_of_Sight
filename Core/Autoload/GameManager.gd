@@ -1,7 +1,7 @@
 # GameManager.gd (Autoload)
 extends Node
 
-enum SCENE {DEBUG,TUTORIAL_1,TUTORIAL_2,LEVEL1,SEWER,FOREST,TUTORIAL_3,Graveyard}
+enum SCENE {DEBUG,TUTORIAL_1,TUTORIAL_2,LEVEL1,SEWER,FOREST,TUTORIAL_3,Graveyard,NONE = -1}
 
 # Scene
 var container_scene:Node
@@ -37,6 +37,13 @@ var scene_titles: Dictionary = {
 	SCENE.Graveyard: "Graveyard",
 	SCENE.FOREST: "Forest"
 }
+
+var completed_missions: Array[SCENE] = []
+
+func get_current_scene() -> SCENE:
+	if is_instance_valid(ui_main) and ui_main.visible:
+		return SCENE.NONE
+	return current_scene_id as SCENE
 
 func load_scene(scene_idx: SCENE) -> void:
 	if not scene.has(scene_idx):

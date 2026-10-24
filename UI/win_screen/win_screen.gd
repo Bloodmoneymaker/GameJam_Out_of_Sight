@@ -20,6 +20,8 @@ func show_win_screen() -> void:
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	retry_button.grab_focus()
+	GameManager.completed_missions.append(GameManager.get_current_scene())
+	SignalManager.updateEnabledLevel.emit()
 
 
 func _on_return_button_pressed() -> void:
