@@ -13,6 +13,8 @@ const REFLECTION_STRENGTH := 0.5
 ## Walls closer than this to the source are skipped; their reflection would overlap the original.
 const MIN_WALL_DISTANCE := 0.25
 
+enum WaterDropEchoSize {LIGHT, NORMAL}
+
 ## Receivers decide whether and when this wave hits them.
 signal wave_emitted(origin: Vector3, speed: float, lifetime: float, can_stun: bool, lure_source: Node3D)
 
@@ -84,8 +86,11 @@ func strohman_echo(origin: Vector3, source: Node3D) -> void:
 
 
 ## Small and without reflections: dripping water is frequent and should not use up wave slots.
-func water_drop_echo(origin: Vector3) -> void:
-	_emit_wave(origin, 3.0, 0.6, 0.3, false, Color(0.25, 0.55, 1.0, 1.0))
+func water_drop_echo(origin: Vector3, size: int = WaterDropEchoSize.NORMAL) -> void:
+	if size == WaterDropEchoSize.LIGHT:
+		_emit_wave(origin, 2.5, 0.4, 0.15, false, Color(0.25, 0.55, 1.0, 1.0))
+	else:
+		_emit_wave(origin, 3.0, 0.6, 0.3, false, Color(0.25, 0.55, 1.0, 1.0))
 
 
 func debug_echo(origin: Vector3) -> void:
