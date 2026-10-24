@@ -46,7 +46,8 @@ func _process(delta: float) -> void:
 
 
 func player_scan_echo(origin: Vector3) -> void:
-	_emit_wave(origin, 10.0, 4.0, 1.0, true, Color.TRANSPARENT, true)
+	# Slower expansion limits the radius to 20 m while keeping 4 s of visibility.
+	_emit_wave(origin, 5.0, 4.0, 1.0, true, Color.TRANSPARENT, true)
 
 
 func player_aim_echo(origin: Vector3) -> void:

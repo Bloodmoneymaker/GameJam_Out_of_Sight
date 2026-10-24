@@ -1,18 +1,19 @@
 extends "res://Scene/Enemy/enemy.gd"
-## Plays occasional, spatial Angel sounds without changing shared enemy behaviour.
+## Blink movement, poses and spatial laughter for the Angel.
 
 const ANGEL_SOUNDS: Array[int] = [
 	Audio.SOUND.Angel_01,
 	Audio.SOUND.Angel_02,
 	Audio.SOUND.Angel_03
 ]
-const MIN_SOUND_INTERVAL := 10.0
-const MAX_SOUND_INTERVAL := 22.0
+const MIN_SOUND_INTERVAL := 4.0
+const MAX_SOUND_INTERVAL := 9.0
 const SOUND_MAX_DISTANCE := 24.0
 const SOUND_VOLUME_DB := 0.0
 const SOUND_UNIT_SIZE := 8.0
 
 var _sound_timer: Timer
+var _laugh_player: AudioStreamPlayer3D
 var _blink_wait_remaining := 0.0
 @onready var _animation_player: AnimationPlayer = $Angle2/AnimationPlayer
 
@@ -27,32 +28,38 @@ func _ready() -> void:
 
 	_sound_timer = Timer.new()
 	_sound_timer.one_shot = true
-	_sound_timer.timeout.connect(_play_random_sound)
 	add_child(_sound_timer)
-	_schedule_next_sound()
+	_sound_timer.start(randf_range(1.0, 3.0))
+	_laugh_player = AudioStreamPlayer3D.new()
+	_laugh_player.max_distance = SOUND_MAX_DISTANCE
+	_laugh_player.volume_db = SOUND_VOLUME_DB
+	_laugh_player.unit_size = SOUND_UNIT_SIZE
+	add_child(_laugh_player)
+	_laugh_player.position = Vector3.UP * 1.4
 
 
 func _process(_delta: float) -> void:
 	if not is_instance_valid(_sound_timer):
 		return
 	if not _can_move_and_laugh():
-		_sound_timer.stop()
-	elif _sound_timer.time_left <= 0.0:
-		_schedule_next_sound()
+		_laugh_player.stop()
+	elif _is_behind_player() and _sound_timer.is_stopped():
+		_try_laugh(0.6)
 
 
-func _play_random_sound() -> void:
+func _try_laugh(chance: float) -> void:
 	if not is_inside_tree() or not _can_move_and_laugh():
 		return
+	if not _sound_timer.is_stopped() or _laugh_player.playing:
+		return
+	# Retry after a short pause, never roll a new chance every frame.
+	if randf() >= chance:
+		_sound_timer.start(randf_range(1.0, 2.0))
+		return
 	var sound_id: int = ANGEL_SOUNDS.pick_random()
-	AudioManager.play_sound_3d_special(
-		Audio.sound[sound_id],
-		global_position,
-		randf_range(0.95, 1.05),
-		SOUND_MAX_DISTANCE,
-		SOUND_VOLUME_DB,
-		SOUND_UNIT_SIZE
-	)
+	_laugh_player.stream = Audio.sound[sound_id]
+	_laugh_player.pitch_scale = randf_range(0.95, 1.05)
+	_laugh_player.play()
 	_schedule_next_sound()
 
 
@@ -63,6 +70,21 @@ func _schedule_next_sound() -> void:
 
 func _can_move_and_laugh() -> bool:
 	return not is_stunned() and chase_enabled and is_instance_valid(get_chase_target())
+
+
+func _is_behind_player() -> bool:
+	var player := _player
+	if not is_instance_valid(player):
+		player = _find_player()
+	if not is_instance_valid(player):
+		return false
+	var offset := global_position - player.global_position
+	if offset.length() > SOUND_MAX_DISTANCE:
+		return false
+	offset.y = 0.0
+	var backward := player.global_basis.z
+	backward.y = 0.0
+	return offset.normalized().dot(backward.normalized()) > 0.25
 
 
 func _on_attack_started() -> void:
@@ -79,6 +101,8 @@ func _on_walking_changed(walking: bool) -> void:
 
 
 func _on_stunned() -> void:
+	if is_instance_valid(_laugh_player):
+		_laugh_player.stop()
 	_blink_wait_remaining = _next_blink_wait(_distance_to_player())
 	if is_instance_valid(_animation_player):
 		var close_to_player := _is_close_to_player_for_attack_pose()
@@ -113,6 +137,7 @@ func _update_special_chase_movement(delta: float, target: Node3D) -> bool:
 		return true
 
 	if randf() < 0.2 and _try_flank_teleport(target, distance_to_target):
+		_try_laugh(0.7)
 		_blink_wait_remaining = _next_blink_wait(distance_to_target)
 		return true
 
@@ -130,6 +155,7 @@ func _update_special_chase_movement(delta: float, target: Node3D) -> bool:
 
 	look_at(global_position - direction, Vector3.UP)
 	global_position += direction * hop_distance
+	_try_laugh(0.6 if _is_behind_player() else 0.35)
 	_blink_wait_remaining = _next_blink_wait(distance_to_target)
 	return true
 
