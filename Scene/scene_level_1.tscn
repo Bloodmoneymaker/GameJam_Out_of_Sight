@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://btoqrdxt4j6j7"]
+[gd_scene format=3 uid="uid://dr0u4bgd06hse"]
 
 [ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_game"]
 [ext_resource type="PackedScene" uid="uid://c2a2abmombtts" path="res://Scene/echo_mesh/echo_mesh.tscn" id="2_echo"]
 [ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="3_mat"]
-[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="4_beacon"]
-[ext_resource type="Script" path="res://Scene/kill_zone/kill_zone.gd" id="5_kill"]
+[ext_resource type="PackedScene" uid="uid://76pkpl3m5xs3" path="res://Scene/beacon/beacon.tscn" id="4_beacon"]
+[ext_resource type="Script" uid="uid://b8hmifiu4x832" path="res://Scene/kill_zone/kill_zone.gd" id="5_kill"]
 
 [sub_resource type="Environment" id="Environment_1"]
 background_mode = 2
@@ -112,6 +112,9 @@ size = Vector3(4, 2.75, 0.5)
 material = ExtResource("3_mat")
 size = Vector3(4, 3, 0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(4, 0.3, 6.7082)
+
 [sub_resource type="BoxMesh" id="BoxMesh_26"]
 material = ExtResource("3_mat")
 size = Vector3(24, 0.5, 10)
@@ -123,6 +126,9 @@ size = Vector3(8, 0.5, 4)
 [sub_resource type="BoxMesh" id="BoxMesh_28"]
 material = ExtResource("3_mat")
 size = Vector3(24, 0.5, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2"]
+size = Vector3(4, 0.3, 6.7082)
 
 [sub_resource type="BoxMesh" id="BoxMesh_29"]
 material = ExtResource("3_mat")
@@ -136,428 +142,422 @@ size = Vector3(0.5, 3, 2.5)
 material = ExtResource("3_mat")
 size = Vector3(0.5, 3, 3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-size = Vector3(4, 0.3, 6.7082)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2"]
-size = Vector3(4, 0.3, 6.7082)
-
 [sub_resource type="BoxShape3D" id="KillShape"]
 size = Vector3(40, 2, 140)
 
-[node name="Scene_Level_1" type="Node3D"]
+[node name="Scene_Level_1" type="Node3D" unique_id=1903760533]
 script = ExtResource("1_game")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1654661286]
 environment = SubResource("Environment_1")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=204543346]
 navigation_mesh = SubResource("NavigationMesh_1")
 
-[node name="Geometry" type="Node3D" parent="NavigationRegion3D"]
+[node name="Geometry" type="Node3D" parent="NavigationRegion3D" unique_id=1786260528]
 
-[node name="OuterWalls" type="Node3D" parent="NavigationRegion3D/Geometry"]
+[node name="OuterWalls" type="Node3D" parent="NavigationRegion3D/Geometry" unique_id=716881193]
 
-[node name="WallSouth" parent="NavigationRegion3D/Geometry/OuterWalls" instance=ExtResource("2_echo")]
+[node name="WallSouth" parent="NavigationRegion3D/Geometry/OuterWalls" unique_id=1436885056 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.5)
 mesh = SubResource("BoxMesh_1")
 
-[node name="WallNorth" parent="NavigationRegion3D/Geometry/OuterWalls" instance=ExtResource("2_echo")]
+[node name="WallNorth" parent="NavigationRegion3D/Geometry/OuterWalls" unique_id=177848553 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -116.5)
 mesh = SubResource("BoxMesh_1")
 
-[node name="WallWest" parent="NavigationRegion3D/Geometry/OuterWalls" instance=ExtResource("2_echo")]
+[node name="WallWest" parent="NavigationRegion3D/Geometry/OuterWalls" unique_id=1715572394 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 1, -56)
 mesh = SubResource("BoxMesh_2")
 
-[node name="WallEast" parent="NavigationRegion3D/Geometry/OuterWalls" instance=ExtResource("2_echo")]
+[node name="WallEast" parent="NavigationRegion3D/Geometry/OuterWalls" unique_id=2103127100 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 1, -56)
 mesh = SubResource("BoxMesh_2")
 
-[node name="A_Start" type="Node3D" parent="NavigationRegion3D/Geometry"]
+[node name="A_Start" type="Node3D" parent="NavigationRegion3D/Geometry" unique_id=1098619299]
 
-[node name="Floor" parent="NavigationRegion3D/Geometry/A_Start" instance=ExtResource("2_echo")]
+[node name="Floor" parent="NavigationRegion3D/Geometry/A_Start" unique_id=5972678 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -5)
 mesh = SubResource("BoxMesh_3")
 
-[node name="CorridorWall" parent="NavigationRegion3D/Geometry/A_Start" instance=ExtResource("2_echo")]
+[node name="CorridorWall" parent="NavigationRegion3D/Geometry/A_Start" unique_id=1467287790 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 1.5, -8)
 mesh = SubResource("BoxMesh_4")
 
-[node name="CorridorDeadEnd" parent="NavigationRegion3D/Geometry/A_Start" instance=ExtResource("2_echo")]
+[node name="CorridorDeadEnd" parent="NavigationRegion3D/Geometry/A_Start" unique_id=11873773 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25, 1.5, -13.75)
 mesh = SubResource("BoxMesh_5")
 
-[node name="Pillar1" parent="NavigationRegion3D/Geometry/A_Start" instance=ExtResource("2_echo")]
+[node name="Pillar1" parent="NavigationRegion3D/Geometry/A_Start" unique_id=1366778762 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.5, -6.5)
 mesh = SubResource("BoxMesh_6")
 
-[node name="Pillar2" parent="NavigationRegion3D/Geometry/A_Start" instance=ExtResource("2_echo")]
+[node name="Pillar2" parent="NavigationRegion3D/Geometry/A_Start" unique_id=1700800881 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1.5, -10.5)
 mesh = SubResource("BoxMesh_6")
 
-[node name="B_Holes" type="Node3D" parent="NavigationRegion3D/Geometry"]
+[node name="B_Holes" type="Node3D" parent="NavigationRegion3D/Geometry" unique_id=1602487336]
 
-[node name="Tile_r0c0" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r0c0" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1498170159 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.25, -16)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r0c1" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r0c1" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=679871803 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.25, -16)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r0c3" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r0c3" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1462037838 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.25, -16)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r0c4" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r0c4" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=636491669 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -0.25, -16)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r0c5" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r0c5" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=439972250 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.25, -16)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r1c0" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r1c0" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1834217526 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.25, -20)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r1c3" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r1c3" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=312667935 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.25, -20)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r1c5" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r1c5" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1742637702 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.25, -20)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r2c0" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r2c0" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1047788972 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.25, -24)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r2c1" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r2c1" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1135777104 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.25, -24)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r2c3" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r2c3" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=929128746 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.25, -24)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r2c5" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r2c5" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=726342364 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.25, -24)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r3c1" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r3c1" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=171158977 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.25, -28)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r3c2" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r3c2" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1071850392 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.25, -28)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r3c3" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r3c3" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1938431549 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.25, -28)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r3c5" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r3c5" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=528066726 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.25, -28)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r4c1" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r4c1" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1057872575 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.25, -32)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r4c5" parent="NavigationRegion3D/Geometry/B_Holes" instance=ExtResource("2_echo")]
+[node name="Tile_r4c5" parent="NavigationRegion3D/Geometry/B_Holes" unique_id=1004245253 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.25, -32)
 mesh = SubResource("BoxMesh_7")
 
-[node name="C_Bridges" type="Node3D" parent="NavigationRegion3D/Geometry"]
+[node name="C_Bridges" type="Node3D" parent="NavigationRegion3D/Geometry" unique_id=1986628014]
 
-[node name="BridgeLeftA" parent="NavigationRegion3D/Geometry/C_Bridges" instance=ExtResource("2_echo")]
+[node name="BridgeLeftA" parent="NavigationRegion3D/Geometry/C_Bridges" unique_id=1256935846 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.15, -37.5)
 mesh = SubResource("BoxMesh_8")
 
-[node name="BridgeLeftB" parent="NavigationRegion3D/Geometry/C_Bridges" instance=ExtResource("2_echo")]
+[node name="BridgeLeftB" parent="NavigationRegion3D/Geometry/C_Bridges" unique_id=627066383 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.15, -46.25)
 mesh = SubResource("BoxMesh_9")
 
-[node name="BridgeRightBroken" parent="NavigationRegion3D/Geometry/C_Bridges" instance=ExtResource("2_echo")]
+[node name="BridgeRightBroken" parent="NavigationRegion3D/Geometry/C_Bridges" unique_id=402768211 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.15, -38)
 mesh = SubResource("BoxMesh_10")
 
-[node name="D_Landing" type="Node3D" parent="NavigationRegion3D/Geometry"]
+[node name="D_Landing" type="Node3D" parent="NavigationRegion3D/Geometry" unique_id=193949086]
 
-[node name="Floor" parent="NavigationRegion3D/Geometry/D_Landing" instance=ExtResource("2_echo")]
+[node name="Floor" parent="NavigationRegion3D/Geometry/D_Landing" unique_id=1359327002 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -60)
 mesh = SubResource("BoxMesh_11")
 
-[node name="UnderDeckDeadEnd" parent="NavigationRegion3D/Geometry/D_Landing" instance=ExtResource("2_echo")]
+[node name="UnderDeckDeadEnd" parent="NavigationRegion3D/Geometry/D_Landing" unique_id=153131610 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -70.25)
 mesh = SubResource("BoxMesh_12")
 
-[node name="Crate1" parent="NavigationRegion3D/Geometry/D_Landing" instance=ExtResource("2_echo")]
+[node name="Crate1" parent="NavigationRegion3D/Geometry/D_Landing" unique_id=182025595 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -54)
 mesh = SubResource("BoxMesh_13")
 
-[node name="StairsUp" type="Node3D" parent="NavigationRegion3D/Geometry/D_Landing"]
+[node name="StairsUp" type="Node3D" parent="NavigationRegion3D/Geometry/D_Landing" unique_id=2005312388]
 
-[node name="Step1" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step1" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=1426046400 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.125, -56.25)
 mesh = SubResource("BoxMesh_14")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step2" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step2" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=1167538919 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.25, -56.75)
 mesh = SubResource("BoxMesh_15")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step3" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step3" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=941711359 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.375, -57.25)
 mesh = SubResource("BoxMesh_16")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step4" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step4" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=391844065 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, -57.75)
 mesh = SubResource("BoxMesh_17")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step5" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step5" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=923200509 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.625, -58.25)
 mesh = SubResource("BoxMesh_18")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step6" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step6" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=959855254 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.75, -58.75)
 mesh = SubResource("BoxMesh_19")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step7" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step7" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=2024957189 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.875, -59.25)
 mesh = SubResource("BoxMesh_20")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step8" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step8" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=77618949 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -59.75)
 mesh = SubResource("BoxMesh_21")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step9" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step9" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=578626943 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.125, -60.25)
 mesh = SubResource("BoxMesh_22")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step10" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step10" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=472830673 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.25, -60.75)
 mesh = SubResource("BoxMesh_23")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step11" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step11" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=534527099 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.375, -61.25)
 mesh = SubResource("BoxMesh_24")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step12" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" instance=ExtResource("2_echo")]
+[node name="Step12" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=289413361 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.5, -61.75)
 mesh = SubResource("BoxMesh_25")
 
-[node name="Ramp" type="StaticBody3D" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp"]
+[node name="Ramp" type="StaticBody3D" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp" unique_id=2124287716]
 transform = Transform3D(1, 0, 0, 0, 0.8944, -0.4472, 0, 0.4472, 0.8944, -10, 1.3658, -58.5671)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp/Ramp"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometry/D_Landing/StairsUp/Ramp" unique_id=1068906428]
 shape = SubResource("BoxShape3D_1")
 
-[node name="E_Deck" type="Node3D" parent="NavigationRegion3D/Geometry"]
+[node name="E_Deck" type="Node3D" parent="NavigationRegion3D/Geometry" unique_id=488186517]
 
-[node name="DeckStart" parent="NavigationRegion3D/Geometry/E_Deck" instance=ExtResource("2_echo")]
+[node name="DeckStart" parent="NavigationRegion3D/Geometry/E_Deck" unique_id=1463965624 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, -67)
 mesh = SubResource("BoxMesh_26")
 
-[node name="DeckTiles" type="Node3D" parent="NavigationRegion3D/Geometry/E_Deck"]
+[node name="DeckTiles" type="Node3D" parent="NavigationRegion3D/Geometry/E_Deck" unique_id=362982897]
 
-[node name="Tile_r0c0" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r0c0" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=501884424 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.75, -74)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r0c1" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r0c1" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=1202227544 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.75, -74)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r0c2" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r0c2" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=1688373405 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.75, -74)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r1c2" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r1c2" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=421590238 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.75, -78)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r1c4" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r1c4" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=2068326212 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.75, -78)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r1c5" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r1c5" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=978419295 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.75, -78)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r2c1" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r2c1" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=630342808 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.75, -82)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r2c2" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r2c2" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=1672261589 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.75, -82)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r2c3" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r2c3" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=1979078145 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.75, -82)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r2c4" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r2c4" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=2091091387 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.75, -82)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r3c0" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r3c0" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=2022270408 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.75, -86)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r3c1" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r3c1" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=286386477 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.75, -86)
 mesh = SubResource("BoxMesh_7")
 
-[node name="Tile_r3c4" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" instance=ExtResource("2_echo")]
+[node name="Tile_r3c4" parent="NavigationRegion3D/Geometry/E_Deck/DeckTiles" unique_id=2085494292 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.75, -86)
 mesh = SubResource("BoxMesh_7")
 
-[node name="DeckEnd" parent="NavigationRegion3D/Geometry/E_Deck" instance=ExtResource("2_echo")]
+[node name="DeckEnd" parent="NavigationRegion3D/Geometry/E_Deck" unique_id=397463482 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.75, -90)
 mesh = SubResource("BoxMesh_27")
 
-[node name="F_Maze" type="Node3D" parent="NavigationRegion3D/Geometry"]
+[node name="F_Maze" type="Node3D" parent="NavigationRegion3D/Geometry" unique_id=1251732531]
 
-[node name="Floor" parent="NavigationRegion3D/Geometry/F_Maze" instance=ExtResource("2_echo")]
+[node name="Floor" parent="NavigationRegion3D/Geometry/F_Maze" unique_id=1625473477 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -104)
 mesh = SubResource("BoxMesh_28")
 
-[node name="StairsDown" type="Node3D" parent="NavigationRegion3D/Geometry/F_Maze"]
+[node name="StairsDown" type="Node3D" parent="NavigationRegion3D/Geometry/F_Maze" unique_id=67983107]
 
-[node name="Step1" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step1" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=1596826730 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.125, -97.75)
 mesh = SubResource("BoxMesh_14")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step2" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step2" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=2408023 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.25, -97.25)
 mesh = SubResource("BoxMesh_15")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step3" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step3" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=805027961 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.375, -96.75)
 mesh = SubResource("BoxMesh_16")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step4" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step4" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=1044356981 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, -96.25)
 mesh = SubResource("BoxMesh_17")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step5" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step5" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=520233820 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.625, -95.75)
 mesh = SubResource("BoxMesh_18")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step6" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step6" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=1754841415 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.75, -95.25)
 mesh = SubResource("BoxMesh_19")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step7" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step7" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=1383933541 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.875, -94.75)
 mesh = SubResource("BoxMesh_20")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step8" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step8" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=1842769800 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -94.25)
 mesh = SubResource("BoxMesh_21")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step9" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step9" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=1048999572 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.125, -93.75)
 mesh = SubResource("BoxMesh_22")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step10" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step10" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=1774351049 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.25, -93.25)
 mesh = SubResource("BoxMesh_23")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step11" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step11" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=2007985216 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.375, -92.75)
 mesh = SubResource("BoxMesh_24")
 collision_layer = 0
 collision_mask = 0
 
-[node name="Step12" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" instance=ExtResource("2_echo")]
+[node name="Step12" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=322368160 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.5, -92.25)
 mesh = SubResource("BoxMesh_25")
 
-[node name="Ramp" type="StaticBody3D" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown"]
+[node name="Ramp" type="StaticBody3D" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown" unique_id=1867537095]
 transform = Transform3D(1, 0, 0, 0, 0.8944, 0.4472, 0, -0.4472, 0.8944, 6, 1.3658, -95.4329)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown/Ramp"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometry/F_Maze/StairsDown/Ramp" unique_id=747122461]
 shape = SubResource("BoxShape3D_2")
 
-[node name="Wall1" parent="NavigationRegion3D/Geometry/F_Maze" instance=ExtResource("2_echo")]
+[node name="Wall1" parent="NavigationRegion3D/Geometry/F_Maze" unique_id=906241911 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, -101.25)
 mesh = SubResource("BoxMesh_29")
 
-[node name="Wall2" parent="NavigationRegion3D/Geometry/F_Maze" instance=ExtResource("2_echo")]
+[node name="Wall2" parent="NavigationRegion3D/Geometry/F_Maze" unique_id=962779579 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -106.25)
 mesh = SubResource("BoxMesh_29")
 
-[node name="Wall3" parent="NavigationRegion3D/Geometry/F_Maze" instance=ExtResource("2_echo")]
+[node name="Wall3" parent="NavigationRegion3D/Geometry/F_Maze" unique_id=1969118127 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, -111.25)
 mesh = SubResource("BoxMesh_29")
 
-[node name="Spur1" parent="NavigationRegion3D/Geometry/F_Maze" instance=ExtResource("2_echo")]
+[node name="Spur1" parent="NavigationRegion3D/Geometry/F_Maze" unique_id=2047194768 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, -102.75)
 mesh = SubResource("BoxMesh_30")
 
-[node name="Spur2" parent="NavigationRegion3D/Geometry/F_Maze" instance=ExtResource("2_echo")]
+[node name="Spur2" parent="NavigationRegion3D/Geometry/F_Maze" unique_id=1918972798 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 1.5, -107.75)
 mesh = SubResource("BoxMesh_30")
 
-[node name="Pocket" parent="NavigationRegion3D/Geometry/F_Maze" instance=ExtResource("2_echo")]
+[node name="Pocket" parent="NavigationRegion3D/Geometry/F_Maze" unique_id=917709347 instance=ExtResource("2_echo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 1.5, -103)
 mesh = SubResource("BoxMesh_31")
 
-[node name="PlayerSpawn" type="Marker3D" parent="."]
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=1466689455]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="KillZone" type="Area3D" parent="." node_paths=PackedStringArray("respawn_point")]
+[node name="KillZone" type="Area3D" parent="." unique_id=510273629 node_paths=PackedStringArray("respawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12, -56)
 script = ExtResource("5_kill")
 respawn_point = NodePath("../PlayerSpawn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone" unique_id=1834602563]
 shape = SubResource("KillShape")
 
-[node name="BeaconGoal" parent="." instance=ExtResource("4_beacon")]
+[node name="BeaconGoal" parent="." unique_id=161450261 instance=ExtResource("4_beacon")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -114)
