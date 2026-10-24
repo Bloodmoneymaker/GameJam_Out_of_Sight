@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://hy5ss6k60qiw" path="res://UI/main_menu/echo_backdrop.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://Shader/echo_contours.tscn" id="2_contours"]
 [ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="3_echo_material"]
+[ext_resource type="PackedScene" uid="uid://c0h5ug7o56c7m" path="res://Scene/Enemy/entity_angle.tscn" id="4_vcpcw"]
 
 [sub_resource type="BoxMesh" id="WallMesh"]
 size = Vector3(10, 5, 0.35)
@@ -65,5 +66,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.2)
 [node name="EchoTimer" type="Timer" parent="." unique_id=988129459]
 wait_time = 2.4
 autostart = true
+
+[node name="Entity_Angle" parent="." unique_id=2046728641 instance=ExtResource("4_vcpcw")]
+transform = Transform3D(0.8660551, 0.00939852, -0.4998603, -0.010090763, 0.99994826, 0.0013181234, 0.49984682, 0.0039024074, 0.8661051, 1.7385051, 1.0434172, 5.283323)
 
 [connection signal="timeout" from="EchoTimer" to="." method="_on_echo_timer_timeout"]
