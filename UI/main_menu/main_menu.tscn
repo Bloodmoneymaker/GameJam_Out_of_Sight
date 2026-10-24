@@ -243,6 +243,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="EchoUIOverlay" type="ColorRect" parent="." unique_id=1485321121]
+visible = false
 material = SubResource("EchoUIOverlayMaterial")
 layout_mode = 1
 anchors_preset = 15
