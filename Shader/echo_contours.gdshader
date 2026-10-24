@@ -2,7 +2,7 @@ shader_type spatial;
 render_mode unshaded, depth_draw_never, depth_test_disabled, cull_disabled, fog_disabled;
 
 // Must match MAX_WAVES in echo.gd
-const int MAX_WAVES = 64;
+const int MAX_WAVES = 96;
 
 // xyz = origin, w = start time
 uniform vec4 wave_origin[MAX_WAVES];

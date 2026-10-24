@@ -5,7 +5,9 @@ extends Node
 ## exactly like a second wave starting at the same time from the source mirrored across
 ## that wall. The shader clips each mirrored wave to the source's side of its wall.
 
-const MAX_WAVES := 64 # must match MAX_WAVES in echo.gdshader
+const MAX_WAVES := 96 # must match MAX_WAVES in echo_contours.gdshader
+const MAX_WATER_DROP_WAVES := 32
+const MAX_OTHER_WAVES := MAX_WAVES - MAX_WATER_DROP_WAVES
 const MATERIAL: ShaderMaterial = preload("res://Shader/echo_contours_material.tres")
 
 ## Intensity of a reflection relative to the original wave.
@@ -23,6 +25,7 @@ var _params := PackedVector4Array()
 var _planes := PackedVector4Array()
 var _colors := PackedVector4Array()
 var _next := 0
+var _next_water_drop := 0
 var _time := 0.0
 var _ray_dirs: Array[Vector3] = []
 
@@ -88,9 +91,9 @@ func strohman_echo(origin: Vector3, source: Node3D) -> void:
 ## Small and without reflections: dripping water is frequent and should not use up wave slots.
 func water_drop_echo(origin: Vector3, size: int = WaterDropEchoSize.NORMAL) -> void:
 	if size == WaterDropEchoSize.LIGHT:
-		_emit_wave(origin, 2.5, 0.4, 0.15, false, Color(0.25, 0.55, 1.0, 1.0))
+		_emit_wave(origin, 2.5, 0.4, 0.15, false, Color(0.25, 0.55, 1.0, 1.0), false, null, true)
 	else:
-		_emit_wave(origin, 3.0, 0.6, 0.3, false, Color(0.25, 0.55, 1.0, 1.0))
+		_emit_wave(origin, 3.0, 0.6, 0.3, false, Color(0.25, 0.55, 1.0, 1.0), false, null, true)
 
 
 func debug_echo(origin: Vector3) -> void:
@@ -103,24 +106,26 @@ func clear_waves() -> void:
 		_params[index] = Vector4.ZERO
 		_planes[index] = Vector4.ZERO
 		_colors[index] = Vector4.ZERO
+	_next = 0
+	_next_water_drop = 0
 	_push()
 
 
 ## Spawns a wave plus first-order wall reflections, overwriting the oldest waves as needed.
 ## A transparent color uses the material's wave_color.
-func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float, reflect: bool, color: Color, can_stun: bool = false, lure_source: Node3D = null) -> void:
+func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float, reflect: bool, color: Color, can_stun: bool = false, lure_source: Node3D = null, water_drop: bool = false) -> void:
 	if color.a == 0.0:
 		color = MATERIAL.get_shader_parameter("wave_color")
 	var rgb := Vector4(color.r, color.g, color.b, 1.0)
 	var params := Vector4(speed, lifetime, intensity, 0.0)
-	_add(origin, params, Vector4.ZERO, rgb)
+	_add(origin, params, Vector4.ZERO, rgb, water_drop)
 
 	if reflect:
 		var reflected := Vector4(speed, lifetime, intensity * REFLECTION_STRENGTH, 0.0)
 		for plane in _find_walls(origin, speed * lifetime):
 			var n := Vector3(plane.x, plane.y, plane.z)
 			var mirrored := origin - 2.0 * (n.dot(origin) - plane.w) * n
-			_add(mirrored, reflected, plane, rgb)
+			_add(mirrored, reflected, plane, rgb, water_drop)
 
 	_push()
 	wave_emitted.emit(origin, speed, lifetime, can_stun, lure_source)
@@ -150,12 +155,19 @@ func _find_walls(origin: Vector3, reach: float) -> Array[Vector4]:
 	return planes
 
 
-func _add(origin: Vector3, params: Vector4, plane: Vector4, color: Vector4) -> void:
-	_origins[_next] = Vector4(origin.x, origin.y, origin.z, _time)
-	_params[_next] = params
-	_planes[_next] = plane
-	_colors[_next] = color
-	_next = (_next + 1) % MAX_WAVES
+func _add(origin: Vector3, params: Vector4, plane: Vector4, color: Vector4, water_drop: bool = false) -> void:
+	var index: int
+	if water_drop:
+		index = MAX_OTHER_WAVES + _next_water_drop
+		_next_water_drop = (_next_water_drop + 1) % MAX_WATER_DROP_WAVES
+	else:
+		index = _next
+		_next = (_next + 1) % MAX_OTHER_WAVES
+
+	_origins[index] = Vector4(origin.x, origin.y, origin.z, _time)
+	_params[index] = params
+	_planes[index] = plane
+	_colors[index] = color
 
 
 func _push() -> void:
