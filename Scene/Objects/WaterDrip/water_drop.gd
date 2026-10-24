@@ -1,8 +1,11 @@
-extends MeshInstance3D
+extends Node3D
 class_name WaterDrop
 ## Falls straight down and sends a small echo where it hits something.
 
-const DROP_MESH: Mesh = preload("res://Asset/Blender/Object/Object_Water_Drop.obj")
+enum EchoSize {LIGHT, NORMAL}
+
+@export var echo_size: EchoSize = EchoSize.NORMAL
+
 const MAX_LIFETIME := 10.0
 ## Volume fades evenly from SOUND_VOLUME_DB at the drop to silence at this distance
 ## (half the volume, -6 dB, at half the distance). No extra boost close to the drop.
@@ -12,13 +15,6 @@ const SOUND_VOLUME_DB := -12.0
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var _velocity := 0.0
 var _age := 0.0
-
-
-func _ready() -> void:
-	# Plain opaque mesh like the level tiles: the echo contour pass outlines it
-	# from the depth buffer whenever a wave passes.
-	mesh = DROP_MESH
-	cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 
 func _physics_process(delta: float) -> void:
@@ -32,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	var to := from + Vector3.DOWN * _velocity * delta
 	var hit := get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to))
 	if hit:
-		Echo.water_drop_echo(hit.position + hit.normal * 0.05)
+		Echo.water_drop_echo(hit.position + hit.normal * 0.05, echo_size)
 		# Slight pitch variation so repeated drips don't sound identical
 		AudioManager.play_sound_3d_special(Audio.sound[Audio.SOUND.WaterDrop], hit.position, randf_range(0.9, 1.1), SOUND_MAX_DISTANCE,
 				SOUND_VOLUME_DB, 1.0, AudioStreamPlayer3D.ATTENUATION_DISABLED)
