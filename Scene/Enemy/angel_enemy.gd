@@ -12,6 +12,16 @@ const SOUND_MAX_DISTANCE := 24.0
 const SOUND_VOLUME_DB := 0.0
 const SOUND_UNIT_SIZE := 8.0
 
+@export_group("Angel Teleport")
+@export_range(0.0, 3.0, 0.05) var attack_delay_after_teleport: float = 0.6
+@export_range(0.0, 1.0, 0.05) var flank_chance: float = 0.55
+@export_range(0.0, 1.0, 0.05) var quick_blink_chance: float = 0.3
+@export_range(0.1, 3.0, 0.05) var blink_interval_scale: float = 0.65
+@export_range(0.1, 1.0, 0.05) var approach_fraction_min: float = 0.35
+@export_range(0.1, 1.0, 0.05) var approach_fraction_max: float = 0.6
+@export_range(3.0, 20.0, 0.5) var flank_max_distance: float = 8.0
+
+var _last_blink_was_quick := false
 var _sound_timer: Timer
 var _laugh_player: AudioStreamPlayer3D
 var _blink_wait_remaining := 0.0
@@ -136,13 +146,14 @@ func _update_special_chase_movement(delta: float, target: Node3D) -> bool:
 		_blink_wait_remaining = _next_blink_wait(distance_to_target)
 		return true
 
-	if randf() < 0.2 and _try_flank_teleport(target, distance_to_target):
+	if randf() < flank_chance and _try_flank_teleport(target, distance_to_target):
 		_try_laugh(0.7)
 		_blink_wait_remaining = _next_blink_wait(distance_to_target)
+		_delay_attack_after_teleport(target)
 		return true
 
 	var direction := to_target.normalized()
-	var hop_distance := minf(remaining_distance, distance_to_target * randf_range(0.2, 0.3))
+	var hop_distance := minf(remaining_distance, distance_to_target * randf_range(minf(approach_fraction_min, approach_fraction_max), maxf(approach_fraction_min, approach_fraction_max)))
 	if is_instance_valid(navigation_agent):
 		var navigation_map := navigation_agent.get_navigation_map()
 		if navigation_map.is_valid() and NavigationServer3D.map_get_iteration_id(navigation_map) > 0:
@@ -157,7 +168,15 @@ func _update_special_chase_movement(delta: float, target: Node3D) -> bool:
 	global_position += direction * hop_distance
 	_try_laugh(0.6 if _is_behind_player() else 0.35)
 	_blink_wait_remaining = _next_blink_wait(distance_to_target)
+	_delay_attack_after_teleport(target)
 	return true
+
+
+func _delay_attack_after_teleport(target: Node3D) -> void:
+	_attack_cooldown_remaining = maxf(_attack_cooldown_remaining, attack_delay_after_teleport)
+	# Stay long enough to finish the reaction window before blinking again.
+	if global_position.distance_to(target.global_position) <= attack_range:
+		_blink_wait_remaining = maxf(_blink_wait_remaining, attack_delay_after_teleport + 0.1)
 
 
 func _try_flank_teleport(target: Node3D, distance_to_target: float) -> bool:
@@ -172,28 +191,43 @@ func _try_flank_teleport(target: Node3D, distance_to_target: float) -> bool:
 	if behind_direction.length_squared() <= 0.001:
 		return false
 	behind_direction = behind_direction.normalized()
-	var desired_position := target.global_position + behind_direction * distance_to_target
-	desired_position.y = global_position.y
-	var nav_position := NavigationServer3D.map_get_closest_point(navigation_map, desired_position)
-	if nav_position.distance_to(desired_position) > 0.5:
-		return false
-
-	var path := NavigationServer3D.map_get_path(
-		navigation_map,
-		global_position,
-		nav_position,
-		true,
-		navigation_agent.navigation_layers
-	)
-	if path.size() < 2 or path[path.size() - 1].distance_to(nav_position) > 0.5:
-		return false
-
-	var toward_player := target.global_position - nav_position
-	toward_player.y = 0.0
-	if toward_player.length_squared() > 0.001:
-		look_at(nav_position - toward_player.normalized(), Vector3.UP)
-	global_position = nav_position
-	return true
+	# Try different flanks rather than always appearing directly behind the player.
+	# Land outside attack range, giving the player time to react to the next blink.
+	var minimum_distance := maxf(attack_range + 0.75, 3.0)
+	var maximum_distance := maxf(minimum_distance, minf(flank_max_distance, distance_to_target * 0.75))
+	for attempt in range(8):
+		var angle := randf_range(-PI * 0.85, PI * 0.85)
+		var flank_direction := behind_direction.rotated(Vector3.UP, angle)
+		var desired_position := target.global_position + flank_direction * randf_range(minimum_distance, maximum_distance)
+		var nav_position := NavigationServer3D.map_get_closest_point(navigation_map, desired_position)
+		if nav_position.distance_to(desired_position) > 0.75:
+			continue
+		if nav_position.distance_to(target.global_position) < minimum_distance:
+			continue
+		if nav_position.distance_to(global_position) < 1.0:
+			continue
+		var path := NavigationServer3D.map_get_path(
+			navigation_map, global_position, nav_position, true, navigation_agent.navigation_layers
+		)
+		if path.size() < 2 or path[path.size() - 1].distance_to(nav_position) > 0.5:
+			continue
+		var collider := $CollisionShape3D as CollisionShape3D
+		var query := PhysicsShapeQueryParameters3D.new()
+		query.shape = collider.shape
+		query.transform = collider.global_transform
+		query.transform.origin += nav_position - global_position
+		query.collision_mask = collision_mask
+		query.exclude = [get_rid()]
+		if not get_world_3d().direct_space_state.intersect_shape(query, 1).is_empty():
+			continue
+		global_position = nav_position
+		velocity = Vector3.ZERO
+		var toward_player := target.global_position - nav_position
+		toward_player.y = 0.0
+		if toward_player.length_squared() > 0.001:
+			look_at(nav_position - toward_player.normalized(), Vector3.UP)
+		return true
+	return false
 
 
 func _distance_to_player() -> float:
@@ -205,4 +239,12 @@ func _next_blink_wait(distance: float) -> float:
 	var distance_factor := clampf(distance / 20.0, 0.0, 1.0)
 	var minimum_wait := lerpf(0.15, 1.0, distance_factor)
 	var maximum_wait := lerpf(0.4, 3.0, distance_factor)
-	return randf_range(minimum_wait, maximum_wait)
+	var wait_time := randf_range(minimum_wait, maximum_wait) * blink_interval_scale
+	# Occasional double blinks, with a recovery pause instead of endless bursts.
+	if _last_blink_was_quick:
+		_last_blink_was_quick = false
+		return maxf(wait_time, 0.55)
+	if randf() < quick_blink_chance:
+		_last_blink_was_quick = true
+		return randf_range(0.16, 0.28)
+	return maxf(wait_time, 0.2)
