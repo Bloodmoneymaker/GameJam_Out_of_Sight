@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_kveii"]
 [ext_resource type="PackedScene" uid="uid://c8n55rbgmub3r" path="res://Scene/Tiles/Tile_Cross.tscn" id="3_0q7va"]
-[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="4_6scyb"]
+[ext_resource type="PackedScene" uid="uid://76pkpl3m5xs3" path="res://Scene/beacon/beacon.tscn" id="4_6scyb"]
 [ext_resource type="PackedScene" uid="uid://calwk4rv4vrjc" path="res://Scene/Tiles/Tile_corridor.tscn" id="4_p2v7j"]
 [ext_resource type="PackedScene" uid="uid://bgl4h0215a5fd" path="res://Scene/Tiles/tile_road_t.tscn" id="5_n2mbg"]
 [ext_resource type="PackedScene" uid="uid://dny1eb6s8ciw4" path="res://Scene/Tiles/tile_road_edge.tscn" id="6_n2mbg"]
@@ -175,4 +175,6 @@ transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, 12, 
 transform = Transform3D(-1, 0, -3.1786506e-08, 0, 1, 0, 3.1786506e-08, 0, -1, 12, 0, -16)
 
 [node name="Entity_Roach" parent="." unique_id=1248933683 instance=ExtResource("7_eu8i2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.367203, 0, 3.8664188)
+echo_stun_max_distance = null
+echo_stun_max_height_difference = null

@@ -20,6 +20,8 @@ extends CharacterBody3D
 @export var echo_stun_enabled: bool = true
 @export_range(0.0, 10.0, 0.1) var stun_duration: float = 1.5
 @export var refresh_stun_on_hit: bool = true
+@export_range(0.0, 100.0, 0.5, "or_greater") var echo_stun_max_distance: float = 12.0
+@export_range(0.0, 50.0, 0.25, "or_greater") var echo_stun_max_height_difference: float = 2.5
 ## Optional hit point, e.g. the collision shape. Defaults to the enemy origin.
 @export var echo_hit_point: Node3D
 
@@ -127,10 +129,17 @@ func _on_echo_emitted(origin: Vector3, speed: float, lifetime: float, can_stun: 
 		return
 	var distance := _echo_hit_position().distance_to(origin)
 	var wave := IncomingEcho.new(origin, speed, lifetime, distance)
-	wave.can_stun = can_stun
+	wave.can_stun = can_stun and _is_within_echo_stun_bounds(origin)
 	if is_instance_valid(lure_source):
 		wave.lure_source = weakref(lure_source)
 	_incoming_echoes.append(wave)
+
+
+func _is_within_echo_stun_bounds(origin: Vector3) -> bool:
+	var hit_position := _echo_hit_position()
+	var horizontal_distance := Vector2(hit_position.x - origin.x, hit_position.z - origin.z).length()
+	var height_difference := absf(hit_position.y - origin.y)
+	return horizontal_distance <= echo_stun_max_distance and height_difference <= echo_stun_max_height_difference
 
 
 func _echo_hit_position() -> Vector3:

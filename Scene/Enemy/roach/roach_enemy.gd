@@ -18,6 +18,10 @@ extends "res://Scene/Enemy/enemy.gd"
 var _echo_step := false
 
 
+func _init() -> void:
+	chase_speed = 5.0
+
+
 func _ready() -> void:
 	super._ready()
 	if Engine.is_editor_hint():
