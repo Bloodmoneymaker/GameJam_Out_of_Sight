@@ -14,7 +14,7 @@ var win_screen: Control
 var lose_screen: Control
 var current_scene_id: int = -1
 
-var levelTime: float = 0.0
+var level_times: Dictionary[SCENE, float] = {}
 
 ## Paths are loaded only after a menu tile is selected. Preloading a level that
 ## references autoloads can create a resource-loading cycle during startup.
@@ -41,6 +41,16 @@ var scene_titles: Dictionary = {
 }
 
 var completed_missions: Array[SCENE] = []
+
+
+func addLevelTime(time: float) -> void:
+	var best_time: float = getLevelTime()
+	if best_time == -1.0 or time < best_time:
+		level_times[get_current_scene()] = time
+
+func getLevelTime() -> float:
+	var scene: SCENE = get_current_scene()
+	return level_times.get(scene, -1.0)
 
 func get_current_scene() -> SCENE:
 	if is_instance_valid(ui_main) and ui_main.visible:

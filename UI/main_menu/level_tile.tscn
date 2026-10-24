@@ -74,11 +74,22 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 5
 
-[node name="Number" type="Label" parent="Content" unique_id=2016875645]
+[node name="HBoxContainer" type="HBoxContainer" parent="Content" unique_id=277122020]
+layout_mode = 2
+
+[node name="Number" type="Label" parent="Content/HBoxContainer" unique_id=2016875645]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.27, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 13
 text = "01"
+
+[node name="BestTime" type="Label" parent="Content/HBoxContainer" unique_id=1819090036]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.27, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "0:00"
+horizontal_alignment = 2
 
 [node name="Title" type="Label" parent="Content" unique_id=1963222845]
 layout_mode = 2

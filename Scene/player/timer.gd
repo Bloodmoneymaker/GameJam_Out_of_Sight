@@ -14,4 +14,5 @@ func _process(delta: float) -> void:
 	var minutes: int = total_seconds / 60
 	var seconds: int = total_seconds % 60
 	text = "%02d:%02d" % [minutes, seconds]
-	GameManager.levelTime = elapsed_time
+	
+	GameManager.level_times[GameManager.get_current_scene()] = elapsed_time

@@ -30,7 +30,6 @@ func _build_level_tiles() -> void:
 		else:
 			tile.disabled = true
 		is_next_level_enabled = is_completed
-
 		tile.level_id = level_id
 		tile.display_number = level_grid.get_child_count() + 1
 		level_grid.add_child(tile)

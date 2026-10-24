@@ -4,8 +4,9 @@ extends Button
 @export var level_id: int = 0
 @export_range(1, 99, 1) var display_number: int = 1
 
-@onready var number_label: Label = $Content/Number
+@onready var number_label: Label = $Content/HBoxContainer/Number
 @onready var title_label: Label = $Content/Title
+@onready var bestTime_label: Label = $Content/HBoxContainer/BestTime
 
 
 func _ready() -> void:
@@ -22,6 +23,14 @@ func _connect_level_selection() -> void:
 func _update_labels() -> void:
 	number_label.text = "%02d" % display_number
 	title_label.text = GameManager.get_scene_title(level_id).to_upper()
+	var levelTime = GameManager.level_times.get(level_id)
+	var text = "0:00"
+	if levelTime:
+		var total_seconds := int()
+		var minutes: int = total_seconds / 60
+		var seconds: int = total_seconds % 60
+		text = "%02d:%02d" % [minutes, seconds]
+	bestTime_label.text = text
 
 
 func _on_pressed() -> void:
