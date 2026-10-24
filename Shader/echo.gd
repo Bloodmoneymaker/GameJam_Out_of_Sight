@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 
 
 func player_scan_echo(origin: Vector3) -> void:
-	_emit_wave(origin, 10.0, 1.5, 1.0, true, Color.TRANSPARENT, true)
+	_emit_wave(origin, 10.0, 4.0, 1.0, true, Color.TRANSPARENT, true)
 
 
 func player_aim_echo(origin: Vector3) -> void:

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://eiwj28ft2qmv"]
 
-[ext_resource type="Material" uid="uid://crsv2rov8ww2i" path="res://Shader/echo_material.tres" id="1_tb6kh"]
+[ext_resource type="Material" path="res://Shader/echo_material.tres" id="1_tb6kh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l82mw"]
 

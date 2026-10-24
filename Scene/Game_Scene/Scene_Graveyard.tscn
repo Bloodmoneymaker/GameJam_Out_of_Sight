@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://htdxh0talbde"]
 
-[ext_resource type="Script" uid="uid://q42awhy0qs0k" path="res://Scene/Game_Scene.gd" id="1_7q3xv"]
+[ext_resource type="Script" path="res://Scene/Game_Scene/Scene_Graveyard.gd" id="1_7q3xv"]
 [ext_resource type="PackedScene" uid="uid://eiwj28ft2qmv" path="res://Scene/Objects/graveyard_terrain.tscn" id="2_46tja"]
 [ext_resource type="PackedScene" path="res://Scene/Objects/Graveyard/Cage_Cyclinder_01.tscn" id="3_1grqt"]
 [ext_resource type="PackedScene" path="res://Scene/Objects/Graveyard/Wall_01.tscn" id="3_pcnwg"]
@@ -20,7 +20,14 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Arr
 [node name="Scene_Graveyard" type="Node3D" unique_id=794322846]
 script = ExtResource("1_7q3xv")
 
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=319158376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1, 0, -1.8)
+
+[node name="Entity_Angle" parent="." unique_id=2046728641 instance=ExtResource("12_10bm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.704771, 0, -4.268546)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1545520897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011718035, 0, -0.015751839)
 navigation_mesh = SubResource("NavigationMesh_7q3xv")
 
 [node name="Graveyard_Terrain" parent="NavigationRegion3D" unique_id=1923612613 instance=ExtResource("2_46tja")]
@@ -103,5 +110,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.151743, -0.73801136, 3.688
 [node name="Bolder_1" parent="NavigationRegion3D" unique_id=874939963 instance=ExtResource("11_l2daf")]
 transform = Transform3D(1, 0, 0, 0, 0.5305464, 0.8476559, 0, -0.8476559, 0.5305464, 3.9326317, -0.41364658, 6.1622906)
 
-[node name="Entity_Angle" parent="NavigationRegion3D" unique_id=2046728641 instance=ExtResource("12_10bm7")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 25.260288, 0, 0)
+[node name="Entity_Angle" parent="NavigationRegion3D" unique_id=523104011 instance=ExtResource("12_10bm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.482861, 0, -4.5092793)

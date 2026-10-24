@@ -74,9 +74,10 @@ func _physics_process(delta: float) -> void:
 	var chase_target := get_chase_target()
 	if attack_enabled and not is_stunned() and is_instance_valid(chase_target):
 		_try_attack(chase_target)
+	var special_chase_movement := _update_special_chase_movement(delta, chase_target)
 
 	var direction := Vector3.ZERO
-	if chase_enabled and not is_stunned() and is_instance_valid(chase_target):
+	if not special_chase_movement and chase_enabled and not is_stunned() and is_instance_valid(chase_target):
 		var player_offset := chase_target.global_position - global_position
 		player_offset.y = 0.0
 		if player_offset.length() > stop_distance:
@@ -91,7 +92,11 @@ func _physics_process(delta: float) -> void:
 						direction = player_offset
 			direction = direction.normalized()
 
-	if _stun_time_remaining > 0.0:
+	if special_chase_movement:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		_set_walking(not is_stunned() and is_instance_valid(chase_target))
+	elif _stun_time_remaining > 0.0:
 		velocity.x = 0.0
 		velocity.z = 0.0
 		_set_walking(false)
@@ -140,7 +145,9 @@ func _update_echo_hits(delta: float) -> void:
 		# Detect the travelling front, including a wave emitted at our position.
 		if gap <= 0.0 and wave.previous_gap >= 0.0:
 			if echo_stun_enabled and wave.can_stun:
-				apply_stun()
+				var visible_time_remaining := maxf(wave.lifetime - wave.age - 0.1, 0.0)
+				if visible_time_remaining > 0.0:
+					apply_stun(visible_time_remaining)
 			if echo_lure_enabled and wave.lure_source != null:
 				var source := wave.lure_source.get_ref() as Node3D
 				if is_instance_valid(source) and not source.is_queued_for_deletion():
@@ -153,10 +160,11 @@ func _update_echo_hits(delta: float) -> void:
 			wave.previous_gap = gap
 
 
-func apply_stun() -> void:
+func apply_stun(duration: float = -1.0) -> void:
 	if is_stunned() and not refresh_stun_on_hit:
 		return
-	_stun_time_remaining = maxf(stun_duration, 0.0)
+	_stun_time_remaining = maxf(stun_duration if duration < 0.0 else duration, 0.0)
+	_on_stunned()
 	if is_stunned():
 		velocity.x = 0.0
 		velocity.z = 0.0
@@ -179,6 +187,7 @@ func _try_attack(target: Node3D) -> void:
 	print("Spinne greift %s an und verursacht %s Schaden." % [target.name, attack_damage])
 	target.call("take_damage", attack_damage)
 	_attack_cooldown_remaining = attack_cooldown
+	_on_attack_started()
 
 
 func _set_walking(walking: bool) -> void:
@@ -191,6 +200,19 @@ func _set_walking(walking: bool) -> void:
 ## Override in a specific enemy to update its animations.
 func _on_walking_changed(_walking: bool) -> void:
 	pass
+
+
+func _on_attack_started() -> void:
+	pass
+
+
+func _on_stunned() -> void:
+	pass
+
+
+## Return true when a derived enemy handles its own chase movement.
+func _update_special_chase_movement(_delta: float, _target: Node3D) -> bool:
+	return false
 
 
 func _find_player() -> Node3D:
