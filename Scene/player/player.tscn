@@ -15,6 +15,8 @@ height = 1.8
 
 [node name="Player" type="CharacterBody3D" unique_id=425749429 groups=["player"]]
 script = ExtResource("1_player")
+speed = 3.0
+sprint_speed = 3.0
 
 [node name="EchoCharger" parent="." unique_id=1745474185 instance=ExtResource("3_echo_charger")]
 refresh_time = 2.0
@@ -33,9 +35,8 @@ current = true
 [node name="EchoContours" parent="Head/Camera3D" unique_id=1113797267 instance=ExtResource("echo_contours")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
-[node name="Scanner" parent="Head/Camera3D" unique_id=596071866 node_paths=PackedStringArray("player") instance=ExtResource("2_ubwr7")]
+[node name="Scanner" parent="Head/Camera3D" unique_id=596071866 instance=ExtResource("2_ubwr7")]
 transform = Transform3D(0.99999994, -5.6060543e-07, 0.00035106743, 0, 0.99999875, 0.0015968577, -0.00035106787, -0.0015968576, 0.9999987, 0.29352674, -0.389848, -0.3144157)
-player = NodePath("../../..")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=367044519]
 
