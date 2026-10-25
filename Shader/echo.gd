@@ -79,6 +79,14 @@ func spider_echo(origin: Vector3) -> void:
 	_emit_wave(origin, 4.5, 0.75, 0.25, true, Color.TRANSPARENT)
 
 
+## Local confirmation pulse only: cannot stun or lure other enemies.
+func enemy_stun_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 6.0, 0.65, 0.8, false, Color(0.45, 0.9, 1.0, 1.0))
+	AudioManager.play_sound_3d_special(
+		Audio.sound[Audio.SOUND.Scan], origin, 1.7, 24.0, -3.0, 10.0
+	)
+
+
 func beacon_echo(origin: Vector3) -> void:
 	_emit_wave(origin, 5.0, 2.0, 1.0, true, Color(0.033, 0.277, 0.184, 1.0))
 

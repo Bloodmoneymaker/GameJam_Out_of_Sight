@@ -178,6 +178,7 @@ func apply_stun(duration: float = -1.0) -> void:
 		velocity.x = 0.0
 		velocity.z = 0.0
 		_set_walking(false)
+		Echo.enemy_stun_echo(_echo_hit_position())
 
 
 func get_chase_target() -> Node3D:
