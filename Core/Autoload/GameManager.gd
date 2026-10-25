@@ -12,6 +12,7 @@ var ui_main
 var win_screen: Control
 var lose_screen: Control
 var current_scene_id: int = -1
+var finish_in_progress := false
 
 var level_times: Dictionary[SCENE, float] = {}
 var current_level_time: float = 0.0
@@ -115,6 +116,7 @@ func get_scene_title(scene_idx: int) -> String:
 	return str(scene_titles.get(scene_idx, "Level %d" % scene_idx))
 
 func delete_all_scenes() -> void:
+	finish_in_progress = false
 	for container in [container_scene, container_entity, container_object]:
 		if not is_instance_valid(container):
 			continue
@@ -129,6 +131,8 @@ func show_win_screen() -> void:
 
 
 func show_lose_screen() -> void:
+	if finish_in_progress:
+		return
 	if is_instance_valid(win_screen) and win_screen.visible:
 		return
 	if is_instance_valid(lose_screen):

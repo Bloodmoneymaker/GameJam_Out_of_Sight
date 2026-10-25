@@ -31,6 +31,7 @@ var _ray_dirs: Array[Vector3] = []
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_origins.resize(MAX_WAVES)
 	_params.resize(MAX_WAVES)
 	_planes.resize(MAX_WAVES)
@@ -46,6 +47,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if get_tree().paused and not GameManager.finish_in_progress:
+		return
 	_time += delta
 	MATERIAL.set_shader_parameter("now", _time)
 
@@ -89,6 +92,10 @@ func enemy_stun_echo(origin: Vector3) -> void:
 
 func beacon_echo(origin: Vector3) -> void:
 	_emit_wave(origin, 5.0, 2.0, 1.0, true, Color(0.033, 0.277, 0.184, 1.0))
+
+
+func beacon_completion_echo(origin: Vector3) -> void:
+	_emit_wave(origin, 16.0, 1.4, 1.8, false, Color(0.3, 1.0, 0.75, 1.0))
 
 
 ## A player-like scan that attracts enemies without stunning them.

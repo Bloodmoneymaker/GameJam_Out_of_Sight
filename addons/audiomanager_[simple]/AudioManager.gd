@@ -37,6 +37,11 @@ func _ready() -> void:
 	_setup_empty_echo()
 	SignalManager.emptyEcho.connect(_on_empty_echo)
 	SignalManager.echo_recharged.connect(_on_echo_recharged)
+	SignalManager.beacon_reached.connect(_on_beacon_reached)
+
+
+func _on_beacon_reached(_origin: Vector3) -> void:
+	play_sound_2d(Audio.SOUND.Beacon, -3.0, 1.25)
 
 
 func _on_empty_echo(_charger: Node) -> void:
