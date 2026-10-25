@@ -42,6 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 level_tile_scene = ExtResource("3_level_tile")
+enableAllLevel = false
 
 [node name="Background" type="SubViewportContainer" parent="." unique_id=1499514605]
 layout_mode = 1
