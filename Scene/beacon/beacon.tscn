@@ -11,7 +11,7 @@ height = 0.76
 [sub_resource type="SphereShape3D" id="BeaconTriggerShape"]
 radius = 1.6416016
 
-[node name="Beacon" type="Node3D" unique_id=2011488940]
+[node name="Beacon" type="Node3D" unique_id=2011488940 groups=["beacons"]]
 script = ExtResource("1_nq64o")
 beacon_rate = 1.0
 

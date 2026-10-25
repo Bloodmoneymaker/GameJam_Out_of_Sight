@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://by6pni85q5ey"]
+
+[ext_resource type="Script" path="res://Scene/player/beacon_direction_arrow.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://dio7xf8ket7fq" path="res://Shader/echo.gdshader" id="2_echo_shader"]
+
+[sub_resource type="ShaderMaterial" id="HousingMaterial"]
+render_priority = 126
+shader = ExtResource("2_echo_shader")
+shader_parameter/polygon_edges_enabled = false
+shader_parameter/polygon_line_width = 1.0
+
+[sub_resource type="BoxMesh" id="HousingMesh"]
+size = Vector3(0.3, 0.18, 0.045)
+
+[sub_resource type="ShaderMaterial" id="ScreenMaterial"]
+render_priority = 126
+shader = ExtResource("2_echo_shader")
+shader_parameter/polygon_edges_enabled = false
+shader_parameter/polygon_line_width = 1.0
+
+[sub_resource type="BoxMesh" id="ScreenMesh"]
+size = Vector3(0.26, 0.14, 0.006)
+
+[sub_resource type="ShaderMaterial" id="PointerMaterial"]
+render_priority = 126
+shader = ExtResource("2_echo_shader")
+shader_parameter/polygon_edges_enabled = false
+shader_parameter/polygon_line_width = 1.0
+
+[sub_resource type="BoxMesh" id="PointerShaftMesh"]
+size = Vector3(0.012, 0.055, 0.005)
+
+[sub_resource type="ConeMesh" id="PointerHeadMesh"]
+bottom_radius = 0.025
+height = 0.04
+radial_segments = 6
+
+[node name="BeaconDirectionArrow" type="Node3D" unique_id=1416705459]
+script = ExtResource("1_script")
+
+[node name="Housing" type="MeshInstance3D" parent="." unique_id=170322059]
+material_override = SubResource("HousingMaterial")
+mesh = SubResource("HousingMesh")
+
+[node name="Screen" type="MeshInstance3D" parent="." unique_id=741258625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.026)
+material_override = SubResource("ScreenMaterial")
+mesh = SubResource("ScreenMesh")
+
+[node name="Pointer" type="Node3D" parent="." unique_id=1944992999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.031)
+
+[node name="Shaft" type="MeshInstance3D" parent="Pointer" unique_id=331094189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.005, 0.009)
+material_override = SubResource("PointerMaterial")
+mesh = SubResource("PointerShaftMesh")
+
+[node name="Head" type="MeshInstance3D" parent="Pointer" unique_id=1745640735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0.009)
+material_override = SubResource("PointerMaterial")
+mesh = SubResource("PointerHeadMesh")

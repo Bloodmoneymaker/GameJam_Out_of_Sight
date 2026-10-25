@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://UI/health_hearts/health_hearts.tscn" id="health_hearts"]
 [ext_resource type="Shader" path="res://Shader/hit_vignette.gdshader" id="hit_shader"]
 [ext_resource type="Script" path="res://UI/hit_vignette.gd" id="hit_script"]
+[ext_resource type="PackedScene" path="res://UI/beacon_indicator/beacon_indicator.tscn" id="beacon_indicator"]
 
 [sub_resource type="ShaderMaterial" id="HitMaterial"]
 shader = ExtResource("hit_shader")
@@ -78,6 +79,8 @@ offset_right = 1127.0
 offset_bottom = 39.0
 text = "01:01:20"
 script = ExtResource("7_ubgrh")
+
+[node name="BeaconIndicator" parent="HUD" instance=ExtResource("beacon_indicator")]
 
 [node name="HealthComponent" parent="." unique_id=191218748 instance=ExtResource("health_component")]
 max_health = 3.0

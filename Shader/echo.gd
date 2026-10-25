@@ -54,8 +54,13 @@ func _process(delta: float) -> void:
 
 
 func player_scan_echo(origin: Vector3) -> void:
-	# Slower expansion limits the radius to 20 m while keeping 4 s of visibility.
-	_emit_wave(origin, 5.0, 4.0, 1.0, true, Color.TRANSPARENT, true)
+	# Shorter range keeps the regular scan useful for nearby navigation.
+	_emit_wave(origin, 5.0, 3.0, 1.0, true, Color.TRANSPARENT, true)
+
+
+func player_power_scan_echo(origin: Vector3) -> void:
+	# The full-charge scan is white, faster, and stays visible over a longer range.
+	_emit_wave(origin, 12.0, 6.0, 2.0, true, Color.WHITE, true)
 
 
 func player_aim_echo(origin: Vector3) -> void:

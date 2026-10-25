@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cprdaqdabe8a" path="res://UI/main_menu/esc_key_icon.svg" id="7_esc_icon"]
 [ext_resource type="Script" uid="uid://5fra1186qhon" path="res://UI/main_menu/echo_ui_overlay.gd" id="8_echo_ui_script"]
 [ext_resource type="Shader" uid="uid://bsfneobadronv" path="res://UI/main_menu/echo_ui_overlay.gdshader" id="9_echo_ui_shader"]
+[ext_resource type="Texture2D" path="res://UI/main_menu/mouse_right_icon.svg" id="10_mouse_right_icon"]
 
 [sub_resource type="StyleBoxFlat" id="PanelStyle"]
 bg_color = Color(0.008, 0.023, 0.035, 0.94)
@@ -178,6 +179,37 @@ horizontal_alignment = 2
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("5_mouse_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PowerEchoHint" type="HBoxContainer" parent="ControlHints"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PowerEchoText" type="VBoxContainer" parent="ControlHints/PowerEchoHint"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="PowerEchoAction" type="Label" parent="ControlHints/PowerEchoHint/PowerEchoText"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "RIGHT CLICK"
+horizontal_alignment = 2
+
+[node name="PowerEchoDescription" type="Label" parent="ControlHints/PowerEchoHint/PowerEchoText"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.65, 0.7, 1)
+theme_override_font_sizes/font_size = 13
+text = "Power Echo (3 charges)"
+horizontal_alignment = 2
+
+[node name="PowerEchoIcon" type="TextureRect" parent="ControlHints/PowerEchoHint"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("10_mouse_right_icon")
 expand_mode = 1
 stretch_mode = 5
 

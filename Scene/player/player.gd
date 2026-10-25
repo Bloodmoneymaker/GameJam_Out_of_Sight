@@ -19,6 +19,7 @@ var _player_step_sounds: Array[int] = [
 ]
 var _step_progress := 0.0
 var _was_on_floor := true
+var _left_click_held := false
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -44,9 +45,19 @@ func _input(event: InputEvent) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			echo_charger.try_scan(head.global_position)
+	if not event is InputEventMouseButton:
+		return
+	if event.button_index == MOUSE_BUTTON_RIGHT:
+		if event.pressed and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			echo_charger.try_power_scan(head.global_position)
+		return
+	if event.button_index != MOUSE_BUTTON_LEFT:
+		return
+	if event.pressed:
+		_left_click_held = Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
+	elif _left_click_held:
+		_left_click_held = false
+		echo_charger.try_scan(head.global_position)
 
 
 func _physics_process(delta: float) -> void:
