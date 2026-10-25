@@ -36,7 +36,9 @@ func show_win_screen() -> void:
 	$CenterContainer/PanelContainer/VBoxContainer/Time.text = "Time: " +  text
 	GameManager.addLevelTime(GameManager.current_level_time)
 	
-	GameManager.completed_missions.append(GameManager.get_current_scene())
+	if not GameManager.completed_missions.has(GameManager.get_current_scene()):
+		GameManager.completed_missions.append(GameManager.get_current_scene())
+	SignalManager.levelFinished.emit()
 	SignalManager.updateEnabledLevel.emit()
 
 
