@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c5jnu2o0dni6" path="res://Scene/Objects/Enviroment/Bolder_4.tscn" id="8_xx6v7"]
 [ext_resource type="PackedScene" uid="uid://cko2d81oucapj" path="res://Scene/Objects/Enviroment/Bolder_3.tscn" id="9_xx6v7"]
 [ext_resource type="PackedScene" uid="uid://bbqull6nfdy67" path="res://Scene/Objects/Enviroment/bush_1.tscn" id="10_51o1v"]
-[ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="11_3ow56"]
+[ext_resource type="PackedScene" uid="uid://76pkpl3m5xs3" path="res://Scene/beacon/beacon.tscn" id="11_3ow56"]
 [ext_resource type="PackedScene" uid="uid://b6yvwbdq7bwhj" path="res://Scene/Objects/Enviroment/grass_3d.tscn" id="12_g2ghm"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]

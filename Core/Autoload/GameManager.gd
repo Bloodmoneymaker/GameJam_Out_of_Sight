@@ -25,9 +25,9 @@ var scene: Dictionary = {
 	SCENE.TUTORIAL_3: "res://Scene/tutorial_3.tscn",
 	SCENE.SEWER: "res://Scene/Game_Scene/Scene_Sewer.tscn",
 	SCENE.DEBUG: "res://Scene/scene_debug.tscn",
-	SCENE.FOREST : "res://Scene/Game_Scene/Scene_Forest.tscn",
 	SCENE.Graveyard : "res://Scene/Game_Scene/Scene_Graveyard.tscn",
-	SCENE.CRYPT: "res://Scene/Game_Scene/Scene_Crypt.tscn"
+	SCENE.CRYPT: "res://Scene/Game_Scene/Scene_Crypt.tscn",
+	SCENE.FOREST : "res://Scene/Game_Scene/Scene_Forest.tscn"
 }
 
 var scene_titles: Dictionary = {
