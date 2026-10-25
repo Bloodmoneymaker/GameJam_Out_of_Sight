@@ -65,9 +65,14 @@ jobs:
     needs: prepare
     uses: ./.github/workflows/web-build.yml
 
+  desktop:
+    name: Build Linux and Windows releases
+    needs: prepare
+    uses: ./.github/workflows/desktop-build.yml
+
   release:
     name: Create GitHub Release
-    needs: [prepare, web]
+    needs: [prepare, web, desktop]
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -81,11 +86,23 @@ jobs:
         with:
           name: EchoMan-web
           path: build/web
-      - name: Package Web build, source and checksums
+      - name: Download Linux build
+        uses: actions/download-artifact@v4
+        with:
+          name: EchoMan-linux
+          path: build/linux
+      - name: Download Windows build
+        uses: actions/download-artifact@v4
+        with:
+          name: EchoMan-windows
+          path: build/windows
+      - name: Package platform builds, source and checksums
         run: |
           set -euo pipefail
           mkdir -p dist
           (cd build/web && zip -r "../../dist/${PROJECT_NAME}-${RELEASE_TAG}-web.zip" .)
+          (cd build/linux && zip -r "../../dist/${PROJECT_NAME}-${RELEASE_TAG}-linux.zip" .)
+          (cd build/windows && zip -r "../../dist/${PROJECT_NAME}-${RELEASE_TAG}-windows.zip" .)
           git archive --format=zip --prefix="${PROJECT_NAME}-${RELEASE_TAG}/" \
             --output="dist/${PROJECT_NAME}-${RELEASE_TAG}-source.zip" "$GITHUB_SHA"
           (cd dist && sha256sum ./*.zip > SHA256SUMS.txt)

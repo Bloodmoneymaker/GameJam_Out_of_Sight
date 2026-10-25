@@ -1,0 +1,107 @@
+name: Build Linux and Windows
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: 4.7.2
+
+jobs:
+  build:
+    name: Export Linux and Windows
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Cache Godot and desktop templates
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/godot-ci/${{ env.GODOT_VERSION }}
+            ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          key: godot-desktop-${{ runner.os }}-${{ runner.arch }}-${{ env.GODOT_VERSION }}-v1
+
+      - name: Download official editor and export templates
+        if: steps.cache.outputs.cache-hit != 'true'
+        shell: bash
+        env:
+          GODOT_VERSION: ${{ env.GODOT_VERSION }}
+        run: |
+          set -euo pipefail
+          INSTALL_DIR="$HOME/.cache/godot-ci/${GODOT_VERSION}"
+          TEMPLATE_DIR="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          DOWNLOAD_DIR="$(mktemp -d)"
+          trap 'rm -rf "$DOWNLOAD_DIR"' EXIT
+          BASE_URL="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
+          mkdir -p "$INSTALL_DIR" "$TEMPLATE_DIR"
+          curl --fail --location --retry 3 "$BASE_URL/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" -o "$DOWNLOAD_DIR/editor.zip"
+          unzip -q "$DOWNLOAD_DIR/editor.zip" -d "$DOWNLOAD_DIR/editor"
+          install -m 755 "$DOWNLOAD_DIR/editor/Godot_v${GODOT_VERSION}-stable_linux.x86_64" "$INSTALL_DIR/godot"
+          curl --fail --location --retry 3 "$BASE_URL/Godot_v${GODOT_VERSION}-stable_export_templates.tpz" -o "$DOWNLOAD_DIR/templates.tpz"
+          unzip -jo "$DOWNLOAD_DIR/templates.tpz" \
+            templates/linux_release.x86_64 \
+            templates/windows_release_x86_64.exe \
+            templates/version.txt \
+            -d "$TEMPLATE_DIR"
+
+      - name: Add Godot to PATH
+        shell: bash
+        env:
+          GODOT_VERSION: ${{ env.GODOT_VERSION }}
+        run: echo "$HOME/.cache/godot-ci/${GODOT_VERSION}" >> "$GITHUB_PATH"
+
+      - name: Import project and export Linux and Windows
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs build/linux build/windows
+          touch build/.gdignore
+
+          checked_godot() {
+            local log="$1"
+            shift
+            godot "$@" 2>&1 | tee "$log"
+            if grep -E '(^|[[:space:]])(SCRIPT ERROR:|SHADER ERROR:|ERROR:)' "$log"; then
+              echo "::error::Godot reported errors; see $log."
+              return 1
+            fi
+          }
+
+          checked_godot build/logs/import.log --headless --path . --import --quit
+          checked_godot build/logs/linux-export.log --headless --path . --export-release Linux build/linux/EchoMan.x86_64
+          checked_godot build/logs/windows-export.log --headless --path . --export-release "Windows Desktop" build/windows/EchoMan.exe
+          test -s build/linux/EchoMan.x86_64
+          test -s build/linux/EchoMan.pck
+          test -s build/windows/EchoMan.exe
+          test -s build/windows/EchoMan.pck
+
+      - name: Upload Linux build
+        uses: actions/upload-artifact@v4
+        with:
+          name: EchoMan-linux
+          path: build/linux/*
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v4
+        with:
+          name: EchoMan-windows
+          path: build/windows/*
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload Godot logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-build-diagnostics
+          path: build/logs/
+          if-no-files-found: ignore
+          retention-days: 7
