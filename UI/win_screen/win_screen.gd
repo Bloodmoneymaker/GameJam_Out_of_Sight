@@ -33,12 +33,7 @@ func show_win_screen() -> void:
 	var seconds: int = total_seconds % 60
 	var text = "%02d:%02d" % [minutes, seconds]
 	$CenterContainer/PanelContainer/VBoxContainer/Time.text = "Time: " +  text
-	GameManager.addLevelTime(GameManager.current_level_time)
-	
-	if not GameManager.completed_missions.has(GameManager.get_current_scene()):
-		GameManager.completed_missions.append(GameManager.get_current_scene())
-	SignalManager.levelFinished.emit()
-	SignalManager.updateEnabledLevel.emit()
+	GameManager.complete_current_level()
 
 
 func _on_return_button_pressed() -> void:

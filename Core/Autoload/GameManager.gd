@@ -51,6 +51,17 @@ func addLevelTime(time: float) -> void:
 	if best_time == -1.0 or time < best_time:
 		level_times[get_current_scene()] = time
 
+
+func complete_current_level() -> void:
+	var completed_scene := get_current_scene()
+	if completed_scene == SCENE.NONE:
+		return
+	addLevelTime(current_level_time)
+	if not completed_missions.has(completed_scene):
+		completed_missions.append(completed_scene)
+	SignalManager.levelFinished.emit()
+	SignalManager.updateEnabledLevel.emit()
+
 func getLevelTime() -> float:
 	var scene: SCENE = get_current_scene()
 	return level_times.get(scene, -1.0)
@@ -135,6 +146,7 @@ func show_win_screen() -> void:
 	if is_instance_valid(lose_screen) and lose_screen.visible:
 		return
 	if get_next_scene_id() == SCENE.NONE:
+		complete_current_level()
 		if is_instance_valid(thanks_screen):
 			thanks_screen.show_thanks_screen()
 		return
