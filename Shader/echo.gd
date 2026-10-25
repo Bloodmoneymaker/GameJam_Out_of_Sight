@@ -171,13 +171,41 @@ func _find_walls(origin: Vector3, reach: float) -> Array[Vector4]:
 
 
 func _add(origin: Vector3, params: Vector4, plane: Vector4, color: Vector4, water_drop: bool = false) -> void:
-	var index: int
+	var first_slot: int
+	var slot_count: int
+	var cursor: int
 	if water_drop:
-		index = MAX_OTHER_WAVES + _next_water_drop
-		_next_water_drop = (_next_water_drop + 1) % MAX_WATER_DROP_WAVES
+		first_slot = MAX_OTHER_WAVES
+		slot_count = MAX_WATER_DROP_WAVES
+		cursor = _next_water_drop
 	else:
-		index = _next
-		_next = (_next + 1) % MAX_OTHER_WAVES
+		first_slot = 0
+		slot_count = MAX_OTHER_WAVES
+		cursor = _next
+
+	# Keep waves that are still travelling. The old ring buffer overwrote slots
+	# blindly, so a burst of echoes and their reflections could restart visible waves.
+	var index := -1
+	var oldest_slot := first_slot + cursor
+	var oldest_age := -1.0
+	for offset in range(slot_count):
+		var candidate := first_slot + (cursor + offset) % slot_count
+		var intensity := _params[candidate].z
+		var age := _time - _origins[candidate].w
+		if intensity <= 0.0 or age > _params[candidate].y:
+			index = candidate
+			break
+		if age > oldest_age:
+			oldest_age = age
+			oldest_slot = candidate
+	if index < 0:
+		index = oldest_slot
+
+	var next_cursor := (index - first_slot + 1) % slot_count
+	if water_drop:
+		_next_water_drop = next_cursor
+	else:
+		_next = next_cursor
 
 	_origins[index] = Vector4(origin.x, origin.y, origin.z, _time)
 	_params[index] = params
