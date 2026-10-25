@@ -111,6 +111,13 @@ func _on_attack_started() -> void:
 		_animation_player.play("Angle_Grab")
 
 
+func _try_attack(target: Node3D) -> void:
+	# The Angel's gaze rule protects the player from both movement and attacks.
+	if _position_in_player_view(global_position):
+		return
+	super._try_attack(target)
+
+
 func _on_walking_changed(walking: bool) -> void:
 	if not is_instance_valid(_animation_player):
 		return
