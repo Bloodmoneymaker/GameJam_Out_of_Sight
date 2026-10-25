@@ -1,5 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bwyqi6m5e7mdi"]
 
+[ext_resource type="Script" uid="uid://dscd33aha8cqa" path="res://Scene/tutorial_3.gd" id="1_121ky"]
 [ext_resource type="PackedScene" uid="uid://m4wh6nhq55vb" path="res://Scene/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://cxhmgcms5x8oy" path="res://Scene/Enemy/roach/roach_enemy.tscn" id="2_roach"]
 [ext_resource type="PackedScene" uid="uid://c602ey48v0cy6" path="res://Scene/beacon/beacon.tscn" id="3_beacon"]
@@ -23,91 +24,97 @@ size = Vector3(14, 1, 24)
 [sub_resource type="BoxShape3D" id="FloorShape"]
 size = Vector3(14, 1, 24)
 
-[sub_resource type="BoxMesh" id="SideWallMesh"]
-size = Vector3(0.4, 4, 24.4)
-
 [sub_resource type="BoxShape3D" id="SideWallShape"]
 size = Vector3(0.4, 4, 24.4)
 
-[sub_resource type="BoxMesh" id="EndWallMesh"]
-size = Vector3(14.4, 4, 0.4)
+[sub_resource type="BoxMesh" id="SideWallMesh"]
+size = Vector3(0.4, 4, 24.4)
 
 [sub_resource type="BoxShape3D" id="EndWallShape"]
 size = Vector3(14.4, 4, 0.4)
 
-[node name="Tutorial_3" type="Node3D"]
+[sub_resource type="BoxMesh" id="EndWallMesh"]
+size = Vector3(14.4, 4, 0.4)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="Tutorial_3" type="Node3D" unique_id=1467885853]
+script = ExtResource("1_121ky")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1496403243]
 environment = SubResource("TutorialEnvironment")
 
-[node name="LevelMeshes" type="Node3D" parent="."]
+[node name="LevelMeshes" type="Node3D" parent="." unique_id=768308036]
 
-[node name="Floor" type="MeshInstance3D" parent="LevelMeshes"]
-position = Vector3(0, -0.5, -1)
-mesh = SubResource("FloorMesh")
+[node name="Floor" type="MeshInstance3D" parent="LevelMeshes" unique_id=947370112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.6659849, 0, -0.5, -1)
 material_override = ExtResource("4_echo_material")
+mesh = SubResource("FloorMesh")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LevelMeshes"]
-position = Vector3(0, -0.5, -1)
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelMeshes" unique_id=594848173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.6491418, 0, -0.5, -1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/StaticBody3D" unique_id=1338401051]
 shape = SubResource("FloorShape")
 
-[node name="BoundaryWalls" type="Node3D" parent="LevelMeshes"]
+[node name="BoundaryWalls" type="Node3D" parent="LevelMeshes" unique_id=932962928]
 
-[node name="LeftWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
-position = Vector3(-7.2, 1.5, -1)
+[node name="LeftWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls" unique_id=2020704922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 1.5, -1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/LeftWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/LeftWall" unique_id=922112040]
 shape = SubResource("SideWallShape")
 
-[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/LeftWall"]
-mesh = SubResource("SideWallMesh")
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/LeftWall" unique_id=785581538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.609515, 0, 0, 0)
 material_override = ExtResource("4_echo_material")
+mesh = SubResource("SideWallMesh")
 
-[node name="RightWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
-position = Vector3(7.2, 1.5, -1)
+[node name="RightWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls" unique_id=470783235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2, 1.5, -1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/RightWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/RightWall" unique_id=1201569248]
 shape = SubResource("SideWallShape")
 
-[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/RightWall"]
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/RightWall" unique_id=1586053966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.6140459, 0, 0, 0)
+material_override = ExtResource("4_echo_material")
 mesh = SubResource("SideWallMesh")
-material_override = ExtResource("4_echo_material")
 
-[node name="StartWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
-position = Vector3(0, 1.5, 11.2)
+[node name="StartWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls" unique_id=1205939562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 11.2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/StartWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/StartWall" unique_id=2068814887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5555506)
 shape = SubResource("EndWallShape")
 
-[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/StartWall"]
-mesh = SubResource("EndWallMesh")
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/StartWall" unique_id=1072339704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.470155)
 material_override = ExtResource("4_echo_material")
+mesh = SubResource("EndWallMesh")
 
-[node name="EndWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls"]
-position = Vector3(0, 1.5, -13.2)
+[node name="EndWall" type="StaticBody3D" parent="LevelMeshes/BoundaryWalls" unique_id=1741195357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -13.2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/EndWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelMeshes/BoundaryWalls/EndWall" unique_id=1421678442]
 shape = SubResource("EndWallShape")
 
-[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/EndWall"]
-mesh = SubResource("EndWallMesh")
+[node name="Mesh" type="MeshInstance3D" parent="LevelMeshes/BoundaryWalls/EndWall" unique_id=1942387971]
 material_override = ExtResource("4_echo_material")
+mesh = SubResource("EndWallMesh")
 
-[node name="RoachEnemy" parent="." instance=ExtResource("2_roach")]
-position = Vector3(0, 0, -1)
+[node name="RoachEnemy" parent="." unique_id=2013958320 instance=ExtResource("2_roach")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.773141)
+chase_speed = 5.0
 
-[node name="BeaconGoal" parent="." instance=ExtResource("3_beacon")]
-position = Vector3(0, 0, -10)
+[node name="BeaconGoal" parent="." unique_id=1917410290 instance=ExtResource("3_beacon")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
-[node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector3(0, 1, 7)
+[node name="Player" parent="." unique_id=1994399075 instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14.881993)
 
-[node name="TutorialHUD" type="CanvasLayer" parent="."]
+[node name="TutorialHUD" type="CanvasLayer" parent="." unique_id=93362503]
 
-[node name="Instructions" type="Label" parent="TutorialHUD"]
-anchors_preset = 10
+[node name="Instructions" type="Label" parent="TutorialHUD" unique_id=192183362]
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -480.0
@@ -118,6 +125,7 @@ theme_override_colors/font_color = Color(0.35, 0.88, 0.94, 1)
 theme_override_colors/font_outline_color = Color(0.005, 0.015, 0.025, 0.95)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 21
-text = "THE ROACH CAN BE STUNNED BY YOUR ECHO\nStun it, get past, and reach the beacon behind it."
+text = "THE ROACH CAN BE STUNNED BY YOUR ECHO
+Stun it, get past, and reach the beacon behind it."
 horizontal_alignment = 1
 vertical_alignment = 1
