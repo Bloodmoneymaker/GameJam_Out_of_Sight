@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" path="res://UI/lose_screen/lose_screen.tscn" id="3_lose_screen"]
 [ext_resource type="PackedScene" uid="uid://r11i5dam5tlt" path="res://UI/main_menu/main_menu.tscn" id="4_main_menu"]
 [ext_resource type="PackedScene" path="res://UI/thanks_screen/thanks_screen.tscn" id="5_thanks_screen"]
+[ext_resource type="PackedScene" path="res://UI/level_intro/level_intro.tscn" id="6_level_intro"]
 
 [node name="Main" type="Node3D" unique_id=253493729]
 script = ExtResource("1_ig7tw")
@@ -26,3 +27,5 @@ script = ExtResource("1_ig7tw")
 [node name="LoseScreen" parent="CanvasLayer" unique_id=1946338800 instance=ExtResource("3_lose_screen")]
 
 [node name="ThanksScreen" parent="CanvasLayer" instance=ExtResource("5_thanks_screen")]
+
+[node name="LevelIntro" parent="CanvasLayer" instance=ExtResource("6_level_intro")]

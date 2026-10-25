@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://UI/level_intro/level_intro.gd" id="1_script"]
+
+[node name="LevelIntro" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(420, 96)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LevelLabel" type="Label" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 1, 0.8, 1)
+theme_override_font_sizes/font_size = 34
+text = "LEVEL: SEWER"
+horizontal_alignment = 1
+vertical_alignment = 1

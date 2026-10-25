@@ -12,6 +12,7 @@ var ui_main
 var win_screen: Control
 var lose_screen: Control
 var thanks_screen: Control
+var level_intro: Control
 var current_scene_id: int = -1
 var finish_in_progress := false
 
@@ -84,6 +85,8 @@ func load_scene(scene_idx: SCENE) -> void:
 	if is_instance_valid(thanks_screen):
 		thanks_screen.hide()
 	get_tree().paused = false
+	if is_instance_valid(level_intro):
+		level_intro.show_level(str(scene_titles.get(scene_idx, "Level %d" % scene_idx)))
 
 
 func get_next_scene_id() -> int:

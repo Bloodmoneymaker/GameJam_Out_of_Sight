@@ -10,6 +10,7 @@ extends Node3D
 @onready var win_screen: Control = $CanvasLayer/WinScreen
 @onready var lose_screen: Control = $CanvasLayer/LoseScreen
 @onready var thanks_screen: Control = $CanvasLayer/ThanksScreen
+@onready var level_intro: Control = $CanvasLayer/LevelIntro
 
 
 func _ready() -> void:
@@ -30,3 +31,4 @@ func _set_ui() -> void:
 	GameManager.win_screen = win_screen
 	GameManager.lose_screen = lose_screen
 	GameManager.thanks_screen = thanks_screen
+	GameManager.level_intro = level_intro
