@@ -23,11 +23,10 @@ func show_win_screen() -> void:
 	visible = true
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	next_button.visible = GameManager.get_next_scene_id() != GameManager.SCENE.NONE
+	next_button.visible = true
+	retry_button.visible = true
 	if next_button.visible:
 		next_button.grab_focus()
-	else:
-		retry_button.grab_focus()
 	
 	var total_seconds := int(GameManager.current_level_time)
 	var minutes: int = total_seconds / 60

@@ -11,6 +11,7 @@ var container_object:Node
 var ui_main
 var win_screen: Control
 var lose_screen: Control
+var thanks_screen: Control
 var current_scene_id: int = -1
 var finish_in_progress := false
 
@@ -80,6 +81,8 @@ func load_scene(scene_idx: SCENE) -> void:
 		win_screen.hide()
 	if is_instance_valid(lose_screen):
 		lose_screen.hide()
+	if is_instance_valid(thanks_screen):
+		thanks_screen.hide()
 	get_tree().paused = false
 
 
@@ -108,6 +111,8 @@ func return_to_main_menu() -> void:
 		win_screen.hide()
 	if is_instance_valid(lose_screen):
 		lose_screen.hide()
+	if is_instance_valid(thanks_screen):
+		thanks_screen.hide()
 	if is_instance_valid(ui_main):
 		ui_main.show()
 
@@ -125,6 +130,10 @@ func delete_all_scenes() -> void:
 
 func show_win_screen() -> void:
 	if is_instance_valid(lose_screen) and lose_screen.visible:
+		return
+	if get_next_scene_id() == SCENE.NONE:
+		if is_instance_valid(thanks_screen):
+			thanks_screen.show_thanks_screen()
 		return
 	if is_instance_valid(win_screen):
 		win_screen.show_win_screen()
