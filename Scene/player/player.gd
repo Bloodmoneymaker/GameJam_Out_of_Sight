@@ -5,7 +5,6 @@ class_name PlayerCharacter
 @export var sprint_speed := 8.0
 @export var jump_velocity := 4.5
 @export var mouse_sensitivity := 0.002
-@export var aim_range := 100.0
 @export var step_distance := 1.8
 @export var feet_offset := 0.9
 
@@ -48,17 +47,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			echo_charger.try_scan(head.global_position)
-		elif event.button_index == MOUSE_BUTTON_RIGHT:
-			_emit_wave_at_aim()
-
-
-func _emit_wave_at_aim() -> void:
-	var origin := camera.global_position
-	var target := origin - camera.global_basis.z * aim_range
-	var query := PhysicsRayQueryParameters3D.create(origin, target, 0xFFFFFFFF, [get_rid()])
-	var hit := get_world_3d().direct_space_state.intersect_ray(query)
-	if not hit.is_empty():
-		Echo.player_aim_echo(hit.position + hit.normal * 0.1)
 
 
 func _physics_process(delta: float) -> void:
