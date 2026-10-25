@@ -82,6 +82,15 @@ func load_scene(scene_idx: SCENE) -> void:
 	get_tree().paused = false
 
 
+func get_next_scene_id() -> int:
+	# Match the level selection menu's order, not the enum's numeric values.
+	var level_ids := scene.keys()
+	var current_index := level_ids.find(current_scene_id)
+	if current_index < 0 or current_index + 1 >= level_ids.size():
+		return SCENE.NONE
+	return int(level_ids[current_index + 1])
+
+
 func retry_current_scene() -> void:
 	if current_scene_id < 0:
 		push_warning("Cannot retry: no level has been selected yet.")

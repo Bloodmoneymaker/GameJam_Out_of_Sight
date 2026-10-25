@@ -75,6 +75,11 @@ layout_mode = 2
 text = "Time: "
 horizontal_alignment = 1
 
+[node name="NextButton" parent="CenterContainer/PanelContainer/VBoxContainer" instance=ExtResource("2_button")]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "NEXT LEVEL"
+
 [node name="RetryButton" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=474011663 instance=ExtResource("2_button")]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
