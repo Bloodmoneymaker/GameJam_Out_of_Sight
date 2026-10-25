@@ -30,7 +30,7 @@ var scene: Dictionary = {
 }
 
 var scene_titles: Dictionary = {
-	SCENE.DEBUG: "Level Monster",
+	SCENE.DEBUG: "Monster",
 	SCENE.TUTORIAL_1: "Tutorial 1",
 	SCENE.TUTORIAL_2: "Tutorial 2",
 	SCENE.TUTORIAL_3: "Tutorial 3",
