@@ -2,7 +2,7 @@ extends Control
 
 const BEACON_GROUP := "beacons"
 
-@onready var arrow: Label = $Arrow
+@onready var arrow: TextureRect = $Arrow
 
 var _beacon: Node3D
 var _fade_tween: Tween
