@@ -2533,3 +2533,4 @@ transform = Transform3D(-0.85320884, 0.39739743, -0.33780178, 0.35001713, 0.9164
 
 [node name="Beacon" parent="NavigationRegion3D" unique_id=2011488940 instance=ExtResource("11_3ow56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.03413, -0.50559986, -37.05132)
+sound_volume_db = 24.0
