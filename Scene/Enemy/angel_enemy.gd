@@ -27,6 +27,7 @@ var _last_blink_was_quick := false
 var _sound_timer: Timer
 var _laugh_player: AudioStreamPlayer3D
 var _blink_wait_remaining := 0.0
+var _active_echo_waves: Array[Dictionary] = []
 @onready var _animation_player: AnimationPlayer = $Angle2/AnimationPlayer
 
 
@@ -44,6 +45,7 @@ func _ready() -> void:
 		_animation_player.play("Angle_Stay")
 	if Engine.is_editor_hint():
 		return
+	Echo.visual_wave_emitted.connect(_on_visual_wave_emitted)
 
 	_sound_timer = Timer.new()
 	_sound_timer.one_shot = true
@@ -57,13 +59,23 @@ func _ready() -> void:
 	_laugh_player.position = Vector3.UP * 1.4
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	_update_echo_waves(delta)
 	if not is_instance_valid(_sound_timer):
 		return
 	if not _can_move_and_laugh():
 		_laugh_player.stop()
 	elif _is_behind_player() and _sound_timer.is_stopped():
 		_try_laugh(0.6)
+
+
+func _physics_process(delta: float) -> void:
+	# The shared enemy stun lasts for the full wave lifetime. For the Angel,
+	# end that stun when no visible echo wave reveals it anymore.
+	if _stun_time_remaining > 0.0 and not _is_revealed_by_echo(global_position):
+		_stun_time_remaining = 0.0
+		_blink_wait_remaining = minf(_blink_wait_remaining, 0.1)
+	super._physics_process(delta)
 
 
 func _try_laugh(chance: float) -> void:
@@ -112,8 +124,8 @@ func _on_attack_started() -> void:
 
 
 func _try_attack(target: Node3D) -> void:
-	# The Angel's gaze rule protects the player from both movement and attacks.
-	if _position_in_player_view(global_position):
+	# An Angel is vulnerable to the player's gaze while an echo reveals it.
+	if _is_revealed_and_looked_at():
 		return
 	super._try_attack(target)
 
@@ -150,7 +162,7 @@ func _update_special_chase_movement(delta: float, target: Node3D) -> bool:
 	if is_stunned() or not chase_enabled or not is_instance_valid(target):
 		return true
 
-	if _position_in_player_view(global_position):
+	if _is_revealed_and_looked_at():
 		return true
 	_blink_wait_remaining -= delta
 	if _blink_wait_remaining > 0.0:
@@ -196,19 +208,69 @@ func _update_special_chase_movement(delta: float, target: Node3D) -> bool:
 
 ## Shared by AI blinks and scripted level teleports. No camera means no teleport.
 func can_teleport_to(destination: Vector3) -> bool:
-	return not is_stunned() and not _position_in_player_view(global_position) and not _position_in_player_view(destination)
+	return not is_stunned() and not _is_revealed_and_looked_at() and not (
+		_position_in_player_view(destination) and _is_revealed_by_echo(destination)
+	)
+
+
+func _on_visual_wave_emitted(origin: Vector3, speed: float, lifetime: float, plane: Vector4) -> void:
+	_active_echo_waves.append({"origin": origin, "speed": speed, "lifetime": lifetime, "plane": plane, "age": 0.0})
+
+
+func _update_echo_waves(delta: float) -> void:
+	for index in range(_active_echo_waves.size() - 1, -1, -1):
+		var wave := _active_echo_waves[index]
+		wave["age"] = float(wave["age"]) + delta
+		if float(wave["age"]) > float(wave["lifetime"]):
+			_active_echo_waves.remove_at(index)
+		else:
+			_active_echo_waves[index] = wave
+
+
+func _is_revealed_and_looked_at() -> bool:
+	return _is_revealed_by_echo(global_position) and _position_in_player_view(global_position)
+
+
+func _is_revealed_by_echo(position: Vector3) -> bool:
+	for wave in _active_echo_waves:
+		var age := float(wave["age"])
+		var lifetime := float(wave["lifetime"])
+		# The shader keeps a fading afterglow for the full wave lifetime.
+		if age > lifetime:
+			continue
+		var plane: Vector4 = wave["plane"]
+		var plane_normal := Vector3(plane.x, plane.y, plane.z)
+		# Mirrored waves are clipped to the source side of their reflecting wall.
+		if plane_normal.length_squared() > 0.5 and plane_normal.dot(position) - plane.w < 0.02:
+			continue
+		var origin: Vector3 = wave["origin"]
+		# Any part of the Angel's model can be outlined before the wave reaches
+		# its center, so include its bounds in the reveal distance.
+		var reached_distance := age * float(wave["speed"]) + _visibility_radius + 0.6
+		if position.distance_to(origin) <= reached_distance:
+			return true
+	return false
 
 
 func _position_in_player_view(position: Vector3) -> bool:
 	var camera := get_viewport().get_camera_3d()
 	if not is_instance_valid(camera):
 		return true
-	# Conservative sphere/frustum intersection: even a wing at the screen edge
-	# blocks teleportation. Darkness and intervening walls do not bypass this rule.
-	for plane in camera.get_frustum():
-		if plane.distance_to(position) > _visibility_radius:
-			return false
-	return true
+	# Test the Angel's body center in screen space. This stays independent of the
+	# echo shader, so darkness cannot let an Angel move or attack while looked at.
+	var target_point := position + Vector3.UP * (_visibility_radius * 0.5)
+	if camera.is_position_behind(target_point):
+		return false
+	if not get_viewport().get_visible_rect().has_point(camera.unproject_position(target_point)):
+		return false
+
+	# A wall still blocks the gaze rule; ignore the Angel and player colliders.
+	var query := PhysicsRayQueryParameters3D.create(camera.global_position, target_point)
+	query.exclude = [get_rid()]
+	var player := _player if is_instance_valid(_player) else _find_player()
+	if player is CollisionObject3D:
+		query.exclude.append(player.get_rid())
+	return get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 
 func _delay_attack_after_teleport(target: Node3D) -> void:

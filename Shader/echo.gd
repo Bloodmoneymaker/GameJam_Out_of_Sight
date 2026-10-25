@@ -19,6 +19,7 @@ enum WaterDropEchoSize {LIGHT, NORMAL}
 
 ## Receivers decide whether and when this wave hits them.
 signal wave_emitted(origin: Vector3, speed: float, lifetime: float, can_stun: bool, lure_source: Node3D)
+signal visual_wave_emitted(origin: Vector3, speed: float, lifetime: float, plane: Vector4)
 
 var _origins := PackedVector4Array()
 var _params := PackedVector4Array()
@@ -139,6 +140,7 @@ func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float
 	var rgb := Vector4(color.r, color.g, color.b, 1.0)
 	var params := Vector4(speed, lifetime, intensity, 0.0)
 	_add(origin, params, Vector4.ZERO, rgb, water_drop)
+	visual_wave_emitted.emit(origin, speed, lifetime, Vector4.ZERO)
 
 	if reflect:
 		var reflected := Vector4(speed, lifetime, intensity * REFLECTION_STRENGTH, 0.0)
@@ -146,6 +148,7 @@ func _emit_wave(origin: Vector3, speed: float, lifetime: float, intensity: float
 			var n := Vector3(plane.x, plane.y, plane.z)
 			var mirrored := origin - 2.0 * (n.dot(origin) - plane.w) * n
 			_add(mirrored, reflected, plane, rgb, water_drop)
+			visual_wave_emitted.emit(mirrored, speed, lifetime, plane)
 
 	_push()
 	wave_emitted.emit(origin, speed, lifetime, can_stun, lure_source)
