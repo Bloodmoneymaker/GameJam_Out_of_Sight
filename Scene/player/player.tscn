@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" path="res://Shader/echo_contours.tscn" id="echo_contours"]
 [ext_resource type="PackedScene" path="res://Scene/player/health_component/health_component.tscn" id="health_component"]
 [ext_resource type="PackedScene" path="res://UI/health_hearts/health_hearts.tscn" id="health_hearts"]
+[ext_resource type="Shader" path="res://Shader/hit_vignette.gdshader" id="hit_shader"]
+[ext_resource type="Script" path="res://UI/hit_vignette.gd" id="hit_script"]
+
+[sub_resource type="ShaderMaterial" id="HitMaterial"]
+shader = ExtResource("hit_shader")
 
 [sub_resource type="CapsuleShape3D" id="PlayerShape"]
 radius = 0.4
@@ -37,6 +42,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="Scanner" parent="Head/Camera3D" unique_id=596071866 instance=ExtResource("2_ubwr7")]
 transform = Transform3D(0.99999994, -5.6060543e-07, 0.00035106743, 0, 0.99999875, 0.0015968577, -0.00035106787, -0.0015968576, 0.9999987, 0.29352674, -0.389848, -0.3144157)
+
+[node name="HitFeedback" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="HitVignette" type="ColorRect" parent="HitFeedback"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("HitMaterial")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("hit_script")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=367044519]
 

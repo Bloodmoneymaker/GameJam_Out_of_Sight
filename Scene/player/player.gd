@@ -123,6 +123,7 @@ func _play_step_pair() -> void:
 func take_damage(amount: float) -> void:
 	if amount > 0.0 and not health_component.is_dead():
 		AudioManager.play_sound_2d(Audio.SOUND.PlayerHit)
+		$HitFeedback/HitVignette.pulse()
 	health_component.take_damage(amount)
 
 
