@@ -2,8 +2,7 @@ extends Control
 
 const BEACON_GROUP := "beacons"
 
-@onready var arrow: Label = $Panel/VBoxContainer/Arrow
-@onready var status_label: Label = $Panel/VBoxContainer/Status
+@onready var arrow: Label = $Arrow
 
 var _beacon: Node3D
 var _fade_tween: Tween
@@ -13,7 +12,6 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	arrow.pivot_offset = arrow.size * 0.5
 	arrow.hide()
-	status_label.show()
 
 
 func _process(_delta: float) -> void:
@@ -25,7 +23,6 @@ func refresh_direction() -> void:
 		_beacon = get_tree().get_first_node_in_group(BEACON_GROUP) as Node3D
 	if not is_instance_valid(_beacon):
 		arrow.hide()
-		status_label.show()
 		return
 
 	var camera := get_viewport().get_camera_3d()
@@ -53,7 +50,6 @@ func show_for_power_echo() -> void:
 		return
 	if _fade_tween and _fade_tween.is_running():
 		_fade_tween.kill()
-	status_label.hide()
 	arrow.show()
 	arrow.modulate.a = 1.0
 	_fade_tween = create_tween()
@@ -65,4 +61,3 @@ func show_for_power_echo() -> void:
 func _finish_fade() -> void:
 	arrow.hide()
 	arrow.modulate.a = 1.0
-	status_label.show()
