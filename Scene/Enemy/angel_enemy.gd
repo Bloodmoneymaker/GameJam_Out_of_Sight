@@ -1,7 +1,8 @@
 extends "res://Scene/Enemy/enemy.gd"
 ## Blink movement, poses and spatial laughter for the Angel.
 
-const ANGEL_SOUNDS: Array[int] = [
+# Resolve autoload enum values at runtime, including on a clean editor import.
+var _angel_sounds: Array[int] = [
 	Audio.SOUND.Angel_01,
 	Audio.SOUND.Angel_02,
 	Audio.SOUND.Angel_03
@@ -74,7 +75,7 @@ func _try_laugh(chance: float) -> void:
 	if randf() >= chance:
 		_sound_timer.start(randf_range(1.0, 2.0))
 		return
-	var sound_id: int = ANGEL_SOUNDS.pick_random()
+	var sound_id: int = _angel_sounds.pick_random()
 	_laugh_player.stream = Audio.sound[sound_id]
 	_laugh_player.pitch_scale = randf_range(0.95, 1.05)
 	_laugh_player.play()

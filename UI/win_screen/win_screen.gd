@@ -51,7 +51,7 @@ func _on_retry_button_pressed() -> void:
 
 
 func _on_next_button_pressed() -> void:
-	var next_scene_id := GameManager.get_next_scene_id()
+	var next_scene_id: int = GameManager.get_next_scene_id()
 	if next_scene_id == GameManager.SCENE.NONE:
 		return
 	AudioManager.play_sound_2d(Audio.SOUND.UI_Click)
