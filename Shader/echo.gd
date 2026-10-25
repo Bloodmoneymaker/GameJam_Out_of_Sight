@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 
 func player_scan_echo(origin: Vector3) -> void:
 	# Shorter range keeps the regular scan useful for nearby navigation.
-	_emit_wave(origin, 5.0, 3.0, 1.0, true, Color.TRANSPARENT, true)
+	_emit_wave(origin, 5.0, 3.0, 1.25, true, Color.TRANSPARENT, true)
 
 
 func player_power_scan_echo(origin: Vector3) -> void:
