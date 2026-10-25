@@ -38,7 +38,10 @@ func try_power_scan(origin: Vector3) -> bool:
 	if not _consume_charges(current_charges, POWER_ECHO_FIRST_RECHARGE_TIME, true):
 		return false
 	Echo.player_power_scan_echo(origin)
-	AudioManager.play_sound_3d(Audio.SOUND.Scan, origin)
+	AudioManager.play_sound_3d_special(Audio.sound[Audio.SOUND.Scan], origin, 0.82, 0)
+	var scanner := get_parent().get_node_or_null("Head/Camera3D/Scanner")
+	if is_instance_valid(scanner) and scanner.has_method("play_power_recoil"):
+		scanner.play_power_recoil()
 	_show_beacon_indicator()
 	return true
 
