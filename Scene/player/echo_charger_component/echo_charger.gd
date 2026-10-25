@@ -9,7 +9,7 @@ const POWER_ECHO_COST := 3
 const POWER_ECHO_FIRST_RECHARGE_TIME := 10.0
 
 @export_range(1, 100, 1) var max_charges: int = 3
-@export_range(0.1, 120.0, 0.1) var refresh_time: float = 5.0
+@export_range(0.1, 120.0, 0.1) var refresh_time: float = 6.5
 
 var current_charges: int = 0
 var _last_empty_feedback_ms: int = -500
