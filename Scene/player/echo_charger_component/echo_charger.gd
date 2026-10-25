@@ -6,6 +6,7 @@ class_name EchoCharger
 signal charges_changed(current: int, maximum: int)
 
 const POWER_ECHO_COST := 3
+const POWER_ECHO_FIRST_RECHARGE_TIME := 10.0
 
 @export_range(1, 100, 1) var max_charges: int = 3
 @export_range(0.1, 120.0, 0.1) var refresh_time: float = 5.0
@@ -34,7 +35,7 @@ func try_power_scan(origin: Vector3) -> bool:
 	if current_charges < POWER_ECHO_COST:
 		SignalManager.emptyEcho.emit(self)
 		return false
-	if not _consume_charges(current_charges):
+	if not _consume_charges(current_charges, POWER_ECHO_FIRST_RECHARGE_TIME, true):
 		return false
 	Echo.player_power_scan_echo(origin)
 	AudioManager.play_sound_3d(Audio.SOUND.Scan, origin)
@@ -48,7 +49,7 @@ func _show_beacon_indicator() -> void:
 		beacon_indicator.show_for_power_echo()
 
 
-func _consume_charges(amount: int) -> bool:
+func _consume_charges(amount: int, first_recharge_time: float = -1.0, reset_recharge_timer: bool = false) -> bool:
 	if current_charges < amount:
 		var now := Time.get_ticks_msec()
 		if now - _last_empty_feedback_ms >= 500:
@@ -56,8 +57,8 @@ func _consume_charges(amount: int) -> bool:
 			SignalManager.emptyEcho.emit(self)
 		return false
 	current_charges -= amount
-	if refresh_timer.is_stopped():
-		refresh_timer.start(refresh_time)
+	if reset_recharge_timer or refresh_timer.is_stopped():
+		refresh_timer.start(first_recharge_time if first_recharge_time > 0.0 else refresh_time)
 	charges_changed.emit(current_charges, max_charges)
 	print("Echo benutzt (%d Ladungen): %d/%d übrig." % [amount, current_charges, max_charges])
 	return true
