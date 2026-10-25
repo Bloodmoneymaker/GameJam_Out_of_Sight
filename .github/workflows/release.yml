@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  PROJECT_NAME: OutOfSight
+  PROJECT_NAME: EchoMan
 
 jobs:
   prepare:
@@ -79,7 +79,7 @@ jobs:
       - name: Download validated Web build
         uses: actions/download-artifact@v4
         with:
-          name: OutOfSight-web
+          name: EchoMan-web
           path: build/web
       - name: Package Web build, source and checksums
         run: |

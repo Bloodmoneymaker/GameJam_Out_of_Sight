@@ -77,7 +77,7 @@ jobs:
       - name: Upload Web build
         uses: actions/upload-artifact@v4
         with:
-          name: OutOfSight-web
+          name: EchoMan-web
           path: build/web/*
           if-no-files-found: error
           retention-days: 14
