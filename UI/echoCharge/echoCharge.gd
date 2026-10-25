@@ -10,16 +10,32 @@ const CHARGE_SLOT: PackedScene = preload("res://UI/echoCharge/chargeSlot.tscn")
 var _current := 0
 var _maximum := 0
 var _animations: Dictionary = {}
+var _empty_feedback: Tween
 
 
 func _ready() -> void:
 	if not is_instance_valid(charger):
 		return
 	charger.charges_changed.connect(_on_charges_changed)
+	SignalManager.emptyEcho.connect(_on_empty_echo)
 	_set_initial_charges(charger.current_charges, charger.max_charges)
 
 
+func _on_empty_echo(source: Node) -> void:
+	if source != charger or is_queued_for_deletion():
+		return
+	if _empty_feedback != null:
+		_empty_feedback.kill()
+	_empty_feedback = create_tween().set_parallel(true)
+	for slot in bars.get_children():
+		var flash: ColorRect = slot.get_node("EmptyFlash")
+		flash.modulate.a = 1.0
+		_empty_feedback.tween_property(flash, "modulate:a", 0.0, 0.3)
+
+
 func _set_initial_charges(current: int, maximum: int) -> void:
+	if _empty_feedback != null:
+		_empty_feedback.kill()
 	for animation in _animations.values():
 		animation.kill()
 	_animations.clear()

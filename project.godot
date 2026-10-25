@@ -20,13 +20,13 @@ buses/default_bus_layout="uid://bmk3kghoc30n2"
 
 [autoload]
 
+SignalManager="*uid://dayf384rr4xvu"
 GameManager="*uid://dcmopg5bbq12n"
 Audio="*uid://ciibqo08lgvy8"
 AudioManager="*uid://cmo2myamvpwp4"
 Echo="*uid://jeg5gqpktg2e"
 InputManager="*uid://ifuvg6uqqjy6"
 SpawnManager="*uid://brhtu7uytc5x6"
-SignalManager="*uid://dayf384rr4xvu"
 
 [display]
 

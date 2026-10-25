@@ -9,6 +9,7 @@ signal charges_changed(current: int, maximum: int)
 @export_range(0.1, 120.0, 0.1) var refresh_time: float = 5.0
 
 var current_charges: int = 0
+var _last_empty_feedback_ms: int = -500
 
 @onready var refresh_timer: Timer = $RefreshTimer
 
@@ -29,7 +30,10 @@ func try_scan(origin: Vector3) -> bool:
 
 func _consume_charge() -> bool:
 	if current_charges <= 0:
-		print("Keine Echo-Ladungen mehr! Warte auf das Nachladen.")
+		var now := Time.get_ticks_msec()
+		if now - _last_empty_feedback_ms >= 500:
+			_last_empty_feedback_ms = now
+			SignalManager.emptyEcho.emit(self)
 		return false
 	current_charges -= 1
 	if refresh_timer.is_stopped():
@@ -41,7 +45,10 @@ func _consume_charge() -> bool:
 
 
 func _on_refresh_timer_timeout() -> void:
+	if current_charges >= max_charges:
+		return
 	current_charges = mini(current_charges + 1, max_charges)
+	SignalManager.echo_recharged.emit(self)
 	if current_charges < max_charges:
 		refresh_timer.start(refresh_time)
 	charges_changed.emit(current_charges, max_charges)

@@ -8,6 +8,8 @@ var music_player = null
 var current_music_index = -1
 var sound_player_amount:int = 100
 var ui_sound_players: Array[AudioStreamPlayer] = []
+var _empty_echo_player: AudioStreamPlayer
+var _empty_echo_tween: Tween
 @onready var current_music:AudioStream = null
 
 func _ready() -> void:
@@ -32,16 +34,66 @@ func _ready() -> void:
 	add_child(music_player)
 	music_player.bus = "Music"							# Player in den Audio-Bus zuweisen
 	music_player.connect("finished",loop_music)
+	_setup_empty_echo()
+	SignalManager.emptyEcho.connect(_on_empty_echo)
+	SignalManager.echo_recharged.connect(_on_echo_recharged)
+
+
+func _on_empty_echo(_charger: Node) -> void:
+	if _empty_echo_tween != null:
+		_empty_echo_tween.kill()
+	_empty_echo_player.stop()
+	_empty_echo_tween = create_tween()
+	for pitch in [1.25, 1.1, 0.95]:
+		_empty_echo_tween.tween_callback(_start_empty_echo_burst.bind(pitch))
+		_empty_echo_tween.tween_interval(0.07)
+		_empty_echo_tween.tween_property(_empty_echo_player, "volume_db", -35.0, 0.035)
+		_empty_echo_tween.tween_callback(_empty_echo_player.stop)
+		_empty_echo_tween.tween_interval(0.035)
+
+
+func _setup_empty_echo() -> void:
+	# Isolate distortion from normal scans and other sounds.
+	var bus_index := AudioServer.get_bus_index("EmptyEcho")
+	if bus_index < 0:
+		AudioServer.add_bus()
+		bus_index = AudioServer.bus_count - 1
+		AudioServer.set_bus_name(bus_index, "EmptyEcho")
+		AudioServer.set_bus_send(bus_index, "Sound")
+		var distortion := AudioEffectDistortion.new()
+		distortion.mode = AudioEffectDistortion.MODE_CLIP
+		distortion.drive = 0.6
+		distortion.pre_gain = 6.0
+		distortion.post_gain = -6.0
+		AudioServer.add_bus_effect(bus_index, distortion)
+	# Attenuate after distortion so clipping cannot compensate for the reduction.
+	AudioServer.set_bus_volume_db(bus_index, -12.0)
+	_empty_echo_player = AudioStreamPlayer.new()
+	_empty_echo_player.stream = Audio.sound[Audio.SOUND.Scan]
+	_empty_echo_player.bus = "EmptyEcho"
+	add_child(_empty_echo_player)
+
+
+func _start_empty_echo_burst(pitch: float) -> void:
+	_empty_echo_player.pitch_scale = pitch
+	_empty_echo_player.volume_db = -14.0
+	_empty_echo_player.play()
+
+
+func _on_echo_recharged(_charger: Node) -> void:
+	play_sound_2d(Audio.SOUND.UI_Hover, -10.0, 1.4)
 
 ## Audio.SOUND.XXX, Position
 func play_sound_3d(sound_idx:int,position:Vector3) -> void:
 	play_sound_3d_special(Audio.sound[sound_idx],position,1.0,0)
 
 ## Spielt einen UI-Sound ohne räumliche Position ab
-func play_sound_2d(sound_idx: int) -> void:
+func play_sound_2d(sound_idx: int, volume_db: float = 0.0, pitch_scale: float = 1.0) -> void:
 	for ui_player in ui_sound_players:
 		if not ui_player.playing:
 			ui_player.stream = Audio.sound[sound_idx]
+			ui_player.volume_db = volume_db
+			ui_player.pitch_scale = pitch_scale
 			ui_player.play()
 			return
 	print("No available UI sound player!")
